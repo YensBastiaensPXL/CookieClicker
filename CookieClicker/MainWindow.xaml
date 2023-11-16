@@ -36,7 +36,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Background="red">
+                    <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor" IsEnabled="False" Background="red">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -54,7 +54,7 @@
                         <Label Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
-                    <Grid Grid.Row="1" Background="yellow">
+                    <Grid Grid.Row="1" Background="yellow" Name="BtnInvesteringGrandma">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -72,7 +72,7 @@
                         <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
-                    <Grid Grid.Row="2" Background="orange">
+                    <Grid Grid.Row="2" Background="orange" Name="BtnInvesteringFarm">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -90,7 +90,7 @@
                         <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
-                    <Grid Grid.Row="3" Background="LightCoral">
+                    <Grid Grid.Row="3" Background="LightCoral" Name="BtnInvesteringMine">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -109,7 +109,7 @@
                         <Label Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
-                    <Grid Grid.Row="4" Background="Pink">
+                    <Grid Grid.Row="4" Background="Pink" Name="BtnInvesteringFactory">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>

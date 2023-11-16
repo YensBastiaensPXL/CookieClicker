@@ -37,8 +37,59 @@ namespace CookieClicker
             double aantalCookiesAfgerond = Math.Floor(aantalCookies);
             aantalCookiesTxt.Content = $"{aantalCookiesAfgerond} cookies";
             Title = $"Cookie clicker got {aantalCookiesAfgerond} cookies";
-            
+
+            BtnInvesteringCursor.IsEnabled = aantalCookies >= 2;
+            BtnInvesteringGrandma.IsEnabled = aantalCookies >= 100;
+            BtnInvesteringFarm.IsEnabled = aantalCookies >= 1100;
+            BtnInvesteringMine.IsEnabled = aantalCookies >= 12000;
+            BtnInvesteringFactory.IsEnabled = aantalCookies >= 130000;
+
+            /*if (aantalCookies >= 2)
+            {
+                BtnInvesteringCursor.IsEnabled = true;
+            }
+            else
+            {
+                BtnInvesteringCursor.IsEnabled = false;
+            }
+
+            if (aantalCookies >= 100)
+            {
+                BtnInvesteringGrandma.IsEnabled = true;
+            }
+            else
+            {
+                BtnInvesteringGrandma.IsEnabled = false;
+            }
+
+            if (aantalCookies >= 1100)
+            {
+                BtnInvesteringFarm.IsEnabled = true;
+            }
+            else
+            {
+                BtnInvesteringFarm.IsEnabled = false;
+            }
+
+            if (aantalCookies >= 12000)
+            {
+                BtnInvesteringMine.IsEnabled = true;
+            }
+            else
+            {
+                BtnInvesteringMine.IsEnabled = false;
+            }
+
+            if (aantalCookies >= 12000)
+            {
+                BtnInvesteringFactory.IsEnabled = true;
+            }
+            else
+            {
+                BtnInvesteringFactory.IsEnabled = false;
+            } */
         }
+
 
         private void CursorClicked(object sender, MouseButtonEventArgs e)
         {
@@ -47,6 +98,7 @@ namespace CookieClicker
             {
                 aantalCookies = 0;
             }
+            
             UpdateCookies();
         }
 
@@ -55,7 +107,6 @@ namespace CookieClicker
             isMouseDown = true;
             aantalCookies++;
             clickableImage.Width *= 0.9;
-            
             isMouseOverImage = true;
             UpdateCookies();
             
