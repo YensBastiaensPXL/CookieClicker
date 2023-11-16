@@ -18,7 +18,7 @@
                 <ImageBrush ImageSource="/background_cookie.png"/>
             </Grid.Background>
             <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Margin="10px 60px 10px 10px" Content=""></Label>
-            <Image Name="clickableImage" Source="/cookie.png" Width="200" Height="200" MouseDown="MouseDownCookie" MouseUp="MouseUpCookie"/>
+            <Image Name="clickableImage" Source="/cookie.png" Width="200" Height="200" MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave"/>
         </Grid>
 
         <Label Grid.Column="1">Cookie Clicker</Label>

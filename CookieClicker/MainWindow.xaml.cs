@@ -22,13 +22,19 @@ namespace CookieClicker
     public partial class MainWindow : Window
     {
         long aantalCookies = 0;
-        bool isMouseDown = false;
         double origineleAfbeeldingBreedte;
+        bool isMouseDown = false;
+        bool isMouseOverImage = false;
         public MainWindow()
         {
             InitializeComponent();
             UpdateCookies();
             origineleAfbeeldingBreedte = clickableImage.Width;
+        }
+
+        private void UpdateCookies()
+        {
+            aantalCookiesTxt.Content = $"{aantalCookies} cookies";
         }
 
         private void CursorClicked(object sender, MouseButtonEventArgs e)
@@ -40,14 +46,11 @@ namespace CookieClicker
             }
             UpdateCookies();
         }
-        private void UpdateCookies()
-        {
-            aantalCookiesTxt.Content = $"{aantalCookies} cookies";
-        }
 
         private void MouseDownCookie(object sender, MouseButtonEventArgs e)
         {
             isMouseDown = true;
+            isMouseOverImage = true;
             clickableImage.Width *= 0.9;
             aantalCookies++;
             UpdateCookies();
@@ -56,7 +59,27 @@ namespace CookieClicker
         private void MouseUpCookie(object sender, MouseButtonEventArgs e)
         {
             isMouseDown = false;
-            clickableImage.Width = origineleAfbeeldingBreedte;
+            if (isMouseOverImage)
+            {
+                clickableImage.Width = origineleAfbeeldingBreedte;
+            }
+            isMouseOverImage= false;
+        }
+        private void ImageMouseEnter(object sender, MouseEventArgs e)
+        {
+            if (isMouseDown)
+            {
+                isMouseOverImage = true;
+            }
+        }
+
+        private void ImageMouseLeave(object sender, MouseEventArgs e)
+        {
+            if (isMouseDown)
+            {
+                clickableImage.Width = origineleAfbeeldingBreedte;
+            }
+            isMouseOverImage = false;
         }
     }
 }
