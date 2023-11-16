@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CookieClicker
 {
@@ -20,17 +21,33 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        int aantalCookies = 0; 
+        long aantalCookies = 0;
+        DispatcherTimer passieveCookiesGenerated;
         public MainWindow()
         {
             InitializeComponent();
+            UpdateCookies();
+            
             
         }
         private void BtnClickCookie(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             aantalCookies++;
-            
+            UpdateCookies();
+        }
 
+        private void CursorClicked(object sender, MouseButtonEventArgs e)
+        {
+            aantalCookies -= 2;
+            if (aantalCookies < 0)
+            {
+                aantalCookies = 0;
+            }
+            UpdateCookies();
+        }
+        private void UpdateCookies()
+        {
+            aantalCookiesTxt.Content = $"{aantalCookies} cookies";
         }
     }
 }
