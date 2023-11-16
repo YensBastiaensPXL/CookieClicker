@@ -23,10 +23,12 @@ namespace CookieClicker
     {
         long aantalCookies = 0;
         bool isMouseDown = false;
+        double origineleAfbeeldingBreedte;
         public MainWindow()
         {
             InitializeComponent();
-            UpdateCookies();            
+            UpdateCookies();
+            origineleAfbeeldingBreedte = clickableImage.Width;
         }
 
         private void CursorClicked(object sender, MouseButtonEventArgs e)
@@ -46,12 +48,15 @@ namespace CookieClicker
         private void MouseDownCookie(object sender, MouseButtonEventArgs e)
         {
             isMouseDown = true;
+            clickableImage.Width *= 0.9;
             aantalCookies++;
             UpdateCookies();
+            
         }
         private void MouseUpCookie(object sender, MouseButtonEventArgs e)
         {
             isMouseDown = false;
+            clickableImage.Width = origineleAfbeeldingBreedte;
         }
     }
 }

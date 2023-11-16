@@ -12,7 +12,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid>
+        
+        <Grid Grid.Column="0">
             <Grid.Background>
                 <ImageBrush ImageSource="/background_cookie.png"/>
             </Grid.Background>
@@ -34,7 +35,6 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-
                     <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Background="red">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -51,7 +51,6 @@
                             <Label Grid.Row="1">2</Label>
                         </Grid>
                         <Label Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
-
                     </Grid>
 
                     <Grid Grid.Row="1">
@@ -108,18 +107,8 @@
                         </Grid>
                         <Label Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
-
-
-
-
-                    
-
                 </Grid>
-
             </StackPanel>
-
         </Grid>
-        
-        
     </Grid>
 </Window>
