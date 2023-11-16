@@ -93,12 +93,30 @@ namespace CookieClicker
 
         private void CursorClicked(object sender, MouseButtonEventArgs e)
         {
-            aantalCookies -= 2;
-            if (aantalCookies < 0)
+            Grid geklikteKnop = (Grid)sender;
+            if (geklikteKnop.Name == "BtnInvesteringCursor")
             {
-                aantalCookies = 0;
+                aantalCookies -= 2;
             }
-            
+            else if (geklikteKnop.Name == "BtnInvesteringGrandma")
+            {
+                aantalCookies -= 100;
+            }
+            else if (geklikteKnop.Name == "BtnInvesteringFarm")
+            {
+                aantalCookies -= 1100;
+            }
+            else if (geklikteKnop.Name == "BtnInvesteringMine")
+            {
+                aantalCookies -= 12000;
+            }
+            else 
+            {
+                aantalCookies -= 130000;
+            }
+
+
+
             UpdateCookies();
         }
 
