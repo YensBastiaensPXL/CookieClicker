@@ -36,6 +36,8 @@ namespace CookieClicker
         {
             double aantalCookiesAfgerond = Math.Floor(aantalCookies);
             aantalCookiesTxt.Content = $"{aantalCookiesAfgerond} cookies";
+            Title = $"Cookie clicker got {aantalCookiesAfgerond} cookies";
+            
         }
 
         private void CursorClicked(object sender, MouseButtonEventArgs e)
