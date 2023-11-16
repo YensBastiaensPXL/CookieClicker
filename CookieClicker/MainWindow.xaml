@@ -12,7 +12,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid Grid.Column="0">
             <Grid.Background>
                 <ImageBrush ImageSource="/background_cookie.png"/>
@@ -29,6 +29,7 @@
                 <Label Name="PassiefAantalCookiesTxt" Content=""></Label>
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -53,7 +54,7 @@
                         <Label Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Background="yellow">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -66,13 +67,12 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" >Grandma</Label>
-                            <Label Grid.Row="1">10</Label>
+                            <Label Grid.Row="1">100</Label>
                         </Grid>
                         <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
-
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="2" Background="orange">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -85,25 +85,44 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" >Farm</Label>
-                            <Label Grid.Row="1">100</Label>
+                            <Label Grid.Row="1">1100</Label>
                         </Grid>
                         <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
-                    <Grid Grid.Row="3">
+                    <Grid Grid.Row="3" Background="LightCoral">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Row="3" Source="/factory.png" Width="35px" Height="35px"></Image>
+                        <Image Grid.Row="3" Source="/mine.png" Width="35px" Height="35px"></Image>
                         <Grid Grid.Row="3" VerticalAlignment="Center" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="17*"/>
+                                <RowDefinition Height="9*"/>
+                                <RowDefinition Height="26*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Margin="0,0,0,26" Grid.RowSpan="3" >Mine</Label>
+                            <Label Grid.Row="2">12000</Label>
+                        </Grid>
+                        <Label Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
+                    </Grid>
+
+                    <Grid Grid.Row="4" Background="Pink">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="4" Source="/factory.png" Width="35px" Height="35px"></Image>
+                        <Grid Grid.Row="4" VerticalAlignment="Center" Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" >Factory</Label>
-                            <Label Grid.Row="1">200</Label>
+                            <Label Grid.Row="1">130000</Label>
                         </Grid>
                         <Label Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
