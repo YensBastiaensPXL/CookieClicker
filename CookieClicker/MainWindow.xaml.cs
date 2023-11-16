@@ -26,9 +26,7 @@ namespace CookieClicker
         public MainWindow()
         {
             InitializeComponent();
-            UpdateCookies();
-            
-            
+            UpdateCookies();            
         }
         private void BtnClickCookie(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

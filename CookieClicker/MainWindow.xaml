@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="/background1.jpg"/>
+                <ImageBrush ImageSource="/background_cookie.png"/>
             </Grid.Background>
             <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Margin="10px 60px 10px 10px" Content=""></Label>
             <Image Name="clickableImage" Source="/cookie.png" Width="200" Height="200" MouseLeftButtonDown="BtnClickCookie"/>
