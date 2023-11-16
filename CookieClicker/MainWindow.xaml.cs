@@ -22,16 +22,11 @@ namespace CookieClicker
     public partial class MainWindow : Window
     {
         long aantalCookies = 0;
-        DispatcherTimer passieveCookiesGenerated;
+        bool isMouseDown = false;
         public MainWindow()
         {
             InitializeComponent();
             UpdateCookies();            
-        }
-        private void BtnClickCookie(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            aantalCookies++;
-            UpdateCookies();
         }
 
         private void CursorClicked(object sender, MouseButtonEventArgs e)
@@ -46,6 +41,17 @@ namespace CookieClicker
         private void UpdateCookies()
         {
             aantalCookiesTxt.Content = $"{aantalCookies} cookies";
+        }
+
+        private void MouseDownCookie(object sender, MouseButtonEventArgs e)
+        {
+            isMouseDown = true;
+            aantalCookies++;
+            UpdateCookies();
+        }
+        private void MouseUpCookie(object sender, MouseButtonEventArgs e)
+        {
+            isMouseDown = false;
         }
     }
 }
