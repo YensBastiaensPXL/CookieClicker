@@ -18,7 +18,7 @@
                 <ImageBrush ImageSource="/background_cookie.png"/>
             </Grid.Background>
             <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Margin="10px 60px 10px 10px" Content=""></Label>
-            <Image Name="klikebareCookie" Source="/cookie.png" Width="200" Height="200" MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave"/>
+            <Image Name="clickableImage" Source="/cookie.png" Width="200" Height="200" MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave"/>
         </Grid>
 
         <Label Grid.Column="1">Cookie Clicker</Label>
@@ -36,7 +36,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor" MouseEnter="BtnInvesteringCursor_MouseEnter" IsEnabled="False" ToolTip="hello"  Background="red">
+                    <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor" IsEnabled="False" Background="red">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -51,7 +51,7 @@
                             <Label Grid.Row="0" >Cursor</Label>
                             <Label Grid.Row="1">2</Label>
                         </Grid>
-                        <Label Name="CursorAantal" Grid.Column="2" VerticalAlignment="Center"></Label>
+                        <Label Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
                     <Grid Grid.Row="1" Background="yellow" Name="BtnInvesteringGrandma">
@@ -69,7 +69,7 @@
                             <Label Grid.Row="0" >Grandma</Label>
                             <Label Grid.Row="1">100</Label>
                         </Grid>
-                        <Label Name="GrandmaAantal" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"></Label>
+                        <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
                     <Grid Grid.Row="2" Background="orange" Name="BtnInvesteringFarm">
@@ -87,7 +87,7 @@
                             <Label Grid.Row="0" >Farm</Label>
                             <Label Grid.Row="1">1100</Label>
                         </Grid>
-                        <Label Name="FarmAantal" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"></Label>
+                        <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
                     <Grid Grid.Row="3" Background="LightCoral" Name="BtnInvesteringMine">
@@ -106,7 +106,7 @@
                             <Label Grid.Row="0" Margin="0,0,0,26" Grid.RowSpan="3" >Mine</Label>
                             <Label Grid.Row="2">12000</Label>
                         </Grid>
-                        <Label Name="MineAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
+                        <Label Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
 
                     <Grid Grid.Row="4" Background="Pink" Name="BtnInvesteringFactory">
@@ -124,7 +124,7 @@
                             <Label Grid.Row="0" >Factory</Label>
                             <Label Grid.Row="1">130000</Label>
                         </Grid>
-                        <Label Name="FactoryAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
+                        <Label Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">Aantal</Label>
                     </Grid>
                 </Grid>
             </StackPanel>

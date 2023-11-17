@@ -22,15 +22,14 @@ namespace CookieClicker
     public partial class MainWindow : Window
     {
         double aantalCookies = 0;
-        long aantalInvestering = 0;
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
-        bool isMuisOverAfbeelding = false;
+        bool isMouseOverImage = false;
         public MainWindow()
         {
             InitializeComponent();
             UpdateCookies();
-            origineleAfbeeldingBreedte = klikebareCookie.Width;
+            origineleAfbeeldingBreedte = clickableImage.Width;
         }
 
         private void UpdateCookies()
@@ -98,59 +97,53 @@ namespace CookieClicker
             if (geklikteKnop.Name == "BtnInvesteringCursor")
             {
                 aantalCookies -= 2;
-                aantalInvestering += 1;
-                CursorAantal.Content = aantalInvestering.ToString();
             }
             else if (geklikteKnop.Name == "BtnInvesteringGrandma")
             {
                 aantalCookies -= 100;
-                aantalInvestering += 1;
-                GrandmaAantal.Content = aantalInvestering.ToString();
             }
             else if (geklikteKnop.Name == "BtnInvesteringFarm")
             {
                 aantalCookies -= 1100;
-                aantalInvestering += 1;
-                FarmAantal.Content = aantalInvestering.ToString();
             }
             else if (geklikteKnop.Name == "BtnInvesteringMine")
             {
                 aantalCookies -= 12000;
-                aantalInvestering += 1;
-                MineAantal.Content = aantalInvestering.ToString();
             }
             else 
             {
                 aantalCookies -= 130000;
-                aantalInvestering += 1;
-                FactoryAantal.Content = aantalInvestering.ToString();
             }
+
+
 
             UpdateCookies();
         }
+
         private void MouseDownCookie(object sender, MouseButtonEventArgs e)
         {
             isMouseDown = true;
             aantalCookies++;
-            klikebareCookie.Width *= 0.9;
-            isMuisOverAfbeelding = true;
+            clickableImage.Width *= 0.9;
+            isMouseOverImage = true;
             UpdateCookies();
             
         }
         private void MouseUpCookie(object sender, MouseButtonEventArgs e)
         {
             isMouseDown = false;
-            if (isMuisOverAfbeelding)
+            if (isMouseOverImage)
             {
-                klikebareCookie.Width = origineleAfbeeldingBreedte;
+                clickableImage.Width = origineleAfbeeldingBreedte;
             }
-            isMuisOverAfbeelding= false;
+            isMouseOverImage= false;
+            UpdateCookies();
         }
         private void ImageMouseEnter(object sender, MouseEventArgs e)
         {
             if (isMouseDown)
             {
-                isMuisOverAfbeelding = true;
+                isMouseOverImage = true;
             }
         }
 
@@ -158,21 +151,9 @@ namespace CookieClicker
         {
             if (isMouseDown)
             {
-                klikebareCookie.Width = origineleAfbeeldingBreedte;
+                clickableImage.Width = origineleAfbeeldingBreedte;
             }
-            isMuisOverAfbeelding = false;
-        }
-
-        private void BtnInvesteringCursor_MouseEnter(object sender, MouseEventArgs e)
-        {
-      
-            
-            Grid hoverBtn = (Grid)sender;
-            if (hoverBtn.Name == "BtnInvesteringCursor")
-            {
-                ToolTipService.SetToolTip(hoverBtn, "Your tooltip text");
-                //hoveredButton.ToolTip = 1;
-            }
+            isMouseOverImage = false;
         }
     }
 }
