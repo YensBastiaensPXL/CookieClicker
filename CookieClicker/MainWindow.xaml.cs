@@ -116,7 +116,6 @@ namespace CookieClicker
             }
 
 
-
             UpdateCookies();
         }
 
