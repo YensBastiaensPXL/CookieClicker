@@ -22,7 +22,7 @@ namespace CookieClicker
     public partial class MainWindow : Window
     {
         double aantalCookies = 100; //aantal nog aanpassen bij upload
-        long aantalInvestering = 0;
+        long aantalInvestering;
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -30,6 +30,10 @@ namespace CookieClicker
         DispatcherTimer passieveCookieTimer10ms;
         double passieveCookieRatio1s = 0;
         double passieveCookieRatio10ms = 0;
+        const int basisPrijsCursor = 2;
+
+
+        long aantalKeerGekocht = 0;
 
         public MainWindow()
         {
@@ -65,22 +69,39 @@ namespace CookieClicker
             Grid geklikteKnop = (Grid)sender;
             if (geklikteKnop.Name == "BtnInvesteringCursor")
             {
-                aantalCookies -= 2;
+
                 aantalInvestering += 1;
+                double aankoopPrijs = basisPrijsCursor * (1.15 * aantalInvestering);
+
+                if (aantalInvestering > 0)
+                {
+                    aantalCookies -= aankoopPrijs;
+                    aantalInvestering += 1;
+                    
+                    
+                    PrijsCursor.Content = aankoopPrijs.ToString();
+                }
+                else
+                {
+                    aantalCookies -= 2;
+                    PrijsCursor.Content = basisPrijsCursor;
+
+                    //PrijsCursor.Content = aankoopPrijs.ToString();
+                }
+                
+
                 CursorAantal.Content = aantalInvestering.ToString();
 
-                passieveCookieTimer1.Tick -= PassieveCookieTimer1s_Tick;
-                passieveCookieTimer1.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio1s += 0.1;
-                passieveCookieRatio10ms += 0.001;
-                passieveCookieTimer1.Tick += PassieveCookieTimer1s_Tick;
-                passieveCookieTimer1.Tick += PassieveCookieTimer10ms_Tick;
+                //passieveCookieTimer1.Tick -= PassieveCookieTimer1s_Tick;
+                //passieveCookieTimer1.Tick -= PassieveCookieTimer10ms_Tick;
+                //passieveCookieRatio1s += 0.1;
+                //passieveCookieRatio10ms += 0.001;
+                //passieveCookieTimer1.Tick += PassieveCookieTimer1s_Tick;
+                //passieveCookieTimer1.Tick += PassieveCookieTimer10ms_Tick;
 
 
-
-                //passieveCookieTimer.Interval = TimeSpan.FromSeconds(1);
-                passieveCookieTimer10ms.Start();
-                passieveCookieTimer1.Start();
+                //passieveCookieTimer10ms.Start();
+                //passieveCookieTimer1.Start();
                 
 
             }

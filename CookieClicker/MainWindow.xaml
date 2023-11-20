@@ -49,7 +49,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" >Cursor</Label>
-                            <Label Grid.Row="1">2</Label>
+                            <Label Name="PrijsCursor" Grid.Row="1">2</Label>
                         </Grid>
                         <Label Name="CursorAantal" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
