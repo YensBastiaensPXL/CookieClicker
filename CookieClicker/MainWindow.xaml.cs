@@ -21,33 +21,102 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 100000000;
+        double aantalCookies = 100; //aantal nog aanpassen bij upload
         long aantalInvestering = 0;
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
-        DispatcherTimer passieveCookieTimer;
-        double PassieveCookieRatio = 0;
+        DispatcherTimer passieveCookieTimer1;
+        DispatcherTimer passieveCookieTimer10ms;
+        double passieveCookieRatio1s = 0;
+        double passieveCookieRatio10ms = 0;
 
         public MainWindow()
         {
             InitializeComponent();
             UpdateCookies();
             origineleAfbeeldingBreedte = klikebareCookie.Width;
-            passieveCookieTimer = new DispatcherTimer();
-            passieveCookieTimer.Interval = TimeSpan.FromSeconds(1);
+            passieveCookieTimer1 = new DispatcherTimer();
+            passieveCookieTimer10ms = new DispatcherTimer();
+            passieveCookieTimer1.Interval = TimeSpan.FromSeconds(1);
+            passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
 
         }
-        private void PassieveCookieTimer_Tick(object sender, EventArgs e)
+        private void PassieveCookieTimer1s_Tick(object sender, EventArgs e)
         {
-            double passieveCookiesPerTick = PassieveCookieRatio;
+            double passieveCookiesPerTick = passieveCookieRatio1s;
 
             aantalCookies += passieveCookiesPerTick;
             UpdateCookies();
         }
+
+        private void PassieveCookieTimer10ms_Tick(object sender, EventArgs e)
+        {
+            double passieveCookiesPerTick = passieveCookieRatio10ms;
+            aantalCookies += passieveCookiesPerTick;
+            UpdateCookies();
+        }
+
+        
+
+
+        private void CursorClicked(object sender, MouseButtonEventArgs e)
+        {
+            Grid geklikteKnop = (Grid)sender;
+            if (geklikteKnop.Name == "BtnInvesteringCursor")
+            {
+                aantalCookies -= 2;
+                aantalInvestering += 1;
+                CursorAantal.Content = aantalInvestering.ToString();
+
+                passieveCookieTimer1.Tick -= PassieveCookieTimer1s_Tick;
+                passieveCookieTimer1.Tick -= PassieveCookieTimer10ms_Tick;
+                passieveCookieRatio1s += 0.1;
+                passieveCookieRatio10ms += 0.001;
+                passieveCookieTimer1.Tick += PassieveCookieTimer1s_Tick;
+                passieveCookieTimer1.Tick += PassieveCookieTimer10ms_Tick;
+
+
+
+                //passieveCookieTimer.Interval = TimeSpan.FromSeconds(1);
+                passieveCookieTimer10ms.Start();
+                passieveCookieTimer1.Start();
+                
+
+            }
+            else if (geklikteKnop.Name == "BtnInvesteringGrandma")
+            {
+                aantalCookies -= 100;
+                aantalInvestering += 1;
+                GrandmaAantal.Content = aantalInvestering.ToString();
+            }
+            else if (geklikteKnop.Name == "BtnInvesteringFarm")
+            {
+                aantalCookies -= 1100;
+                aantalInvestering += 1;
+                FarmAantal.Content = aantalInvestering.ToString();
+            }
+            else if (geklikteKnop.Name == "BtnInvesteringMine")
+            {
+                aantalCookies -= 12000;
+                aantalInvestering += 1;
+                MineAantal.Content = aantalInvestering.ToString();
+            }
+            else 
+            {
+                aantalCookies -= 130000;
+                aantalInvestering += 1;
+                FactoryAantal.Content = aantalInvestering.ToString();
+            }
+
+
+            UpdateCookies();
+        }
+
         private void UpdateCookies()
         {
-            double aantalCookiesAfgerond = Math.Floor(aantalCookies);
+            //double aantalCookiesAfgerond = Math.Floor(aantalCookies);
+            double aantalCookiesAfgerond = aantalCookies;
             aantalCookiesTxt.Content = $"{aantalCookiesAfgerond} cookies";
             Title = $"Cookie clicker got {aantalCookiesAfgerond} cookies";
 
@@ -101,53 +170,6 @@ namespace CookieClicker
             {
                 BtnInvesteringFactory.IsEnabled = false;
             } */
-        }
-
-
-        private void CursorClicked(object sender, MouseButtonEventArgs e)
-        {
-            Grid geklikteKnop = (Grid)sender;
-            if (geklikteKnop.Name == "BtnInvesteringCursor")
-            {
-                aantalCookies -= 2;
-                aantalInvestering += 1;
-                CursorAantal.Content = aantalInvestering.ToString();
-
-                passieveCookieTimer.Tick -= PassieveCookieTimer_Tick;
-                PassieveCookieRatio += 1;
-                passieveCookieTimer.Tick += PassieveCookieTimer_Tick;
-
-                passieveCookieTimer.Interval = TimeSpan.FromSeconds(1.0 / PassieveCookieRatio);
-                passieveCookieTimer.Start();
-
-            }
-            else if (geklikteKnop.Name == "BtnInvesteringGrandma")
-            {
-                aantalCookies -= 100;
-                aantalInvestering += 1;
-                GrandmaAantal.Content = aantalInvestering.ToString();
-            }
-            else if (geklikteKnop.Name == "BtnInvesteringFarm")
-            {
-                aantalCookies -= 1100;
-                aantalInvestering += 1;
-                FarmAantal.Content = aantalInvestering.ToString();
-            }
-            else if (geklikteKnop.Name == "BtnInvesteringMine")
-            {
-                aantalCookies -= 12000;
-                aantalInvestering += 1;
-                MineAantal.Content = aantalInvestering.ToString();
-            }
-            else 
-            {
-                aantalCookies -= 130000;
-                aantalInvestering += 1;
-                FactoryAantal.Content = aantalInvestering.ToString();
-            }
-
-
-            UpdateCookies();
         }
         private void MouseDownCookie(object sender, MouseButtonEventArgs e)
         {
