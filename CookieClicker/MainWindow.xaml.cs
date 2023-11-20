@@ -22,7 +22,7 @@ namespace CookieClicker
     public partial class MainWindow : Window
     {
         double aantalCookies = 100; //aantal nog aanpassen bij upload
-        long aantalInvestering;
+        long aantalInvestering = 0;
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -31,6 +31,7 @@ namespace CookieClicker
         double passieveCookieRatio1s = 0;
         double passieveCookieRatio10ms = 0;
         const int basisPrijsCursor = 2;
+        double aankoopPrijs;
 
 
         long aantalKeerGekocht = 0;
@@ -70,25 +71,25 @@ namespace CookieClicker
             if (geklikteKnop.Name == "BtnInvesteringCursor")
             {
 
-                aantalInvestering += 1;
-                double aankoopPrijs = basisPrijsCursor * (1.15 * aantalInvestering);
+                
 
                 if (aantalInvestering > 0)
                 {
-                    aantalCookies -= aankoopPrijs;
-                    aantalInvestering += 1;
+                   //Cookies worden correct afgetrokken, maar aankoopPrijs is niet correct
+                    aankoopPrijs = basisPrijsCursor * (1.15 * aantalInvestering);
                     
+                    aantalCookies -= aankoopPrijs;
                     
                     PrijsCursor.Content = aankoopPrijs.ToString();
+                    //aantalInvestering += 1;
                 }
                 else
                 {
                     aantalCookies -= 2;
-                    PrijsCursor.Content = basisPrijsCursor;
-
-                    //PrijsCursor.Content = aankoopPrijs.ToString();
+                    aankoopPrijs = basisPrijsCursor * 1.15;
+                    PrijsCursor.Content = aankoopPrijs.ToString();
                 }
-                
+                aantalInvestering++;
 
                 CursorAantal.Content = aantalInvestering.ToString();
 
