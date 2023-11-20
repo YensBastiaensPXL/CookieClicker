@@ -21,8 +21,9 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 100; //aantal nog aanpassen bij upload
+        double aantalCookies = 10000; //aantal nog aanpassen bij upload
         long aantalInvestering = 0;
+        long aantalMinusCookies = 0;
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -31,7 +32,8 @@ namespace CookieClicker
         double passieveCookieRatio1s = 0;
         double passieveCookieRatio10ms = 0;
         const int basisPrijsCursor = 2;
-        double aankoopPrijs;
+        double nieuweAankoopPrijs;
+        double huidigeAankoopPrijs;
 
 
         long aantalKeerGekocht = 0;
@@ -70,28 +72,30 @@ namespace CookieClicker
             Grid geklikteKnop = (Grid)sender;
             if (geklikteKnop.Name == "BtnInvesteringCursor")
             {
-
-                
-
                 if (aantalInvestering > 0)
                 {
-                   //Cookies worden correct afgetrokken, maar aankoopPrijs is niet correct
-                    aankoopPrijs = basisPrijsCursor * (1.15 * aantalInvestering);
-                    
-                    aantalCookies -= aankoopPrijs;
-                    
-                    PrijsCursor.Content = aankoopPrijs.ToString();
-                    //aantalInvestering += 1;
+                    aantalInvestering++;
+                   
+
+                    //huidigeAankoopPrijs = basisPrijsCursor * (1.15 * aantalMinusCookies);
+                    nieuweAankoopPrijs = basisPrijsCursor * (1.15 * aantalInvestering);
+                    huidigeAankoopPrijs = basisPrijsCursor * (1.15 * (aantalInvestering - 1));  
+
+                    PrijsCursor.Content = nieuweAankoopPrijs.ToString();
+                    aantalCookies -= huidigeAankoopPrijs;  
+
                 }
                 else
                 {
                     aantalCookies -= 2;
-                    aankoopPrijs = basisPrijsCursor * 1.15;
-                    PrijsCursor.Content = aankoopPrijs.ToString();
+                    nieuweAankoopPrijs = basisPrijsCursor * 1.15;
+                    PrijsCursor.Content = nieuweAankoopPrijs.ToString();
+                    aantalInvestering = 1;
                 }
-                aantalInvestering++;
 
                 CursorAantal.Content = aantalInvestering.ToString();
+
+                //TERUG UIT COMMENTEN IN DE CODE ZODAT PASSIEVE COOKIES WERKEN
 
                 //passieveCookieTimer1.Tick -= PassieveCookieTimer1s_Tick;
                 //passieveCookieTimer1.Tick -= PassieveCookieTimer10ms_Tick;
@@ -228,7 +232,7 @@ namespace CookieClicker
             isMuisOverAfbeelding = false;
         }
 
-        private void BtnInvesteringCursor_MouseEnter(object sender, MouseEventArgs e)
+        private void toolTip(object sender, MouseEventArgs e)
         {
       
             

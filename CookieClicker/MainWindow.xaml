@@ -36,7 +36,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor" MouseEnter="BtnInvesteringCursor_MouseEnter" IsEnabled="False" ToolTip="hello"  Background="red">
+                    <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor" MouseEnter="toolTip" IsEnabled="False" ToolTip="hello"  Background="red">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
