@@ -21,18 +21,30 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 0;
+        double aantalCookies = 100000000;
         long aantalInvestering = 0;
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
+        DispatcherTimer passieveCookieTimer;
+        double PassieveCookieRatio = 0;
+
         public MainWindow()
         {
             InitializeComponent();
             UpdateCookies();
             origineleAfbeeldingBreedte = klikebareCookie.Width;
-        }
+            passieveCookieTimer = new DispatcherTimer();
+            passieveCookieTimer.Interval = TimeSpan.FromSeconds(1);
 
+        }
+        private void PassieveCookieTimer_Tick(object sender, EventArgs e)
+        {
+            double passieveCookiesPerTick = PassieveCookieRatio;
+
+            aantalCookies += passieveCookiesPerTick;
+            UpdateCookies();
+        }
         private void UpdateCookies()
         {
             double aantalCookiesAfgerond = Math.Floor(aantalCookies);
@@ -100,6 +112,14 @@ namespace CookieClicker
                 aantalCookies -= 2;
                 aantalInvestering += 1;
                 CursorAantal.Content = aantalInvestering.ToString();
+
+                passieveCookieTimer.Tick -= PassieveCookieTimer_Tick;
+                PassieveCookieRatio += 1;
+                passieveCookieTimer.Tick += PassieveCookieTimer_Tick;
+
+                passieveCookieTimer.Interval = TimeSpan.FromSeconds(1.0 / PassieveCookieRatio);
+                passieveCookieTimer.Start();
+
             }
             else if (geklikteKnop.Name == "BtnInvesteringGrandma")
             {
