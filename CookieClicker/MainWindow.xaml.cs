@@ -77,19 +77,19 @@ namespace CookieClicker
                     aantalInvestering++;
                    
 
-                    //huidigeAankoopPrijs = basisPrijsCursor * (1.15 * aantalMinusCookies);
+                    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
                     nieuweAankoopPrijs = basisPrijsCursor * (1.15 * aantalInvestering);
-                    huidigeAankoopPrijs = basisPrijsCursor * (1.15 * (aantalInvestering - 1));  
+                    huidigeAankoopPrijs = basisPrijsCursor * (1.15 * (aantalInvestering - 1));
 
-                    PrijsCursor.Content = nieuweAankoopPrijs.ToString();
-                    aantalCookies -= huidigeAankoopPrijs;  
+                    PrijsCursor.Content = Math.Ceiling(nieuweAankoopPrijs).ToString();
+                    aantalCookies -= Math.Ceiling(huidigeAankoopPrijs); 
 
                 }
                 else
                 {
                     aantalCookies -= 2;
                     nieuweAankoopPrijs = basisPrijsCursor * 1.15;
-                    PrijsCursor.Content = nieuweAankoopPrijs.ToString();
+                    PrijsCursor.Content = Math.Ceiling(nieuweAankoopPrijs).ToString();
                     aantalInvestering = 1;
                 }
 
