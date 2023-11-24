@@ -55,7 +55,7 @@
                         <Label Name="CursorAantal" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="1" Background="yellow" Name="BtnInvesteringGrandma">
+                    <Grid Grid.Row="1" Background="yellow" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringGrandma">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -68,12 +68,12 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" >Grandma</Label>
-                            <Label Grid.Row="1">100</Label>
+                            <Label Name="PrijsGrandma" Grid.Row="1">100</Label>
                         </Grid>
                         <Label Name="GrandmaAantal" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="2" Background="orange" Name="BtnInvesteringFarm">
+                    <Grid Grid.Row="2" Background="orange" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -86,12 +86,12 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" >Farm</Label>
-                            <Label Grid.Row="1">1100</Label>
+                            <Label Name="PrijsFarm" Grid.Row="1">1100</Label>
                         </Grid>
                         <Label Name="FarmAantal" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="3" Background="LightCoral" Name="BtnInvesteringMine">
+                    <Grid Grid.Row="3" Background="LightCoral" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -105,12 +105,12 @@
                                 <RowDefinition Height="26*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Margin="0,0,0,26" Grid.RowSpan="3" >Mine</Label>
-                            <Label Grid.Row="2">12000</Label>
+                            <Label Name="PrijsMine" Grid.Row="2">12000</Label>
                         </Grid>
                         <Label Name="MineAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="4" Background="Pink" Name="BtnInvesteringFactory">
+                    <Grid Grid.Row="4" Background="Pink" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -123,7 +123,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" >Factory</Label>
-                            <Label Grid.Row="1">130000</Label>
+                            <Label Name="PrijsFactory" Grid.Row="1">130000</Label>
                         </Grid>
                         <Label Name="FactoryAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
