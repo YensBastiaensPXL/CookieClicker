@@ -21,9 +21,8 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 10000; //aantal nog aanpassen bij upload
+        double aantalCookies = 100000; //aantal nog aanpassen bij upload
         long aantalInvestering = 0;
-        long aantalMinusCookies = 0;
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -32,11 +31,8 @@ namespace CookieClicker
         double passieveCookieRatio1s = 0;
         double passieveCookieRatio10ms = 0;
         const int basisPrijsCursor = 2;
-        double nieuweAankoopPrijs;
+        double kostCounter;
         double huidigeAankoopPrijs;
-
-
-        long aantalKeerGekocht = 0;
 
         public MainWindow()
         {
@@ -75,21 +71,19 @@ namespace CookieClicker
                 if (aantalInvestering > 0)
                 {
                     aantalInvestering++;
-                   
 
                     //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-                    nieuweAankoopPrijs = basisPrijsCursor * (1.15 * aantalInvestering);
+                    kostCounter = basisPrijsCursor * (1.15 * aantalInvestering);
                     huidigeAankoopPrijs = basisPrijsCursor * (1.15 * (aantalInvestering - 1));
-
-                    PrijsCursor.Content = Math.Ceiling(nieuweAankoopPrijs).ToString();
+                    PrijsCursor.Content = Math.Ceiling(kostCounter).ToString();
                     aantalCookies -= Math.Ceiling(huidigeAankoopPrijs); 
 
                 }
                 else
                 {
                     aantalCookies -= 2;
-                    nieuweAankoopPrijs = basisPrijsCursor * 1.15;
-                    PrijsCursor.Content = Math.Ceiling(nieuweAankoopPrijs).ToString();
+                    kostCounter = basisPrijsCursor * 1.15;
+                    PrijsCursor.Content = Math.Ceiling(kostCounter).ToString();
                     aantalInvestering = 1;
                 }
 
@@ -97,17 +91,17 @@ namespace CookieClicker
 
                 //TERUG UIT COMMENTEN IN DE CODE ZODAT PASSIEVE COOKIES WERKEN
 
-                //passieveCookieTimer1.Tick -= PassieveCookieTimer1s_Tick;
-                //passieveCookieTimer1.Tick -= PassieveCookieTimer10ms_Tick;
-                //passieveCookieRatio1s += 0.1;
-                //passieveCookieRatio10ms += 0.001;
-                //passieveCookieTimer1.Tick += PassieveCookieTimer1s_Tick;
-                //passieveCookieTimer1.Tick += PassieveCookieTimer10ms_Tick;
+                passieveCookieTimer1.Tick -= PassieveCookieTimer1s_Tick;
+                passieveCookieTimer1.Tick -= PassieveCookieTimer10ms_Tick;
+                passieveCookieRatio1s += 0.1;
+                passieveCookieRatio10ms += 0.001;
+                passieveCookieTimer1.Tick += PassieveCookieTimer1s_Tick;
+                passieveCookieTimer1.Tick += PassieveCookieTimer10ms_Tick;
 
 
-                //passieveCookieTimer10ms.Start();
-                //passieveCookieTimer1.Start();
-                
+                passieveCookieTimer10ms.Start();
+                passieveCookieTimer1.Start();
+
 
             }
             else if (geklikteKnop.Name == "BtnInvesteringGrandma")
@@ -135,7 +129,6 @@ namespace CookieClicker
                 FactoryAantal.Content = aantalInvestering.ToString();
             }
 
-
             UpdateCookies();
         }
 
@@ -145,7 +138,11 @@ namespace CookieClicker
             double aantalCookiesAfgerond = aantalCookies;
             aantalCookiesTxt.Content = $"{aantalCookiesAfgerond} cookies";
             Title = $"Cookie clicker got {aantalCookiesAfgerond} cookies";
+        // als aantal cookies per seconde opgeteld moeten worden moet je bv.
+        // https://prnt.sc/UX6il5icQ8jy
+            aantalPerSeconde.Content = $"{passieveCookieRatio10ms} per seconde";
 
+            //if statement in if statement in if statement???
             BtnInvesteringCursor.IsEnabled = aantalCookies >= 2;
             BtnInvesteringGrandma.IsEnabled = aantalCookies >= 100;
             BtnInvesteringFarm.IsEnabled = aantalCookies >= 1100;
