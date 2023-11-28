@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -29,7 +30,9 @@ namespace CookieClicker
         DispatcherTimer passieveCookieTimer10ms;
         double passieveCookieRatio1s = 0;
         double passieveCookieRatio10ms = 0;
-        //double NextPassieveCookieRatio10ms = 20;
+        double NextPassieveCookieRatio10ms = 20;
+        double upcomingPassiveCookies;
+
         //basis prijs investeringen
         const int basisPrijsCursor = 2;
         const int basisPrijsGrandma = 100;
@@ -214,10 +217,13 @@ namespace CookieClicker
                 FactoryAantal.Content = aantalInvesteringFactory.ToString();
 
                 //COOKIE TIMER
-                //passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                //passieveCookieRatio10ms += 20;
-                //passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
-                //passieveCookieTimer10ms.Start();
+                passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
+                passieveCookieRatio10ms += 20;
+                //Tooltip part of code
+                upcomingPassiveCookies = passieveCookieRatio10ms + NextPassieveCookieRatio10ms;
+
+                passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
+                passieveCookieTimer10ms.Start();
 
             }
             
@@ -231,16 +237,16 @@ namespace CookieClicker
             Grid hoverBtn = (Grid)sender;
             if (hoverBtn.Name == "BtnInvesteringCursor")
             {
-                ToolTipService.SetToolTip(hoverBtn,passieveCookieRatio10ms.ToString());
-                
+                ToolTipService.SetToolTip(hoverBtn, passieveCookieRatio10ms.ToString());
+
             }
             if (hoverBtn.Name == "BtnInvesteringGrandma")
             {
-                ToolTipService.SetToolTip(hoverBtn, "lala" );
+                ToolTipService.SetToolTip(hoverBtn, "lala");
             }
             if (hoverBtn.Name == "BtnInvesteringFactory")
             {
-                ToolTipService.SetToolTip(hoverBtn, );
+                ToolTipService.SetToolTip(hoverBtn, upcomingPassiveCookies);
             }
         }
 
@@ -317,12 +323,20 @@ namespace CookieClicker
                 BtnInvesteringFactory.IsEnabled = false;
             } */
         }
-        private void MouseDownCookie(object sender, MouseButtonEventArgs e)
+        private async void MouseDownCookie(object sender, MouseButtonEventArgs e)
         {
             isMouseDown = true;
             aantalCookies++;
             klikebareCookie.Width *= 0.9;
             isMuisOverAfbeelding = true;
+
+            if (aantalCookiesTxt != null)
+            {
+                aantalCookiesTxt.FontSize *= 1.5;
+                await Task.Delay(200);
+                aantalCookiesTxt.FontSize /= 1.5;
+            }
+
             UpdateCookies();
             
         }
