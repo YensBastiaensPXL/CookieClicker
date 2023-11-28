@@ -26,10 +26,10 @@ namespace CookieClicker
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
         //Passieve cookie timer
-        DispatcherTimer passieveCookieTimer1;
         DispatcherTimer passieveCookieTimer10ms;
         double passieveCookieRatio1s = 0;
         double passieveCookieRatio10ms = 0;
+        //double NextPassieveCookieRatio10ms = 20;
         //basis prijs investeringen
         const int basisPrijsCursor = 2;
         const int basisPrijsGrandma = 100;
@@ -101,7 +101,7 @@ namespace CookieClicker
 
 
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 1;
+                passieveCookieRatio10ms += 0.001;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -224,6 +224,26 @@ namespace CookieClicker
             UpdateCookies();
         }
 
+        private void toolTip(object sender, MouseEventArgs e)
+        {
+
+
+            Grid hoverBtn = (Grid)sender;
+            if (hoverBtn.Name == "BtnInvesteringCursor")
+            {
+                ToolTipService.SetToolTip(hoverBtn,passieveCookieRatio10ms.ToString());
+                
+            }
+            if (hoverBtn.Name == "BtnInvesteringGrandma")
+            {
+                ToolTipService.SetToolTip(hoverBtn, "lala" );
+            }
+            if (hoverBtn.Name == "BtnInvesteringFactory")
+            {
+                ToolTipService.SetToolTip(hoverBtn, );
+            }
+        }
+
         private void UpdateInvestering()
         {
             if (aantalCookies >= huidigeAankoopPrijsFactory)
@@ -243,15 +263,13 @@ namespace CookieClicker
             // als aantal cookies per seconde opgeteld moeten worden moet je bv.
             // https://prnt.sc/UX6il5icQ8jy
             double aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms, 3);
-            aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per seconde";
+            aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per Milliseconde";
 
             //if statement?
             BtnInvesteringCursor.IsEnabled = aantalCookies >= 2;
             BtnInvesteringGrandma.IsEnabled = aantalCookies >= 100;
             BtnInvesteringFarm.IsEnabled = aantalCookies >= 1100;
             BtnInvesteringMine.IsEnabled = aantalCookies >= 12000;
-            //BtnInvesteringFactory.IsEnabled = aantalCookies >= UpdateInvestering();
-            //BtnInvesteringFactory.IsEnabled = aantalCookies >= huidigeAankoopPrijsFactory;
             BtnInvesteringFactory.IsEnabled = aantalCookies >= kostCounterFactory;
 
             /*if (aantalCookies >= 2)
@@ -334,16 +352,6 @@ namespace CookieClicker
             isMuisOverAfbeelding = false;
         }
 
-        private void toolTip(object sender, MouseEventArgs e)
-        {
-      
-            
-            Grid hoverBtn = (Grid)sender;
-            if (hoverBtn.Name == "BtnInvesteringCursor")
-            {
-                ToolTipService.SetToolTip(hoverBtn, "Your tooltip text");
-                //hoveredButton.ToolTip = 1;
-            }
-        }
+        
     }
 }

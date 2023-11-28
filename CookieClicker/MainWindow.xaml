@@ -55,7 +55,7 @@
                         <Label Name="CursorAantal" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="1" Background="yellow" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringGrandma">
+                    <Grid Grid.Row="1" Background="yellow" MouseLeftButtonDown="CursorClicked" MouseEnter="toolTip" Name="BtnInvesteringGrandma">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -73,7 +73,7 @@
                         <Label Name="GrandmaAantal" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="2" Background="orange" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm">
+                    <Grid Grid.Row="2" Background="orange" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm" MouseEnter="toolTip">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -91,7 +91,7 @@
                         <Label Name="FarmAantal" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="3" Background="LightCoral" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine">
+                    <Grid Grid.Row="3" Background="LightCoral" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine" MouseEnter="toolTip">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -110,7 +110,7 @@
                         <Label Name="MineAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="4" Background="Pink" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory">
+                    <Grid Grid.Row="4" Background="Pink" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory" MouseEnter="toolTip">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
