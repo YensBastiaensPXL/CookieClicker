@@ -22,7 +22,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 1000000; //aantal nog aanpassen bij upload
+        double aantalCookies = 1080404; //aantal nog aanpassen bij upload
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -86,17 +86,15 @@ namespace CookieClicker
 
         private void CursorClicked(object sender, MouseButtonEventArgs e)
         {
-            BtnInvesteringFactory.IsEnabled = aantalCookies >= huidigeAankoopPrijsFactory;
             Grid geklikteKnop = (Grid)sender;
             if (geklikteKnop.Name == "BtnInvesteringCursor")
             {
                 if (aantalInvesteringCursor > 0)
                 {
                     aantalInvesteringCursor++;
-
+                    UpdateInvestering();
                     //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-                    kostCounterCursor = basisPrijsCursor * (1.15 * aantalInvesteringCursor);
-                    huidigeAankoopPrijsCursor = basisPrijsCursor * (1.15 * (aantalInvesteringCursor - 1));
+
                     PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                     aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor); 
 
@@ -127,10 +125,9 @@ namespace CookieClicker
                 if (aantalInvesteringGrandma > 0)
                 {
                     aantalInvesteringGrandma++;
-
+                    UpdateInvestering();
                     //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering of beide
-                    kostCounterGrandma = basisPrijsGrandma * (1.15 * aantalInvesteringGrandma);
-                    huidigeAankoopPrijsGrandma = basisPrijsGrandma * (1.15 * (aantalInvesteringGrandma - 1));
+                    
                     PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
                     aantalCookies -= Math.Ceiling(huidigeAankoopPrijsGrandma);
 
@@ -162,10 +159,8 @@ namespace CookieClicker
                 if (aantalInvesteringFarm > 0)
                 {
                     aantalInvesteringFarm++;
-
+                    UpdateInvestering();
                     //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-                    kostCounterFarm = basisPrijsFarm * (1.15 * aantalInvesteringFarm);
-                    huidigeAankoopPrijsFarm = basisPrijsFarm * (1.15 * (aantalInvesteringFarm - 1));
                     PrijsFarm.Content = Math.Ceiling(kostCounterFarm).ToString();
                     aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFarm);
 
@@ -195,10 +190,9 @@ namespace CookieClicker
                 if (aantalInvesteringMine > 0)
                 {
                     aantalInvesteringMine++;
+                    UpdateInvestering();
 
                     //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-                    kostCounterMine = basisPrijsMine * (1.15 * aantalInvesteringMine);
-                    huidigeAankoopPrijsMine = basisPrijsMine * (1.15 * (aantalInvesteringMine - 1));
                     PrijsMine.Content = Math.Ceiling(kostCounterMine).ToString();
                     aantalCookies -= Math.Ceiling(huidigeAankoopPrijsMine);
 
@@ -264,12 +258,33 @@ namespace CookieClicker
 
         private void UpdateInvestering()
         {
+            if (aantalCookies >= huidigeAankoopPrijsCursor)
+            {
+                kostCounterCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor);
+                huidigeAankoopPrijsCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor - 1);
+            }
+            if (aantalCookies >= huidigeAankoopPrijsGrandma)
+            {
+                kostCounterGrandma = basisPrijsGrandma * Math.Pow(1.15, aantalInvesteringGrandma);
+                huidigeAankoopPrijsGrandma = basisPrijsGrandma * Math.Pow(1.15, aantalInvesteringGrandma - 1);
+            }
+            if (aantalCookies >= huidigeAankoopPrijsFarm)
+            {
+                kostCounterFarm = basisPrijsFarm * Math.Pow(1.15, aantalInvesteringFarm);
+                huidigeAankoopPrijsFarm = basisPrijsFarm * Math.Pow(1.15, aantalInvesteringFarm - 1);
+            }
+            if (aantalCookies >= huidigeAankoopPrijsMine)
+            {
+                kostCounterMine = basisPrijsMine * Math.Pow(1.15, aantalInvesteringMine);
+                huidigeAankoopPrijsMine = basisPrijsMine * Math.Pow(1.15, aantalInvesteringMine - 1);
+            }
             if (aantalCookies >= huidigeAankoopPrijsFactory)
             {
                 kostCounterFactory = basisPrijsFactory * Math.Pow(1.15, aantalInvesteringFactory);
                 huidigeAankoopPrijsFactory = basisPrijsFactory * Math.Pow(1.15, aantalInvesteringFactory - 1);
             }
-            
+
+
         }
 
         private void UpdateCookies()
@@ -284,56 +299,12 @@ namespace CookieClicker
             aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per Milliseconde";
 
             //if statement?
-            BtnInvesteringCursor.IsEnabled = aantalCookies >= 2;
-            BtnInvesteringGrandma.IsEnabled = aantalCookies >= 100;
-            BtnInvesteringFarm.IsEnabled = aantalCookies >= 1100;
-            BtnInvesteringMine.IsEnabled = aantalCookies >= 12000;
+            BtnInvesteringCursor.IsEnabled = aantalCookies >= kostCounterCursor;
+            BtnInvesteringGrandma.IsEnabled = aantalCookies >= kostCounterGrandma;
+            BtnInvesteringFarm.IsEnabled = aantalCookies >= kostCounterFarm;
+            BtnInvesteringMine.IsEnabled = aantalCookies >= kostCounterMine;
             BtnInvesteringFactory.IsEnabled = aantalCookies >= kostCounterFactory;
 
-            /*if (aantalCookies >= 2)
-            {
-                BtnInvesteringCursor.IsEnabled = true;
-            }
-            else
-            {
-                BtnInvesteringCursor.IsEnabled = false;
-            }
-
-            if (aantalCookies >= 100)
-            {
-                BtnInvesteringGrandma.IsEnabled = true;
-            }
-            else
-            {
-                BtnInvesteringGrandma.IsEnabled = false;
-            }
-
-            if (aantalCookies >= 1100)
-            {
-                BtnInvesteringFarm.IsEnabled = true;
-            }
-            else
-            {
-                BtnInvesteringFarm.IsEnabled = false;
-            }
-
-            if (aantalCookies >= 12000)
-            {
-                BtnInvesteringMine.IsEnabled = true;
-            }
-            else
-            {
-                BtnInvesteringMine.IsEnabled = false;
-            }
-
-            if (aantalCookies >= 12000)
-            {
-                BtnInvesteringFactory.IsEnabled = true;
-            }
-            else
-            {
-                BtnInvesteringFactory.IsEnabled = false;
-            } */
         }
         private async void MouseDownCookie(object sender, MouseButtonEventArgs e)
         {
