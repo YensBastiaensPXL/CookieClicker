@@ -28,13 +28,24 @@ namespace CookieClicker
         bool isMuisOverAfbeelding = false;
         //Passieve cookie timer
         DispatcherTimer passieveCookieTimer10ms;
-        double passieveCookieRatio1s = 0;
-        double passieveCookieRatio10ms = 0;
-        double NextPassieveCookieRatio10ms = 20;
-        double upcomingPassiveCookies;
+        //double passieveCookieRatio1sCursor;
+        //double passieveCookieRatio1sGrandma;
+        //double passieveCookieRatio1sFarm;
+        //double passieveCookieRatio1sMine;
+        //double passieveCookieRatio1sFactory;
+        
 
+        double passieveCookieRatio10ms = 0;
+
+        // Nieuwe aankoop cookies p/s tooltip
+        //double upcomingPassiveCookiesCursor = 0.1;
+        //double upcomingPassiveCookiesGrandma = 1;
+        //double upcomingPassiveCookiesFarm = 8;
+        //double upcomingPassiveCookiesMine = 47;
+        //double upcomingPassiveCookiesFactory = 260;
+        
         //basis prijs investeringen
-        const int basisPrijsCursor = 2;
+        const int basisPrijsCursor = 15;
         const int basisPrijsGrandma = 100;
         const int basisPrijsFarm = 1100;
         const int basisPrijsMine = 12000;
@@ -100,11 +111,13 @@ namespace CookieClicker
 
                 CursorAantal.Content = aantalInvesteringCursor.ToString();
 
-                //TERUG UIT COMMENTEN IN DE CODE ZODAT PASSIEVE COOKIES WERKEN
-
-
+                //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 0.001;
+                ////Tooltip part of code
+                //passieveCookieRatio1sFactory = passieveCookieRatio10ms * 100;
+                //upcomingPassiveCookiesCursor = passieveCookieRatio1sFactory + 0.1;
+
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -132,8 +145,13 @@ namespace CookieClicker
 
                 GrandmaAantal.Content = aantalInvesteringGrandma.ToString();
 
+                //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 2;
+                passieveCookieRatio10ms += 0.01;
+                ////Tooltip part of code
+                //passieveCookieRatio1sGrandma = passieveCookieRatio10ms * 100;
+                //upcomingPassiveCookiesGrandma = passieveCookieRatio1sGrandma + 1;
+
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 //weglaten of laten staan?
                 passieveCookieTimer10ms.Start();
@@ -161,8 +179,14 @@ namespace CookieClicker
                 }
 
                 FarmAantal.Content = aantalInvesteringFarm.ToString();
+
+                //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 3;
+                passieveCookieRatio10ms += 0.08;
+                ////Tooltip part of code
+                //passieveCookieRatio1sFarm = passieveCookieRatio10ms * 100;
+                //upcomingPassiveCookiesFarm = passieveCookieRatio1sFarm + 8;
+
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
             }
@@ -188,8 +212,14 @@ namespace CookieClicker
                 }
 
                 MineAantal.Content = aantalInvesteringMine.ToString();
+
+                //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 4;
+                passieveCookieRatio10ms += 0.47;
+                ////Tooltip part of code
+                //passieveCookieRatio1sMine = passieveCookieRatio10ms * 100;
+                //upcomingPassiveCookiesMine = passieveCookieRatio1sMine + 47;
+
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
             }
@@ -216,11 +246,13 @@ namespace CookieClicker
 
                 FactoryAantal.Content = aantalInvesteringFactory.ToString();
 
-                //COOKIE TIMER
+                //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 20;
-                //Tooltip part of code
-                upcomingPassiveCookies = passieveCookieRatio10ms + NextPassieveCookieRatio10ms;
+                passieveCookieRatio10ms += 2.60;
+
+                ////Tooltip part of code
+                //passieveCookieRatio1sFactory = passieveCookieRatio10ms * 100;
+                //upcomingPassiveCookiesFactory = passieveCookieRatio1sFactory + 260 ;
 
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
@@ -228,26 +260,6 @@ namespace CookieClicker
             }
             
             UpdateCookies();
-        }
-
-        private void toolTip(object sender, MouseEventArgs e)
-        {
-
-
-            Grid hoverBtn = (Grid)sender;
-            if (hoverBtn.Name == "BtnInvesteringCursor")
-            {
-                ToolTipService.SetToolTip(hoverBtn, passieveCookieRatio10ms.ToString());
-
-            }
-            if (hoverBtn.Name == "BtnInvesteringGrandma")
-            {
-                ToolTipService.SetToolTip(hoverBtn, "lala");
-            }
-            if (hoverBtn.Name == "BtnInvesteringFactory")
-            {
-                ToolTipService.SetToolTip(hoverBtn, upcomingPassiveCookies);
-            }
         }
 
         private void UpdateInvestering()
@@ -348,6 +360,8 @@ namespace CookieClicker
                 klikebareCookie.Width = origineleAfbeeldingBreedte;
             }
             isMuisOverAfbeelding= false;
+
+
         }
         private void ImageMouseEnter(object sender, MouseEventArgs e)
         {
@@ -366,6 +380,37 @@ namespace CookieClicker
             isMuisOverAfbeelding = false;
         }
 
-        
+        private void toolTip(object sender, MouseEventArgs e)
+        {
+
+
+            Grid hoverBtn = (Grid)sender;
+            if (hoverBtn.Name == "BtnInvesteringCursor")
+            {
+                ToolTipService.SetToolTip(hoverBtn,"+" + 0.1
+                   + " Cookies per seconde met deze aankoop");
+
+            }
+            if (hoverBtn.Name == "BtnInvesteringGrandma")
+            {
+                ToolTipService.SetToolTip(hoverBtn, "+" + 1
+                   + " Cookies per seconde met deze aankoop");
+            }
+            if (hoverBtn.Name == "BtnInvesteringFarm")
+            {
+                ToolTipService.SetToolTip(hoverBtn, "+" + 8
+                   + " Cookies per seconde met deze aankoop");
+            }
+            if (hoverBtn.Name == "BtnInvesteringMine")
+            {
+                ToolTipService.SetToolTip(hoverBtn, "+" + 47
+                   + " Cookies per seconde met deze aankoop");
+            }
+            if (hoverBtn.Name == "BtnInvesteringFactory")
+            {
+                ToolTipService.SetToolTip(hoverBtn, "+" + 260 
+                    + " Cookies per seconde met deze aankoop");
+            }
+        }
     }
 }

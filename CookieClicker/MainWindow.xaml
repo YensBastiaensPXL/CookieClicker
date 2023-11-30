@@ -8,8 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -20,9 +20,10 @@
             <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Margin="10px 80px 10px 10px" />
             <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Margin="10px 100px 10px 10px"/>
             <Image Name="klikebareCookie" Height="200" Width="200" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave"/>
+            
         </Grid>
 
-        <Label Grid.Column="1">Cookie Clicker</Label>
+        
 
         <Grid Grid.Column="2" Background="lightGreen">
             <StackPanel>
