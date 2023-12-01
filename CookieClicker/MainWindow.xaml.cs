@@ -93,15 +93,11 @@ namespace CookieClicker
                 {
                     aantalInvesteringCursor++;
                     UpdateInvestering();
-                    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-
-                    PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
-                    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor); 
 
                 }
                 else
                 {
-                    aantalCookies -= 2;
+                    aantalCookies -= 15;
                     kostCounterCursor = basisPrijsCursor * 1.15;
                     PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                     aantalInvesteringCursor = 1;
@@ -128,8 +124,7 @@ namespace CookieClicker
                     UpdateInvestering();
                     //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering of beide
                     
-                    PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
-                    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsGrandma);
+                    
 
                 }
                 else
@@ -150,7 +145,7 @@ namespace CookieClicker
                 //upcomingPassiveCookiesGrandma = passieveCookieRatio1sGrandma + 1;
 
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
-                //weglaten of laten staan?
+                //weglaten of laten staan? bij allemaal buiten cursor moet timer sws
                 passieveCookieTimer10ms.Start();
 
             }
@@ -160,9 +155,6 @@ namespace CookieClicker
                 {
                     aantalInvesteringFarm++;
                     UpdateInvestering();
-                    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-                    PrijsFarm.Content = Math.Ceiling(kostCounterFarm).ToString();
-                    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFarm);
 
                 }
                 else
@@ -192,9 +184,6 @@ namespace CookieClicker
                     aantalInvesteringMine++;
                     UpdateInvestering();
 
-                    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-                    PrijsMine.Content = Math.Ceiling(kostCounterMine).ToString();
-                    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsMine);
 
                 }
                 else
@@ -226,8 +215,7 @@ namespace CookieClicker
                     
                     UpdateInvestering();
                     //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-                    PrijsFactory.Content = Math.Ceiling(kostCounterFactory).ToString();
-                    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFactory);
+                    
              
                 }
                 else
@@ -262,26 +250,41 @@ namespace CookieClicker
             {
                 kostCounterCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor);
                 huidigeAankoopPrijsCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor - 1);
+                //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
+                PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
             }
             if (aantalCookies >= huidigeAankoopPrijsGrandma)
             {
                 kostCounterGrandma = basisPrijsGrandma * Math.Pow(1.15, aantalInvesteringGrandma);
                 huidigeAankoopPrijsGrandma = basisPrijsGrandma * Math.Pow(1.15, aantalInvesteringGrandma - 1);
+                //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
+                PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsGrandma);
             }
             if (aantalCookies >= huidigeAankoopPrijsFarm)
             {
                 kostCounterFarm = basisPrijsFarm * Math.Pow(1.15, aantalInvesteringFarm);
                 huidigeAankoopPrijsFarm = basisPrijsFarm * Math.Pow(1.15, aantalInvesteringFarm - 1);
+                //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
+                PrijsFarm.Content = Math.Ceiling(kostCounterFarm).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFarm);
             }
             if (aantalCookies >= huidigeAankoopPrijsMine)
             {
                 kostCounterMine = basisPrijsMine * Math.Pow(1.15, aantalInvesteringMine);
                 huidigeAankoopPrijsMine = basisPrijsMine * Math.Pow(1.15, aantalInvesteringMine - 1);
+                //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
+                PrijsMine.Content = Math.Ceiling(kostCounterMine).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsMine);
             }
             if (aantalCookies >= huidigeAankoopPrijsFactory)
             {
                 kostCounterFactory = basisPrijsFactory * Math.Pow(1.15, aantalInvesteringFactory);
                 huidigeAankoopPrijsFactory = basisPrijsFactory * Math.Pow(1.15, aantalInvesteringFactory - 1);
+                //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
+                PrijsFactory.Content = Math.Ceiling(kostCounterFactory).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFactory);
             }
 
 
