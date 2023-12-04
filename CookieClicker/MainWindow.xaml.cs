@@ -22,7 +22,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 1000; //aantal nog aanpassen bij upload
+        double aantalCookies = 999999; //aantal nog aanpassen bij upload
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -325,19 +325,19 @@ namespace CookieClicker
         {
             if (cookies >= 1_000_000_000_000_000)
             {
-                return $"{cookies / 1_000_000_000_000_000:N3} Triljard".Replace(",", " ");
+                return $"{cookies / 1_000_000_000_000_000:N3} Triljard";
             }
             else if (cookies >= 1_000_000_000_000)
             {
-                return $"{cookies / 1_000_000_000_000:N3} Biljoen".Replace(",", " ");
+                return $"{cookies / 1_000_000_000_000:N3} Biljoen";
             }
             else if (cookies >= 1_000_000_000)
             {
-                return $"{cookies / 1_000_000_000:N3} Miljard".Replace(",", " ");
+                return $"{cookies / 1_000_000_000:N3} Miljard";
             }
             else if (cookies >= 1_000_000)
             {
-                return $"{cookies / 1_000_000:N3} Miljoen".Replace(",", " ");
+                return $"{cookies / 1_000_000:N3} Miljoen";
             }
             else if (cookies >= 1_000)
             {
