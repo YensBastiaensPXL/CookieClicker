@@ -22,7 +22,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 1080404; //aantal nog aanpassen bij upload
+        double aantalCookies = 1000; //aantal nog aanpassen bij upload
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -33,7 +33,6 @@ namespace CookieClicker
         //double passieveCookieRatio1sFarm;
         //double passieveCookieRatio1sMine;
         //double passieveCookieRatio1sFactory;
-        
 
         double passieveCookieRatio10ms = 0;
 
@@ -67,14 +66,21 @@ namespace CookieClicker
         double huidigeAankoopPrijsFactory;
         long aantalInvesteringFactory = 0;
 
+        bool investerinCursorUpdated;
         public MainWindow()
         {
             InitializeComponent();
             UpdateCookies();
+            
             origineleAfbeeldingBreedte = klikebareCookie.Width;
             passieveCookieTimer10ms = new DispatcherTimer();
             passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
 
+            BtnInvesteringCursor.IsEnabled = aantalCookies >= basisPrijsCursor;
+            BtnInvesteringGrandma.IsEnabled = aantalCookies >= basisPrijsGrandma;
+            BtnInvesteringFarm.IsEnabled = aantalCookies >= basisPrijsFarm;
+            BtnInvesteringMine.IsEnabled = aantalCookies >= basisPrijsMine;
+            BtnInvesteringFactory.IsEnabled = aantalCookies >= basisPrijsFactory;
         }
 
         private void PassieveCookieTimer10ms_Tick(object sender, EventArgs e)
@@ -108,10 +114,6 @@ namespace CookieClicker
                 //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 0.001;
-                ////Tooltip part of code
-                //passieveCookieRatio1sFactory = passieveCookieRatio10ms * 100;
-                //upcomingPassiveCookiesCursor = passieveCookieRatio1sFactory + 0.1;
-
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -246,8 +248,10 @@ namespace CookieClicker
 
         private void UpdateInvestering()
         {
+            
             if (aantalCookies >= huidigeAankoopPrijsCursor)
             {
+                
                 kostCounterCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor);
                 huidigeAankoopPrijsCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor - 1);
                 //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
@@ -292,22 +296,57 @@ namespace CookieClicker
 
         private void UpdateCookies()
         {
+            aantalCookiesTxt.Content = FormatteerNummer(aantalCookies);
             double aantalCookiesAfgerond = Math.Floor(aantalCookies);
             //double aantalCookiesAfgerond = aantalCookies;
-            aantalCookiesTxt.Content = $"{aantalCookiesAfgerond} cookies";
+            //aantalCookiesTxt.Content = $"{aantalCookiesAfgerond} cookies";
             Title = $"Cookie clicker got {aantalCookiesAfgerond} cookies";
             // als aantal cookies per seconde opgeteld moeten worden moet je bv.
             // https://prnt.sc/UX6il5icQ8jy
             double aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms, 3);
             aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per Milliseconde";
 
-            //if statement?
+            //if (investerinCursorUpdated)
+            //{
+            //    BtnInvesteringCursor.IsEnabled = aantalCookies >= basisPrijsCursor;
+            //    investerinCursorUpdated = false;
+            //}
+
             BtnInvesteringCursor.IsEnabled = aantalCookies >= kostCounterCursor;
             BtnInvesteringGrandma.IsEnabled = aantalCookies >= kostCounterGrandma;
             BtnInvesteringFarm.IsEnabled = aantalCookies >= kostCounterFarm;
             BtnInvesteringMine.IsEnabled = aantalCookies >= kostCounterMine;
             BtnInvesteringFactory.IsEnabled = aantalCookies >= kostCounterFactory;
 
+
+
+        }
+        public static string FormatteerNummer(double cookies)
+        {
+            if (cookies >= 1_000_000_000_000_000)
+            {
+                return $"{cookies / 1_000_000_000_000_000:N3} Triljard".Replace(",", " ");
+            }
+            else if (cookies >= 1_000_000_000_000)
+            {
+                return $"{cookies / 1_000_000_000_000:N3} Biljoen".Replace(",", " ");
+            }
+            else if (cookies >= 1_000_000_000)
+            {
+                return $"{cookies / 1_000_000_000:N3} Miljard".Replace(",", " ");
+            }
+            else if (cookies >= 1_000_000)
+            {
+                return $"{cookies / 1_000_000:N3} Miljoen".Replace(",", " ");
+            }
+            else if (cookies >= 1_000)
+            {
+                return $"{cookies / 1_000:N3}".Replace(",", " ");
+            }
+            else
+            {
+                return $"{cookies:N0}".Replace(",", " ");
+            }
         }
         private async void MouseDownCookie(object sender, MouseButtonEventArgs e)
         {
@@ -322,7 +361,6 @@ namespace CookieClicker
                 await Task.Delay(200);
                 aantalCookiesTxt.FontSize /= 1.5;
             }
-
             UpdateCookies();
             
         }
