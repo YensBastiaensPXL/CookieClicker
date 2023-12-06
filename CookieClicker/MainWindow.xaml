@@ -21,7 +21,8 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Label Content="PXL-Bakery" HorizontalAlignment="Center" Margin="10px 60px 10px 10px"/>
+                <Label Content="PXL-Bakery" Name="lblNaam" MouseDown="lblNaam_MouseDown" HorizontalAlignment="Center" Margin="10px 60px 10px 10px"/>
+                <TextBox Name="txtBoxLblNaam" Visibility="Collapsed" Margin="10px 60px 10px 10px" KeyDown="txtBoxLblNaam_KeyDown" VerticalAlignment="Top" />
                 <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Margin="10px 80px 10px 10px" />
                 <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Margin="10px 100px 10px 10px"/>
                 <Image Name="klikebareCookie" Height="200" Width="200" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave"/>
@@ -47,7 +48,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor" MouseEnter="toolTip" IsEnabled="False" ToolTip="hello"  Background="red">
+                    <Grid Grid.Row="0" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor" MouseEnter="Tooltip" IsEnabled="False" ToolTip="hello"  Background="red">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -65,7 +66,7 @@
                         <Label Name="CursorAantal" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="1" Background="yellow" MouseLeftButtonDown="CursorClicked" MouseEnter="toolTip" Name="BtnInvesteringGrandma">
+                    <Grid Grid.Row="1" Background="yellow" MouseLeftButtonDown="CursorClicked" MouseEnter="Tooltip" Name="BtnInvesteringGrandma">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -83,7 +84,7 @@
                         <Label Name="GrandmaAantal" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="2" Background="orange" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm" MouseEnter="toolTip">
+                    <Grid Grid.Row="2" Background="orange" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm" MouseEnter="Tooltip">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -101,7 +102,7 @@
                         <Label Name="FarmAantal" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="3" Background="LightCoral" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine" MouseEnter="toolTip">
+                    <Grid Grid.Row="3" Background="LightCoral" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine" MouseEnter="Tooltip">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
@@ -120,7 +121,7 @@
                         <Label Name="MineAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
 
-                    <Grid Grid.Row="4" Background="Pink" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory" MouseEnter="toolTip">
+                    <Grid Grid.Row="4" Background="Pink" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory" MouseEnter="Tooltip">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>

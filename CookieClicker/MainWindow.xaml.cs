@@ -374,7 +374,7 @@ namespace CookieClicker
             isMuisOverAfbeelding = false;
         }
 
-        private void toolTip(object sender, MouseEventArgs e)
+        private void Tooltip(object sender, MouseEventArgs e)
         {
 
 
@@ -405,6 +405,39 @@ namespace CookieClicker
                 ToolTipService.SetToolTip(hoverBtn, "+" + 260 
                     + " Cookies per seconde met deze aankoop");
             }
+        }
+
+        private void lblNaam_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            lblNaam.Visibility = Visibility.Collapsed;
+            txtBoxLblNaam.Visibility = Visibility.Visible;
+            txtBoxLblNaam.Text = lblNaam.Content.ToString();
+            txtBoxLblNaam.Focus();
+        }
+
+        private void txtBoxLblNaam_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string lblNaamInput = txtBoxLblNaam.Text;
+
+                if (!string.IsNullOrWhiteSpace(lblNaamInput) && !lblNaamInput.Contains(" "))
+                {
+                    lblNaam.Content = lblNaamInput;
+
+                    lblNaam.Visibility = Visibility.Visible;
+                    txtBoxLblNaam.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    
+                    MessageBox.Show("Ongeldig");
+                }
+                
+
+            }
+            
+
         }
     }
 }
