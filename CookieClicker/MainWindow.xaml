@@ -21,6 +21,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
+                <Label Content="PXL-Bakery" HorizontalAlignment="Center" Margin="10px 60px 10px 10px"/>
                 <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Margin="10px 80px 10px 10px" />
                 <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Margin="10px 100px 10px 10px"/>
                 <Image Name="klikebareCookie" Height="200" Width="200" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave"/>

@@ -22,7 +22,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 1000; //aantal nog aanpassen bij upload
+        double aantalCookies = 999999; //aantal nog aanpassen bij upload
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -52,7 +52,6 @@ namespace CookieClicker
         double huidigeAankoopPrijsFactory;
         long aantalInvesteringFactory = 0;
 
-        bool investerinCursorUpdated = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -226,7 +225,7 @@ namespace CookieClicker
 
         // anatomie / signatuur
         // accesmodifier -> returntype -> naam -> param list
-        private double Calculate(double basisprijs, double counter )
+        private double BerekenKostprijsInvestering(double basisprijs, double counter )
         {
             return basisprijs * Math.Pow(1.15, counter);
         }
@@ -234,14 +233,14 @@ namespace CookieClicker
         private void UpdateInvestering(string type, ref double kostCounter)
         {
 
-            if (aantalCookies >= Calculate(basisPrijsCursor, aantalInvesteringCursor - 1) && type.Equals("cursor"))
+            if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor - 1) && type.Equals("cursor"))
             {
                 //huidigeAankoopPrijsCursor = CalculateInvestmentPrice(basisPrijsCursor, aantalInvesteringCursor);
                 //aantalInvesteringCursor++;
                 //kostCounterCursor = Caldulate
                 
-                kostCounterCursor = Calculate(basisPrijsCursor, aantalInvesteringCursor);
-                huidigeAankoopPrijsCursor = Calculate(basisPrijsCursor, aantalInvesteringCursor - 1);
+                kostCounterCursor = BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor);
+                huidigeAankoopPrijsCursor = BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor - 1);
                 PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
                 
@@ -251,31 +250,31 @@ namespace CookieClicker
                 //PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                 //aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
             }
-            if (aantalCookies >= Calculate(basisPrijsGrandma, aantalInvesteringGrandma - 1) && type.Equals("grandma"))
+            if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma - 1) && type.Equals("grandma"))
             {
-                kostCounterGrandma = Calculate(basisPrijsGrandma, aantalInvesteringGrandma);
-                huidigeAankoopPrijsGrandma = Calculate(basisPrijsGrandma, aantalInvesteringGrandma - 1);
+                kostCounterGrandma = BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma);
+                huidigeAankoopPrijsGrandma = BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma - 1);
                 PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsGrandma);
             }
-            if (aantalCookies >= Calculate(basisPrijsFarm, aantalInvesteringFarm - 1) && type.Equals("farm"))
+            if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsFarm, aantalInvesteringFarm - 1) && type.Equals("farm"))
             {
-                kostCounterFarm = Calculate(basisPrijsFarm, aantalInvesteringFarm);
-                huidigeAankoopPrijsFarm = Calculate(basisPrijsFarm, aantalInvesteringFarm - 1);
+                kostCounterFarm = BerekenKostprijsInvestering(basisPrijsFarm, aantalInvesteringFarm);
+                huidigeAankoopPrijsFarm = BerekenKostprijsInvestering(basisPrijsFarm, aantalInvesteringFarm - 1);
                 PrijsFarm.Content = Math.Ceiling(kostCounterFarm).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFarm);
             }
-            if (aantalCookies >= Calculate(basisPrijsMine, aantalInvesteringMine - 1) && type.Equals("mine"))
+            if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsMine, aantalInvesteringMine - 1) && type.Equals("mine"))
             {
-                kostCounterMine = Calculate(basisPrijsMine, aantalInvesteringMine);
-                huidigeAankoopPrijsMine = Calculate(basisPrijsMine, aantalInvesteringMine - 1);
+                kostCounterMine = BerekenKostprijsInvestering(basisPrijsMine, aantalInvesteringMine);
+                huidigeAankoopPrijsMine = BerekenKostprijsInvestering(basisPrijsMine, aantalInvesteringMine - 1);
                 PrijsMine.Content = Math.Ceiling(kostCounterMine).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsMine);
             }
-            if (aantalCookies >= Calculate(basisPrijsFactory, aantalInvesteringFactory - 1) && type.Equals("factory"))
+            if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsFactory, aantalInvesteringFactory - 1) && type.Equals("factory"))
             {
-                kostCounterFactory = Calculate(basisPrijsFactory, aantalInvesteringFactory);
-                huidigeAankoopPrijsFactory = Calculate(basisPrijsFactory, aantalInvesteringFactory - 1);
+                kostCounterFactory = BerekenKostprijsInvestering(basisPrijsFactory, aantalInvesteringFactory);
+                huidigeAankoopPrijsFactory = BerekenKostprijsInvestering(basisPrijsFactory, aantalInvesteringFactory - 1);
                 PrijsFactory.Content = Math.Ceiling(kostCounterFactory).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFactory);
             }
@@ -295,11 +294,11 @@ namespace CookieClicker
             double aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms, 3);
             aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per Milliseconde";
 
-            BtnInvesteringCursor.IsEnabled = aantalCookies >= Calculate(basisPrijsCursor, aantalInvesteringCursor);
-            BtnInvesteringGrandma.IsEnabled = aantalCookies >= Calculate(basisPrijsGrandma, aantalInvesteringGrandma);
-            BtnInvesteringFarm.IsEnabled = aantalCookies >= Calculate(basisPrijsFarm, aantalInvesteringFarm);
-            BtnInvesteringMine.IsEnabled = aantalCookies >= Calculate(basisPrijsMine, aantalInvesteringMine);
-            BtnInvesteringFactory.IsEnabled = aantalCookies >= Calculate(basisPrijsFactory, aantalInvesteringFactory);
+            BtnInvesteringCursor.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor);
+            BtnInvesteringGrandma.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma);
+            BtnInvesteringFarm.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsFarm, aantalInvesteringFarm);
+            BtnInvesteringMine.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsMine, aantalInvesteringMine);
+            BtnInvesteringFactory.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsFactory, aantalInvesteringFactory);
 
 
 
