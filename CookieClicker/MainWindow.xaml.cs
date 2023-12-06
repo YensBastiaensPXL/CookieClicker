@@ -22,14 +22,13 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 100; //aantal nog aanpassen bij upload
+        double aantalCookies = 1000; //aantal nog aanpassen bij upload
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
         //Passieve cookie timer
         DispatcherTimer passieveCookieTimer10ms;
         double passieveCookieRatio10ms = 0;
-        
         //basis prijs investeringen
         const int basisPrijsCursor = 15;
         const int basisPrijsGrandma = 100;
@@ -105,131 +104,123 @@ namespace CookieClicker
                 passieveCookieTimer10ms.Start();
 
             }
-            //else if (geklikteKnop.Name == "BtnInvesteringGrandma")
-            //{
-            //    if (aantalInvesteringGrandma > 0)
-            //    {
-            //        aantalInvesteringGrandma++;
-            //        UpdateInvestering();
-            //        //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering of beide
+            else if (geklikteKnop.Name == "BtnInvesteringGrandma")
+            {
+                if (aantalInvesteringGrandma > 0)
+                {
+                    aantalInvesteringGrandma++;
+                    UpdateInvestering("grandma", ref kostCounterGrandma);
+                    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering of beide
                     
-                    
-
-            //    }
-            //    else
-            //    {
-            //        aantalCookies -= 100;
-            //        kostCounterGrandma = basisPrijsGrandma * 1.15;
-            //        PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
-            //        aantalInvesteringGrandma = 1;
-            //    }
-
-            //    GrandmaAantal.Content = aantalInvesteringGrandma.ToString();
-
-            //    //Passive cookies counter
-            //    passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-            //    passieveCookieRatio10ms += 0.01;
-            //    ////Tooltip part of code
-            //    //passieveCookieRatio1sGrandma = passieveCookieRatio10ms * 100;
-            //    //upcomingPassiveCookiesGrandma = passieveCookieRatio1sGrandma + 1;
-
-            //    passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
-            //    //weglaten of laten staan? bij allemaal buiten cursor moet timer sws
-            //    passieveCookieTimer10ms.Start();
-
-            //}
-            //else if (geklikteKnop.Name == "BtnInvesteringFarm")
-            //{
-            //    if (aantalInvesteringFarm > 0)
-            //    {
-            //        aantalInvesteringFarm++;
-            //        UpdateInvestering();
-
-            //    }
-            //    else
-            //    {
-            //        aantalCookies -= 1100;
-            //        kostCounterFarm = basisPrijsFarm * 1.15;
-            //        PrijsFarm.Content = Math.Ceiling(kostCounterFarm).ToString();
-            //        aantalInvesteringFarm = 1;
-            //    }
-
-            //    FarmAantal.Content = aantalInvesteringFarm.ToString();
-
-            //    //Passive cookies counter
-            //    passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-            //    passieveCookieRatio10ms += 0.08;
-            //    ////Tooltip part of code
-            //    //passieveCookieRatio1sFarm = passieveCookieRatio10ms * 100;
-            //    //upcomingPassiveCookiesFarm = passieveCookieRatio1sFarm + 8;
-
-            //    passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
-            //    passieveCookieTimer10ms.Start();
-            //}
-            //else if (geklikteKnop.Name == "BtnInvesteringMine")
-            //{
-            //    if (aantalInvesteringMine > 0)
-            //    {
-            //        aantalInvesteringMine++;
-            //        UpdateInvestering();
 
 
-            //    }
-            //    else
-            //    {
-            //        aantalCookies -= 12000;
-            //        kostCounterMine = basisPrijsMine * 1.15;
-            //        PrijsMine.Content = Math.Ceiling(kostCounterMine).ToString();
-            //        aantalInvesteringMine = 1;
-            //    }
+                }
+                else
+                {
+                    aantalCookies -= 100;
+                    kostCounterGrandma = basisPrijsGrandma * 1.15;
+                    PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
+                    aantalInvesteringGrandma = 1;
+                }
 
-            //    MineAantal.Content = aantalInvesteringMine.ToString();
+                GrandmaAantal.Content = aantalInvesteringGrandma.ToString();
 
-            //    //Passive cookies counter
-            //    passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-            //    passieveCookieRatio10ms += 0.47;
-            //    ////Tooltip part of code
-            //    //passieveCookieRatio1sMine = passieveCookieRatio10ms * 100;
-            //    //upcomingPassiveCookiesMine = passieveCookieRatio1sMine + 47;
+                //Passive cookies counter
+                passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
+                passieveCookieRatio10ms += 0.01;
+                passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
+                //weglaten of laten staan? bij allemaal buiten cursor moet timer sws
+                passieveCookieTimer10ms.Start();
 
-            //    passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
-            //    passieveCookieTimer10ms.Start();
-            //}
-            //else if (geklikteKnop.Name == "BtnInvesteringFactory")
-            //{
-            //    if (aantalInvesteringFactory > 0)
-            //    {
-            //        aantalInvesteringFactory++;
+            }
+            else if (geklikteKnop.Name == "BtnInvesteringFarm")
+            {
+                if (aantalInvesteringFarm > 0)
+                {
+                    aantalInvesteringFarm++;
+                    UpdateInvestering("farm", ref kostCounterFarm);
 
-                    
-            //        UpdateInvestering();
-            //        //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-                    
-             
-            //    }
-            //    else
-            //    {
-            //        aantalCookies -= 130000;
-            //        kostCounterFactory = basisPrijsFactory * 1.15;
-            //        PrijsFactory.Content = Math.Ceiling(kostCounterFactory).ToString();
-            //        aantalInvesteringFactory = 1;
-            //    }
+                }
+                else
+                {
+                    aantalCookies -= 1100;
+                    kostCounterFarm = basisPrijsFarm * 1.15;
+                    PrijsFarm.Content = Math.Ceiling(kostCounterFarm).ToString();
+                    aantalInvesteringFarm = 1;
+                }
 
-            //    FactoryAantal.Content = aantalInvesteringFactory.ToString();
+                FarmAantal.Content = aantalInvesteringFarm.ToString();
 
-            //    //Passive cookies counter
-            //    passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-            //    passieveCookieRatio10ms += 2.60;
+                //Passive cookies counter
+                passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
+                passieveCookieRatio10ms += 0.08;
+                ////Tooltip part of code
+                //passieveCookieRatio1sFarm = passieveCookieRatio10ms * 100;
+                //upcomingPassiveCookiesFarm = passieveCookieRatio1sFarm + 8;
 
-            //    ////Tooltip part of code
-            //    //passieveCookieRatio1sFactory = passieveCookieRatio10ms * 100;
-            //    //upcomingPassiveCookiesFactory = passieveCookieRatio1sFactory + 260 ;
+                passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
+                passieveCookieTimer10ms.Start();
+            }
+            else if (geklikteKnop.Name == "BtnInvesteringMine")
+            {
+                if (aantalInvesteringMine > 0)
+                {
+                    aantalInvesteringMine++;
+                    UpdateInvestering("mine", ref kostCounterMine);
 
-            //    passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
-            //    passieveCookieTimer10ms.Start();
 
-            //}
-            
+                }
+                else
+                {
+                    aantalCookies -= 12000;
+                    kostCounterMine = basisPrijsMine * 1.15;
+                    PrijsMine.Content = Math.Ceiling(kostCounterMine).ToString();
+                    aantalInvesteringMine = 1;
+                }
+
+                MineAantal.Content = aantalInvesteringMine.ToString();
+
+                //Passive cookies counter
+                passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
+                passieveCookieRatio10ms += 0.47;
+                ////Tooltip part of code
+                //passieveCookieRatio1sMine = passieveCookieRatio10ms * 100;
+                //upcomingPassiveCookiesMine = passieveCookieRatio1sMine + 47;
+
+                passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
+                passieveCookieTimer10ms.Start();
+            }
+            else if (geklikteKnop.Name == "BtnInvesteringFactory")
+            {
+                if (aantalInvesteringFactory > 0)
+                {
+                    aantalInvesteringFactory++;
+                    UpdateInvestering("factory", ref kostCounterFactory);
+
+                }
+                else
+                {
+                    aantalCookies -= 130000;
+                    kostCounterFactory = basisPrijsFactory * 1.15;
+                    PrijsFactory.Content = Math.Ceiling(kostCounterFactory).ToString();
+                    aantalInvesteringFactory = 1;
+                }
+
+                FactoryAantal.Content = aantalInvesteringFactory.ToString();
+
+                //Passive cookies counter
+                passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
+                passieveCookieRatio10ms += 2.60;
+
+                ////Tooltip part of code
+                //passieveCookieRatio1sFactory = passieveCookieRatio10ms * 100;
+                //upcomingPassiveCookiesFactory = passieveCookieRatio1sFactory + 260 ;
+
+                passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
+                passieveCookieTimer10ms.Start();
+
+            }
+
             UpdateCookies();
         }
 
@@ -243,53 +234,51 @@ namespace CookieClicker
         private void UpdateInvestering(string type, ref double kostCounter)
         {
 
-            if (aantalCookies >= huidigeAankoopPrijsCursor && type.Equals("cursor"))
+            if (aantalCookies >= Calculate(basisPrijsCursor, aantalInvesteringCursor - 1) && type.Equals("cursor"))
             {
                 //huidigeAankoopPrijsCursor = CalculateInvestmentPrice(basisPrijsCursor, aantalInvesteringCursor);
                 //aantalInvesteringCursor++;
                 //kostCounterCursor = Caldulate
-                huidigeAankoopPrijsCursor = Calculate(basisPrijsCursor, aantalInvesteringCursor - 1);
+                
                 kostCounterCursor = Calculate(basisPrijsCursor, aantalInvesteringCursor);
+                huidigeAankoopPrijsCursor = Calculate(basisPrijsCursor, aantalInvesteringCursor - 1);
                 PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
+                
 
                 //kostCounterCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor);
                 //huidigeAankoopPrijsCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor - 1);
                 //PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                 //aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
             }
-            //if (aantalCookies >= Calculate(basisPrijsGrandma, aantalInvesteringGrandma))
-            //{
-            //    kostCounterGrandma = basisPrijsGrandma * Math.Pow(1.15, aantalInvesteringGrandma);
-            //    huidigeAankoopPrijsGrandma = basisPrijsGrandma * Math.Pow(1.15, aantalInvesteringGrandma - 1);
-            //    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-            //    PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
-            //    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsGrandma);
-            //}
-            //if (aantalCookies >= huidigeAankoopPrijsFarm)
-            //{
-            //    kostCounterFarm = basisPrijsFarm * Math.Pow(1.15, aantalInvesteringFarm);
-            //    huidigeAankoopPrijsFarm = basisPrijsFarm * Math.Pow(1.15, aantalInvesteringFarm - 1);
-            //    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-            //    PrijsFarm.Content = Math.Ceiling(kostCounterFarm).ToString();
-            //    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFarm);
-            //}
-            //if (aantalCookies >= huidigeAankoopPrijsMine)
-            //{
-            //    kostCounterMine = basisPrijsMine * Math.Pow(1.15, aantalInvesteringMine);
-            //    huidigeAankoopPrijsMine = basisPrijsMine * Math.Pow(1.15, aantalInvesteringMine - 1);
-            //    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-            //    PrijsMine.Content = Math.Ceiling(kostCounterMine).ToString();
-            //    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsMine);
-            //}
-            //if (aantalCookies >= huidigeAankoopPrijsFactory)
-            //{
-            //    kostCounterFactory = basisPrijsFactory * Math.Pow(1.15, aantalInvesteringFactory);
-            //    huidigeAankoopPrijsFactory = basisPrijsFactory * Math.Pow(1.15, aantalInvesteringFactory - 1);
-            //    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering
-            //    PrijsFactory.Content = Math.Ceiling(kostCounterFactory).ToString();
-            //    aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFactory);
-            //}
+            if (aantalCookies >= Calculate(basisPrijsGrandma, aantalInvesteringGrandma - 1) && type.Equals("grandma"))
+            {
+                kostCounterGrandma = Calculate(basisPrijsGrandma, aantalInvesteringGrandma);
+                huidigeAankoopPrijsGrandma = Calculate(basisPrijsGrandma, aantalInvesteringGrandma - 1);
+                PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsGrandma);
+            }
+            if (aantalCookies >= Calculate(basisPrijsFarm, aantalInvesteringFarm - 1) && type.Equals("farm"))
+            {
+                kostCounterFarm = Calculate(basisPrijsFarm, aantalInvesteringFarm);
+                huidigeAankoopPrijsFarm = Calculate(basisPrijsFarm, aantalInvesteringFarm - 1);
+                PrijsFarm.Content = Math.Ceiling(kostCounterFarm).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFarm);
+            }
+            if (aantalCookies >= Calculate(basisPrijsMine, aantalInvesteringMine - 1) && type.Equals("mine"))
+            {
+                kostCounterMine = Calculate(basisPrijsMine, aantalInvesteringMine);
+                huidigeAankoopPrijsMine = Calculate(basisPrijsMine, aantalInvesteringMine - 1);
+                PrijsMine.Content = Math.Ceiling(kostCounterMine).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsMine);
+            }
+            if (aantalCookies >= Calculate(basisPrijsFactory, aantalInvesteringFactory - 1) && type.Equals("factory"))
+            {
+                kostCounterFactory = Calculate(basisPrijsFactory, aantalInvesteringFactory);
+                huidigeAankoopPrijsFactory = Calculate(basisPrijsFactory, aantalInvesteringFactory - 1);
+                PrijsFactory.Content = Math.Ceiling(kostCounterFactory).ToString();
+                aantalCookies -= Math.Ceiling(huidigeAankoopPrijsFactory);
+            }
 
 
         }
@@ -306,21 +295,11 @@ namespace CookieClicker
             double aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms, 3);
             aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per Milliseconde";
 
-            //if (!investerinCursorUpdated)
-            //{
-            //    BtnInvesteringCursor.IsEnabled = aantalCookies >= basisPrijsCursor;
-            //    investerinCursorUpdated = true;
-            //}
-            //if (investerinCursorUpdated)
-            //{
-            //    BtnInvesteringCursor.IsEnabled = aantalCookies >= kostCounterCursor;
-            //}
-
             BtnInvesteringCursor.IsEnabled = aantalCookies >= Calculate(basisPrijsCursor, aantalInvesteringCursor);
-            BtnInvesteringGrandma.IsEnabled = aantalCookies >= kostCounterGrandma;
-            BtnInvesteringFarm.IsEnabled = aantalCookies >= kostCounterFarm;
-            BtnInvesteringMine.IsEnabled = aantalCookies >= kostCounterMine;
-            BtnInvesteringFactory.IsEnabled = aantalCookies >= kostCounterFactory;
+            BtnInvesteringGrandma.IsEnabled = aantalCookies >= Calculate(basisPrijsGrandma, aantalInvesteringGrandma);
+            BtnInvesteringFarm.IsEnabled = aantalCookies >= Calculate(basisPrijsFarm, aantalInvesteringFarm);
+            BtnInvesteringMine.IsEnabled = aantalCookies >= Calculate(basisPrijsMine, aantalInvesteringMine);
+            BtnInvesteringFactory.IsEnabled = aantalCookies >= Calculate(basisPrijsFactory, aantalInvesteringFactory);
 
 
 
