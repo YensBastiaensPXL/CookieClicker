@@ -68,13 +68,6 @@ namespace CookieClicker
             BtnInvesteringFactory.IsEnabled = aantalCookies >= basisPrijsFactory;
         }
 
-        private void PassieveCookieTimer10ms_Tick(object sender, EventArgs e)
-        {
-            double passieveCookiesPerTick = passieveCookieRatio10ms;
-            aantalCookies += passieveCookiesPerTick;
-            UpdateCookies();
-        }
-
         private void CursorClicked(object sender, MouseButtonEventArgs e)
         {
             Grid geklikteKnop = (Grid)sender;
@@ -126,7 +119,7 @@ namespace CookieClicker
                 //weglaten of laten staan? bij allemaal buiten cursor moet timer sws
                 passieveCookieTimer10ms.Start();
 
-                CategorieënZichtbaar(grandmaInvesteringCategorie);
+                CategorieënZichtbaar(GrandmaInvesteringCategorie);
             }
             else if (geklikteKnop.Name == "BtnInvesteringFarm")
             {
@@ -149,12 +142,11 @@ namespace CookieClicker
                 //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 0.08;
-                ////Tooltip part of code
-                //passieveCookieRatio1sFarm = passieveCookieRatio10ms * 100;
-                //upcomingPassiveCookiesFarm = passieveCookieRatio1sFarm + 8;
 
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
+
+                CategorieënZichtbaar(FarmInvesteringCategorie);
             }
             else if (geklikteKnop.Name == "BtnInvesteringMine")
             {
@@ -184,6 +176,7 @@ namespace CookieClicker
 
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
+                CategorieënZichtbaar(MineInvesteringCategorie);
             }
             else if (geklikteKnop.Name == "BtnInvesteringFactory")
             {
@@ -207,21 +200,15 @@ namespace CookieClicker
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 2.60;
 
-                ////Tooltip part of code
-                //passieveCookieRatio1sFactory = passieveCookieRatio10ms * 100;
-                //upcomingPassiveCookiesFactory = passieveCookieRatio1sFactory + 260 ;
-
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
+                CategorieënZichtbaar(FactoryInvesteringCategorie);
 
             }
 
             UpdateCookies();
         }
-        private void CategorieënZichtbaar(Grid investeringCategorieGrid)
-        {
-            investeringCategorieGrid.Visibility = Visibility.Visible;
-        }
+       
 
         // anatomie / signatuur
         // accesmodifier -> returntype -> naam -> param list
@@ -293,6 +280,16 @@ namespace CookieClicker
 
 
 
+        }
+        private void CategorieënZichtbaar(Grid investeringCategorieGrid)
+        {
+            investeringCategorieGrid.Visibility = Visibility.Visible;
+        }
+        private void PassieveCookieTimer10ms_Tick(object sender, EventArgs e)
+        {
+            double passieveCookiesPerTick = passieveCookieRatio10ms;
+            aantalCookies += passieveCookiesPerTick;
+            UpdateCookies();
         }
         public static string FormatteerNummer(double cookies)
         {

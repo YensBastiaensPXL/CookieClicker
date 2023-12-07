@@ -41,9 +41,24 @@
                     
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="cookie clicker" />
-                <Grid Grid.Row="1" Name="grandmaInvesteringCategorie" Visibility="Collapsed">
+                <Grid Grid.Row="1" Name="GrandmaInvesteringCategorie" Visibility="Collapsed">
                     <Grid.Background>
                         <ImageBrush ImageSource="/grandmabackground.jpg" TileMode="tile" />
+                    </Grid.Background>
+                </Grid>
+                <Grid Grid.Row="2" Name="FarmInvesteringCategorie" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/farmbackground.jpg" TileMode="tile" />
+                    </Grid.Background>
+                </Grid>
+                <Grid Grid.Row="3" Name="MineInvesteringCategorie" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/minebackground.jpg" TileMode="tile" />
+                    </Grid.Background>
+                </Grid>
+                <Grid Grid.Row="4" Name="FactoryInvesteringCategorie" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/factorybackground.jpg" TileMode="tile" />
                     </Grid.Background>
                 </Grid>
             </Grid>
@@ -56,6 +71,8 @@
                 <Label Name="PassiefAantalCookiesTxt" Content=""></Label>
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -152,6 +169,42 @@
                             <Label Name="PrijsFactory" Grid.Row="1">130000</Label>
                         </Grid>
                         <Label Name="FactoryAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
+                    </Grid>
+
+                    <Grid Grid.Row="5" Background="blue" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringBank" MouseEnter="Tooltip">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="4" Source="/bank.png" Width="35px" Height="35px"></Image>
+                        <Grid Grid.Row="4" VerticalAlignment="Center" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" >Bank</Label>
+                            <Label Name="PrijsBank" Grid.Row="1">1400000</Label>
+                        </Grid>
+                        <Label Name="BankAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
+                    </Grid>
+
+                    <Grid Grid.Row="6" Background="Brown" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringTemple" MouseEnter="Tooltip">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="4" Source="/temple.png" Width="35px" Height="35px"></Image>
+                        <Grid Grid.Row="4" VerticalAlignment="Center" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" >Temple</Label>
+                            <Label Name="PrijsTemple" Grid.Row="1">20000000</Label>
+                        </Grid>
+                        <Label Name="TempleAantal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"></Label>
                     </Grid>
                 </Grid>
             </StackPanel>
