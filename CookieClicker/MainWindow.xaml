@@ -20,6 +20,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            
             <Grid Grid.Column="0">
                 <Label Content="PXL-Bakery" Name="lblNaam" MouseDown="lblNaam_MouseDown" HorizontalAlignment="Center" Margin="10px 60px 10px 10px"/>
                 <TextBox Name="txtBoxLblNaam" Visibility="Collapsed" Margin="10px 60px 10px 10px" KeyDown="txtBoxLblNaam_KeyDown" VerticalAlignment="Top" />
@@ -27,14 +28,28 @@
                 <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Margin="10px 100px 10px 10px"/>
                 <Image Name="klikebareCookie" Height="200" Width="200" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave"/>
             </Grid>
+
             <Grid Grid.Column="1">
-                <Label Content="cookie clicker" />
+                <Grid.RowDefinitions>
+                    <RowDefinition  />
+                    <RowDefinition  />
+                    <RowDefinition  />
+                    <RowDefinition  />
+                    <RowDefinition  />
+                    <RowDefinition  />
+                    <RowDefinition  />
+                    
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="cookie clicker" />
+                <Grid Grid.Row="1" Name="grandmaInvesteringCategorie" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/grandmabackground.jpg" TileMode="tile" />
+                    </Grid.Background>
+                </Grid>
             </Grid>
-            
         </Grid>
 
         
-
         <Grid Grid.Column="2" Background="lightGreen">
             <StackPanel>
                 <Label HorizontalAlignment="Center">Store</Label>

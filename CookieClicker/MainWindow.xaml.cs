@@ -109,10 +109,6 @@ namespace CookieClicker
                 {
                     aantalInvesteringGrandma++;
                     UpdateInvestering("grandma", ref kostCounterGrandma);
-                    //Moet getal afgerond worden in berekening en/of bij het visuele aantal cookies/kost van investering of beide
-                    
-
-
                 }
                 else
                 {
@@ -121,7 +117,6 @@ namespace CookieClicker
                     PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
                     aantalInvesteringGrandma = 1;
                 }
-
                 GrandmaAantal.Content = aantalInvesteringGrandma.ToString();
 
                 //Passive cookies counter
@@ -131,6 +126,7 @@ namespace CookieClicker
                 //weglaten of laten staan? bij allemaal buiten cursor moet timer sws
                 passieveCookieTimer10ms.Start();
 
+                CategorieënZichtbaar(grandmaInvesteringCategorie);
             }
             else if (geklikteKnop.Name == "BtnInvesteringFarm")
             {
@@ -222,6 +218,10 @@ namespace CookieClicker
 
             UpdateCookies();
         }
+        private void CategorieënZichtbaar(Grid investeringCategorieGrid)
+        {
+            investeringCategorieGrid.Visibility = Visibility.Visible;
+        }
 
         // anatomie / signatuur
         // accesmodifier -> returntype -> naam -> param list
@@ -234,21 +234,12 @@ namespace CookieClicker
         {
 
             if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor - 1) && type.Equals("cursor"))
-            {
-                //huidigeAankoopPrijsCursor = CalculateInvestmentPrice(basisPrijsCursor, aantalInvesteringCursor);
-                //aantalInvesteringCursor++;
-                //kostCounterCursor = Caldulate
-                
+            {                
                 kostCounterCursor = BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor);
                 huidigeAankoopPrijsCursor = BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor - 1);
                 PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
-                
 
-                //kostCounterCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor);
-                //huidigeAankoopPrijsCursor = basisPrijsCursor * Math.Pow(1.15, aantalInvesteringCursor - 1);
-                //PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
-                //aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
             }
             if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma - 1) && type.Equals("grandma"))
             {
@@ -420,24 +411,17 @@ namespace CookieClicker
             if (e.Key == Key.Enter)
             {
                 string lblNaamInput = txtBoxLblNaam.Text;
-
                 if (!string.IsNullOrWhiteSpace(lblNaamInput) && !lblNaamInput.Contains(" "))
                 {
                     lblNaam.Content = lblNaamInput;
-
                     lblNaam.Visibility = Visibility.Visible;
                     txtBoxLblNaam.Visibility = Visibility.Collapsed;
                 }
                 else
-                {
-                    
-                    MessageBox.Show("Ongeldig");
+                {   
+                    MessageBox.Show("Ongeldige Input");
                 }
-                
-
             }
-            
-
         }
     }
 }
