@@ -61,6 +61,16 @@
                         <ImageBrush ImageSource="/factorybackground.jpg" TileMode="tile" />
                     </Grid.Background>
                 </Grid>
+                <Grid Grid.Row="5" Name="BankInvesteringCategorie" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/backgroundBank.jpg" TileMode="tile" />
+                    </Grid.Background>
+                </Grid>
+                <Grid Grid.Row="6" Name="TempleInvesteringCategorie" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/templebackground.jpg" TileMode="tile" />
+                    </Grid.Background>
+                </Grid>
             </Grid>
         </Grid>
 

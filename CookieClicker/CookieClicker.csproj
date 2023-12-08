@@ -133,5 +133,11 @@
   <ItemGroup>
     <Resource Include="temple.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="backgroundBank.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="templebackground.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
