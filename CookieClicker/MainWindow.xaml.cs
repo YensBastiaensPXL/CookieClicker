@@ -125,10 +125,10 @@ namespace CookieClicker
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 0.01;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
-                //weglaten of laten staan? bij allemaal buiten cursor moet timer sws
                 passieveCookieTimer10ms.Start();
 
                 CategorieënZichtbaar(GrandmaInvesteringCategorie);
+                VoegAfbeeldingToeInvestering(GrandmaInvesteringCategorie, "/grandma.png", 30, 30, -10);
             }
             else if (geklikteKnop.Name == "BtnInvesteringFarm")
             {
@@ -156,6 +156,7 @@ namespace CookieClicker
                 passieveCookieTimer10ms.Start();
 
                 CategorieënZichtbaar(FarmInvesteringCategorie);
+                VoegAfbeeldingToeInvestering(FarmInvesteringCategorie, "/farm.png", 30, 30, 0);
             }
             else if (geklikteKnop.Name == "BtnInvesteringMine")
             {
@@ -186,6 +187,7 @@ namespace CookieClicker
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
                 CategorieënZichtbaar(MineInvesteringCategorie);
+                VoegAfbeeldingToeInvestering(MineInvesteringCategorie, "/mine.png", 30, 30, 3);
             }
             else if (geklikteKnop.Name == "BtnInvesteringFactory")
             {
@@ -212,6 +214,7 @@ namespace CookieClicker
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
                 CategorieënZichtbaar(FactoryInvesteringCategorie);
+                VoegAfbeeldingToeInvestering(FactoryInvesteringCategorie, "/factory.png", 30, 30, 5);
 
             }
             else if(geklikteKnop.Name == "BtnInvesteringBank")
@@ -237,6 +240,7 @@ namespace CookieClicker
 
 
                 CategorieënZichtbaar(BankInvesteringCategorie);
+                VoegAfbeeldingToeInvestering(BankInvesteringCategorie, "/bank.png", 30, 30, 3);
             }
             else if (geklikteKnop.Name == "BtnInvesteringTemple")
             {
@@ -261,9 +265,24 @@ namespace CookieClicker
                 passieveCookieTimer10ms.Start();
 
                 CategorieënZichtbaar(TempleInvesteringCategorie);
+                VoegAfbeeldingToeInvestering(TempleInvesteringCategorie, "/temple.png", 30, 30, 0);
             }
 
             UpdateCookies();
+        }
+
+        private void VoegAfbeeldingToeInvestering(Grid grid, string imagePath, double widht, double height, double spacing)
+        {
+            Image image = new Image();
+            image.Source = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+            image.Height = height;
+            image.Width = widht;
+
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(widht + spacing) });
+            Grid.SetColumn(image, grid.ColumnDefinitions.Count - 1);
+            grid.Children.Add(image);
+
+            
         }
 
         private double BerekenEersteKostPrijsInvestering(double basisprijs)
