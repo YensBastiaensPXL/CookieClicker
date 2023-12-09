@@ -41,36 +41,51 @@
                     
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="cookie clicker" />
-                <Grid Grid.Row="1" Name="GrandmaInvesteringCategorie" Visibility="Collapsed">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/grandmabackground.jpg" TileMode="tile" />
-                    </Grid.Background>
-                </Grid>
-                <Grid Grid.Row="2" Name="FarmInvesteringCategorie" Visibility="Collapsed">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/farmbackground.jpg" TileMode="tile" />
-                    </Grid.Background>
-                </Grid>
-                <Grid Grid.Row="3" Name="MineInvesteringCategorie" Visibility="Collapsed">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/minebackground.jpg" TileMode="tile" />
-                    </Grid.Background>
-                </Grid>
-                <Grid Grid.Row="4" Name="FactoryInvesteringCategorie" Visibility="Collapsed">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/factorybackground.jpg" TileMode="tile" />
-                    </Grid.Background>
-                </Grid>
-                <Grid Grid.Row="5" Name="BankInvesteringCategorie" Visibility="Collapsed">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/backgroundBank.jpg" TileMode="tile" />
-                    </Grid.Background>
-                </Grid>
-                <Grid Grid.Row="6" Name="TempleInvesteringCategorie" Visibility="Collapsed">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/templebackground.jpg" TileMode="tile" />
-                    </Grid.Background>
-                </Grid>
+                <ScrollViewer Grid.Row="1" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid Grid.Row="1" Name="GrandmaInvesteringCategorie" Visibility="Collapsed">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/grandmabackground.jpg" TileMode="tile" />
+                        </Grid.Background>
+                    </Grid>
+                </ScrollViewer>
+                
+
+                <ScrollViewer Grid.Row="2" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid Name="FarmInvesteringCategorie" Visibility="Collapsed">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/farmbackground.jpg" TileMode="Tile" />
+                        </Grid.Background>
+                        <!-- Your content for FarmInvesteringCategorie here -->
+                    </Grid>
+                </ScrollViewer>
+                <ScrollViewer Grid.Row="3" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid Name="MineInvesteringCategorie" Visibility="Collapsed">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/minebackground.jpg" TileMode="tile" />
+                        </Grid.Background>
+                    </Grid>
+                </ScrollViewer>
+                <ScrollViewer Grid.Row="4" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid Name="FactoryInvesteringCategorie" Visibility="Collapsed">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/factorybackground.jpg" TileMode="tile" />
+                        </Grid.Background>
+                    </Grid>
+                </ScrollViewer>
+                <ScrollViewer Grid.Row="5" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid Name="BankInvesteringCategorie" Visibility="Collapsed">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/backgroundBank.jpg" TileMode="tile" />
+                        </Grid.Background>
+                    </Grid>
+                </ScrollViewer>
+                <ScrollViewer Grid.Row="6" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid Name="TempleInvesteringCategorie" Visibility="Collapsed">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/templebackground.jpg" TileMode="tile" />
+                        </Grid.Background>
+                    </Grid>
+                </ScrollViewer>
             </Grid>
         </Grid>
 

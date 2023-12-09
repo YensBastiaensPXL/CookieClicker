@@ -22,7 +22,7 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 100999999; //aantal nog aanpassen bij upload
+        double aantalCookies = 9999999999; //aantal nog aanpassen bij upload
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -512,6 +512,23 @@ namespace CookieClicker
                 else
                 {   
                     MessageBox.Show("Ongeldige Input");
+                }
+            }
+        }
+
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            var scroll = sender as ScrollViewer;
+
+            if (scroll != null)
+            {
+                if (e.Delta > 0)
+                {
+                    scroll.LineLeft();
+                }
+                else
+                {
+                    scroll.LineRight();
                 }
             }
         }
