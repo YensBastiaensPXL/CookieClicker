@@ -63,7 +63,6 @@ namespace CookieClicker
         {
             InitializeComponent();
             UpdateCookies();
-            
             origineleAfbeeldingBreedte = klikebareCookie.Width;
             passieveCookieTimer10ms = new DispatcherTimer();
             passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
@@ -271,32 +270,7 @@ namespace CookieClicker
             UpdateCookies();
         }
 
-        private void VoegAfbeeldingToeInvestering(Grid grid, string imagePath, double widht, double height, double spacing)
-        {
-            Image image = new Image();
-            image.Source = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
-            image.Height = height;
-            image.Width = widht;
-
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(widht + spacing) });
-            Grid.SetColumn(image, grid.ColumnDefinitions.Count - 1);
-            grid.Children.Add(image);
-
-            
-        }
-
-        private double BerekenEersteKostPrijsInvestering(double basisprijs)
-        {
-            return basisprijs * 1.15;
-        }
-
-        // anatomie / signatuur
-        // accesmodifier -> returntype -> naam -> param list
-        private double BerekenKostprijsInvestering(double basisprijs, double counter )
-        {
-            return basisprijs * Math.Pow(1.15, counter);
-        }
-
+        
 
         private void UpdateInvestering(string type, ref double kostCounter)
         {
@@ -376,6 +350,32 @@ namespace CookieClicker
 
 
         }
+        private void VoegAfbeeldingToeInvestering(Grid grid, string imagePath, double widht, double height, double spacing)
+        {
+            Image image = new Image();
+            image.Source = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+            image.Height = height;
+            image.Width = widht;
+
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(widht + spacing) });
+            Grid.SetColumn(image, grid.ColumnDefinitions.Count - 1);
+            grid.Children.Add(image);
+
+
+        }
+
+        private double BerekenEersteKostPrijsInvestering(double basisprijs)
+        {
+            return basisprijs * 1.15;
+        }
+
+        // anatomie / signatuur
+        // accesmodifier -> returntype -> naam -> param list
+        private double BerekenKostprijsInvestering(double basisprijs, double counter)
+        {
+            return basisprijs * Math.Pow(1.15, counter);
+        }
+
         private void CategorieënZichtbaar(Grid investeringCategorieGrid)
         {
             investeringCategorieGrid.Visibility = Visibility.Visible;
