@@ -63,10 +63,16 @@ namespace CookieClicker
         {
             InitializeComponent();
             UpdateCookies();
+            OpstartBtnEnabled();
             origineleAfbeeldingBreedte = klikebareCookie.Width;
             passieveCookieTimer10ms = new DispatcherTimer();
             passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
+            
+            
+        }
 
+        private void OpstartBtnEnabled()
+        {
             BtnInvesteringCursor.IsEnabled = aantalCookies >= basisPrijsCursor;
             BtnInvesteringGrandma.IsEnabled = aantalCookies >= basisPrijsGrandma;
             BtnInvesteringFarm.IsEnabled = aantalCookies >= basisPrijsFarm;
@@ -75,7 +81,6 @@ namespace CookieClicker
             BtnInvesteringBank.IsEnabled = aantalCookies >= basisPrijsBank;
             BtnInvesteringTemple.IsEnabled = aantalCookies >= basisPrijsTemple;
         }
-
         private void CursorClicked(object sender, MouseButtonEventArgs e)
         {
             Grid geklikteKnop = (Grid)sender;
@@ -270,7 +275,6 @@ namespace CookieClicker
             UpdateCookies();
         }
 
-        
 
         private void UpdateInvestering(string type, ref double kostCounter)
         {
@@ -360,8 +364,6 @@ namespace CookieClicker
             grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(widht + spacing) });
             Grid.SetColumn(image, grid.ColumnDefinitions.Count - 1);
             grid.Children.Add(image);
-
-
         }
 
         private double BerekenEersteKostPrijsInvestering(double basisprijs)
@@ -417,7 +419,7 @@ namespace CookieClicker
         {
             isMouseDown = true;
             aantalCookies++;
-            klikebareCookie.Width *= 0.9;
+            klikebareCookie.Width = klikebareCookie.ActualWidth * 0.9;
             isMuisOverAfbeelding = true;
 
             if (aantalCookiesTxt != null)
@@ -434,7 +436,7 @@ namespace CookieClicker
             isMouseDown = false;
             if (isMuisOverAfbeelding)
             {
-                klikebareCookie.Width = origineleAfbeeldingBreedte;
+                klikebareCookie.Width = double.NaN;
             }
             isMuisOverAfbeelding= false;
 
@@ -487,6 +489,16 @@ namespace CookieClicker
             {
                 ToolTipService.SetToolTip(hoverBtn, "+" + 260 
                     + " Cookies per seconde met deze aankoop");
+            }
+            if (hoverBtn.Name == "BtnInvesteringBank")
+            {
+                ToolTipService.SetToolTip(hoverBtn, "+" + 1400
+                   + " Cookies per seconde met deze aankoop");
+            }
+            if (hoverBtn.Name == "BtnInvesteringTemple")
+            {
+                ToolTipService.SetToolTip(hoverBtn, "+" + 7800
+                   + " Cookies per seconde met deze aankoop");
             }
         }
 
