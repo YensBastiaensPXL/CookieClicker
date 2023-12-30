@@ -105,7 +105,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="1" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor" MouseEnter="Tooltip" IsEnabled="False" ToolTip="hello"  Background="red">
+                <Grid Grid.Row="1" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor"  MouseEnter="Tooltip" IsEnabled="False" ToolTip="hello"  Background="red">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="4*"/>

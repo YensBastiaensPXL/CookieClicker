@@ -22,7 +22,8 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 9999999999; //aantal nog aanpassen bij upload
+        double aantalCookies = 1050; //aantal nog aanpassen bij upload
+        double totaalCookies = 1050;
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -67,10 +68,8 @@ namespace CookieClicker
             origineleAfbeeldingBreedte = klikebareCookie.Width;
             passieveCookieTimer10ms = new DispatcherTimer();
             passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
-            
-            
+           
         }
-
         private void OpstartBtnEnabled()
         {
             BtnInvesteringCursor.IsEnabled = aantalCookies >= basisPrijsCursor;
@@ -336,14 +335,17 @@ namespace CookieClicker
         {
             aantalCookiesTxt.Content = FormatteerNummer(aantalCookies);
             double aantalCookiesAfgerond = Math.Floor(aantalCookies);
-            //double aantalCookiesAfgerond = aantalCookies;
-            //aantalCookiesTxt.Content = $"{aantalCookiesAfgerond} cookies";
             Title = $"Cookie clicker got {aantalCookiesAfgerond} cookies";
-            // als aantal cookies per seconde opgeteld moeten worden moet je bv.
-            // https://prnt.sc/UX6il5icQ8jy
             double aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms, 3);
             aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per Milliseconde";
 
+            ZichtbaarheidInvesteringen(BtnInvesteringCursor, 15);
+            ZichtbaarheidInvesteringen(BtnInvesteringGrandma, 100);
+            ZichtbaarheidInvesteringen(BtnInvesteringFarm, 1100);
+            ZichtbaarheidInvesteringen(BtnInvesteringMine, 12000);
+            ZichtbaarheidInvesteringen(BtnInvesteringFactory, 130000);
+            ZichtbaarheidInvesteringen(BtnInvesteringBank, 1400000);
+            ZichtbaarheidInvesteringen(BtnInvesteringTemple, 20000000);
             BtnInvesteringCursor.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor);
             BtnInvesteringGrandma.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma);
             BtnInvesteringFarm.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsFarm, aantalInvesteringFarm);
@@ -377,6 +379,15 @@ namespace CookieClicker
         {
             return basisprijs * Math.Pow(1.15, counter);
         }
+        private void ZichtbaarheidInvesteringen(Grid btnInvestering, int cookies)
+        {
+            //CategorieënZichtbaar kopiëren voor 
+            if (totaalCookies >= cookies)
+            {
+                btnInvestering.Visibility = Visibility.Visible;
+            }
+            
+        }
 
         private void CategorieënZichtbaar(Grid investeringCategorieGrid)
         {
@@ -386,6 +397,7 @@ namespace CookieClicker
         {
             double passieveCookiesPerTick = passieveCookieRatio10ms;
             aantalCookies += passieveCookiesPerTick;
+            totaalCookies += passieveCookiesPerTick;
             UpdateCookies();
         }
         public static string FormatteerNummer(double cookies)
@@ -419,6 +431,7 @@ namespace CookieClicker
         {
             isMouseDown = true;
             aantalCookies++;
+            totaalCookies++;
             klikebareCookie.Width = klikebareCookie.ActualWidth * 0.9;
             isMuisOverAfbeelding = true;
 
