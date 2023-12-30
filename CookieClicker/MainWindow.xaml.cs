@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Microsoft.VisualBasic;
 
 namespace CookieClicker
 {
@@ -23,7 +24,7 @@ namespace CookieClicker
     public partial class MainWindow : Window
     {
         double aantalCookies = 1050; //aantal nog aanpassen bij upload
-        double totaalCookies = 1050;
+        double totaalCookies = 1050; //aantal nog aanpassen bij upload
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -517,26 +518,20 @@ namespace CookieClicker
 
         private void lblNaam_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            lblNaam.Visibility = Visibility.Collapsed;
-            txtBoxLblNaam.Visibility = Visibility.Visible;
-            txtBoxLblNaam.Text = lblNaam.Content.ToString();
-            txtBoxLblNaam.Focus();
-        }
+            string naam = lblNaam.Content.ToString();
 
-        private void txtBoxLblNaam_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
+            while (true)
             {
-                string lblNaamInput = txtBoxLblNaam.Text;
-                if (!string.IsNullOrWhiteSpace(lblNaamInput) && !lblNaamInput.Contains(" "))
+                naam = Interaction.InputBox("Wijzig de naam van de bakkerij", "Naam", naam);
+
+                if (!string.IsNullOrWhiteSpace(naam) && !naam.Contains(" "))
                 {
-                    lblNaam.Content = lblNaamInput;
-                    lblNaam.Visibility = Visibility.Visible;
-                    txtBoxLblNaam.Visibility = Visibility.Collapsed;
+                    lblNaam.Content = naam;
+                    break;
                 }
                 else
-                {   
-                    MessageBox.Show("Ongeldige Input");
+                {
+                    MessageBox.Show("Ongeldige input. Zorg ervoor dat de invoer niet leeg is en geen spaties bevat.");
                 }
             }
         }
