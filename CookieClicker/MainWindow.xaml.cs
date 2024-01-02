@@ -69,7 +69,11 @@ namespace CookieClicker
             origineleAfbeeldingBreedte = klikebareCookie.Width;
             passieveCookieTimer10ms = new DispatcherTimer();
             passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
-           
+            PrijsFarm.Content = FormatteerNummer(basisPrijsFarm);
+            PrijsMine.Content = FormatteerNummer(basisPrijsMine);
+            PrijsFactory.Content = FormatteerNummer(basisPrijsFactory);
+            PrijsBank.Content = FormatteerNummer(basisPrijsBank);
+            PrijsTemple.Content = FormatteerNummer(basisPrijsTemple);
         }
         private void OpstartBtnEnabled()
         {
@@ -80,6 +84,7 @@ namespace CookieClicker
             BtnInvesteringFactory.IsEnabled = aantalCookies >= basisPrijsFactory;
             BtnInvesteringBank.IsEnabled = aantalCookies >= basisPrijsBank;
             BtnInvesteringTemple.IsEnabled = aantalCookies >= basisPrijsTemple;
+         
         }
         private void CursorClicked(object sender, MouseButtonEventArgs e)
         {
@@ -107,7 +112,7 @@ namespace CookieClicker
                 passieveCookieRatio10ms += 0.001;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
-
+                PrijsCursor.Content = FormatteerNummer(kostCounterCursor);
             }
             else if (geklikteKnop.Name == "BtnInvesteringGrandma")
             {
@@ -125,12 +130,13 @@ namespace CookieClicker
                 }
                 GrandmaAantal.Content = aantalInvesteringGrandma.ToString();
 
-                //Passive cookies counter
+                //Passieve cookie counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 0.01;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
+                PrijsGrandma.Content = FormatteerNummer(Math.Ceiling(kostCounterGrandma));
                 CategorieënZichtbaar(GrandmaInvesteringCategorie);
                 VoegAfbeeldingToeInvestering(GrandmaInvesteringCategorie, "/grandma.png", 40, 40, -10);
             }
@@ -155,10 +161,10 @@ namespace CookieClicker
                 //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 0.08;
-
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
+                PrijsFarm.Content = FormatteerNummer(kostCounterFarm);
                 CategorieënZichtbaar(FarmInvesteringCategorie);
                 VoegAfbeeldingToeInvestering(FarmInvesteringCategorie, "/farm.png", 40, 40, 0);
             }
@@ -181,15 +187,13 @@ namespace CookieClicker
 
                 MineAantal.Content = aantalInvesteringMine.ToString();
 
-                //Passive cookies counter
+                //Passieve cookie counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 0.47;
-                ////Tooltip part of code
-                //passieveCookieRatio1sMine = passieveCookieRatio10ms * 100;
-                //upcomingPassiveCookiesMine = passieveCookieRatio1sMine + 47;
-
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
+
+                PrijsMine.Content = FormatteerNummer(kostCounterMine);
                 CategorieënZichtbaar(MineInvesteringCategorie);
                 VoegAfbeeldingToeInvestering(MineInvesteringCategorie, "/mine.png", 40, 40, 3);
             }
@@ -214,9 +218,10 @@ namespace CookieClicker
                 //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 2.60;
-
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
+
+                PrijsFactory.Content = FormatteerNummer(kostCounterFactory);
                 CategorieënZichtbaar(FactoryInvesteringCategorie);
                 VoegAfbeeldingToeInvestering(FactoryInvesteringCategorie, "/factory.png", 40, 40, 5);
 
@@ -238,11 +243,10 @@ namespace CookieClicker
                 BankAantal.Content = aantalInvesteringBank.ToString();
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 14;
-
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
-
+                PrijsBank.Content = FormatteerNummer(kostCounterBank);
                 CategorieënZichtbaar(BankInvesteringCategorie);
                 VoegAfbeeldingToeInvestering(BankInvesteringCategorie, "/bank.png", 40, 40, 3);
             }
@@ -264,10 +268,10 @@ namespace CookieClicker
 
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 78;
-
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
+                PrijsTemple.Content = FormatteerNummer(kostCounterTemple);
                 CategorieënZichtbaar(TempleInvesteringCategorie);
                 VoegAfbeeldingToeInvestering(TempleInvesteringCategorie, "/temple.png", 40, 40, 0);
             }
@@ -277,14 +281,12 @@ namespace CookieClicker
 
         private void UpdateInvestering(string type, ref double kostCounter)
         {
-
             if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor - 1) && type.Equals("cursor"))
             {                
                 kostCounterCursor = BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor);
                 huidigeAankoopPrijsCursor = BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor - 1);
                 PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
-
             }
             if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma - 1) && type.Equals("grandma"))
             {
@@ -326,9 +328,9 @@ namespace CookieClicker
                 kostCounterTemple = BerekenKostprijsInvestering(basisPrijsTemple, aantalInvesteringTemple);
                 huidigeAankoopPrijsTemple = BerekenKostprijsInvestering(basisPrijsTemple, aantalInvesteringTemple - 1);
                 PrijsTemple.Content = Math.Ceiling(kostCounterTemple).ToString();
+                //PrijsTemple.Content = FormatteerNummer(Math.Ceiling(kostCounterTemple));
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsTemple);
             }
-
         }
         private void UpdateCookies()
         {
