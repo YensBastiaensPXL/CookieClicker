@@ -16,8 +16,8 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition />
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="6*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -54,7 +54,10 @@
                     <RowDefinition  />
                     
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="cookie clicker" />
+                <Viewbox>
+                    <Label Grid.Row="0" Content="Cookie clicker" Padding="0, 5" FontSize="7" FontWeight="Bold" Foreground="#D3D978"/>
+                </Viewbox>
+                
 
                 <ScrollViewer Grid.Row="1"  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                         <Grid Name="GrandmaInvesteringCategorie" Visibility="Collapsed">

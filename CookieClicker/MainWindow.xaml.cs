@@ -337,8 +337,8 @@ namespace CookieClicker
             aantalCookiesTxt.Content = FormatteerNummer(aantalCookies);
             double aantalCookiesAfgerond = Math.Floor(aantalCookies);
             Title = $"Cookie clicker got {aantalCookiesAfgerond} cookies";
-            double aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms, 3);
-            aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per Milliseconde";
+            double aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms * 100, 3);
+            aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per seconde";
 
             ZichtbaarheidInvesteringen(BtnInvesteringCursor, 15);
             ZichtbaarheidInvesteringen(BtnInvesteringGrandma, 100);
@@ -354,8 +354,6 @@ namespace CookieClicker
             BtnInvesteringFactory.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsFactory, aantalInvesteringFactory);
             BtnInvesteringBank.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsBank, aantalInvesteringBank);
             BtnInvesteringTemple.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsTemple, aantalInvesteringTemple);
-
-
         }
         private void VoegAfbeeldingToeInvestering(Grid grid, string imagePath, double widht, double height, double spacing)
         {
