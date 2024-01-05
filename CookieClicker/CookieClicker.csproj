@@ -140,5 +140,8 @@
   <ItemGroup>
     <Resource Include="templebackground.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="goudencookie.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

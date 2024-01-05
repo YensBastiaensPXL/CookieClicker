@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -24,7 +26,8 @@ namespace CookieClicker
     public partial class MainWindow : Window
     {
         double aantalCookies = 100000000; //aantal nog aanpassen bij upload
-        double totaalCookies = 0; //aantal nog aanpassen bij upload
+        double totaalAantalVerdiendeCookies = 0; //aantal nog aanpassen bij upload
+        //Variabelen cookie afbeelding vergroting/verkleining
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
@@ -61,19 +64,71 @@ namespace CookieClicker
         double kostCounterTemple;
         double huidigeAankoopPrijsTemple;
         long aantalInvesteringTemple = 0;
+        // Gouden cookie variabelen
+        DispatcherTimer minuutTimer;
+        Random randomGoudenCookieGetal = new Random();
+        Random randomCookiePositie = new Random();
         public MainWindow()
         {
             InitializeComponent();
             UpdateCookies();
             OpstartBtnEnabled();
             origineleAfbeeldingBreedte = klikebareCookie.Width;
-            passieveCookieTimer10ms = new DispatcherTimer();
-            passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
+            //Method Formatteernummer formatteert de getallen bij opstart van applicatie
             PrijsFarm.Content = FormatteerNummer(basisPrijsFarm);
             PrijsMine.Content = FormatteerNummer(basisPrijsMine);
             PrijsFactory.Content = FormatteerNummer(basisPrijsFactory);
             PrijsBank.Content = FormatteerNummer(basisPrijsBank);
             PrijsTemple.Content = FormatteerNummer(basisPrijsTemple);
+
+            //Passieve cookies per 10ms voor passieve inkomst van investeringen
+            passieveCookieTimer10ms = new DispatcherTimer();
+            passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
+            //Gouden Cookie
+            minuutTimer = new DispatcherTimer();
+            minuutTimer.Tick += MinuutTimer_Tick;
+            //minuteTimer.Interval = TimeSpan.FromMinutes(1);
+            minuutTimer.Interval = TimeSpan.FromSeconds(3);
+            minuutTimer.Start();
+
+
+        }
+        private void MinuutTimer_Tick(object sender, EventArgs e)
+        {
+            // Genereren van een willekeurig getal tussen 0 en 99
+            int randomNumber = randomGoudenCookieGetal.Next(100);
+
+            // Als het willekeurige getal kleiner is dan of gelijk aan 30 is het binnen de 30% kans
+            if (randomNumber <= 100)
+            {    
+                ShowGoudenCookie();
+            }
+        }
+        private void ShowGoudenCookie()
+        {
+            
+            Image goudenCookie = new Image();
+            goudenCookie.Source = new BitmapImage(new Uri("/goudencookie.png", UriKind.RelativeOrAbsolute));
+
+            goudenCookie.Width = 40;
+            goudenCookie.Height = 40;
+
+            double randomX = randomCookiePositie.NextDouble() * (HoofdGrid.ActualWidth - goudenCookie.Width);
+            double randomY = randomCookiePositie.NextDouble() * (HoofdGrid.ActualHeight - goudenCookie.Height);
+
+
+            goudenCookie.MouseLeftButtonDown += goudenCookie_MouseLeftButtonDown;
+
+            Canvas.SetLeft(goudenCookie, randomX);
+            Canvas.SetTop(goudenCookie, randomY);
+
+            HoofdGrid.Children.Add(goudenCookie);
+        }
+        private void goudenCookie_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Verwijder de afbeelding bij het klikken
+            Image clickedImage = sender as Image;
+            HoofdGrid.Children.Remove(clickedImage);
         }
         private void OpstartBtnEnabled()
         {
@@ -112,6 +167,7 @@ namespace CookieClicker
                 passieveCookieRatio10ms += 0.001;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
+
                 PrijsCursor.Content = FormatteerNummer(kostCounterCursor);
             }
             else if (geklikteKnop.Name == "BtnInvesteringGrandma")
@@ -355,10 +411,10 @@ namespace CookieClicker
             BtnInvesteringBank.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsBank, aantalInvesteringBank);
             BtnInvesteringTemple.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsTemple, aantalInvesteringTemple);
         }
-        private void VoegAfbeeldingToeInvestering(Grid grid, string imagePath, double widht, double height, double spacing)
+        private void VoegAfbeeldingToeInvestering(Grid grid, string urlAfbeelding, double widht, double height, double spacing)
         {
             Image image = new Image();
-            image.Source = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+            image.Source = new BitmapImage(new Uri(urlAfbeelding, UriKind.RelativeOrAbsolute));
 
             image.Height = height;
             image.Width = widht;
@@ -367,34 +423,33 @@ namespace CookieClicker
             Grid.SetColumn(image, grid.ColumnDefinitions.Count - 1);
             grid.Children.Add(image);
         }
+
         private double BerekenEersteKostPrijsInvestering(double basisprijs)
         {
             return basisprijs * 1.15;
         }
-        // anatomie / signatuur
-        // accesmodifier -> returntype -> naam -> param list
+
         private double BerekenKostprijsInvestering(double basisprijs, double counter)
         {
             return basisprijs * Math.Pow(1.15, counter);
         }
         private void ZichtbaarheidInvesteringen(Grid btnInvestering, int cookies)
         {
-            //CategorieënZichtbaar kopiëren voor 
-            if (totaalCookies >= cookies)
+            if (totaalAantalVerdiendeCookies >= cookies)
             {
                 btnInvestering.Visibility = Visibility.Visible;
             }
-            
         }
         private void CategorieënZichtbaar(Grid investeringCategorieGrid)
         {
             investeringCategorieGrid.Visibility = Visibility.Visible;
         }
+        
         private void PassieveCookieTimer10ms_Tick(object sender, EventArgs e)
         {
             double passieveCookiesPerTick = passieveCookieRatio10ms;
             aantalCookies += passieveCookiesPerTick;
-            totaalCookies += passieveCookiesPerTick;
+            totaalAantalVerdiendeCookies += passieveCookiesPerTick;
             UpdateCookies();
         }
         public static string FormatteerNummer(double cookies)
@@ -428,7 +483,7 @@ namespace CookieClicker
         {
             isMouseDown = true;
             aantalCookies++;
-            totaalCookies++;
+            totaalAantalVerdiendeCookies++;
             klikebareCookie.Width = klikebareCookie.ActualWidth * 0.9;
             isMuisOverAfbeelding = true;
 
