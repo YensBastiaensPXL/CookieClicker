@@ -25,8 +25,8 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 100000000; //aantal nog aanpassen bij upload
-        double totaalAantalVerdiendeCookies = 0; //aantal nog aanpassen bij upload
+        double aantalCookies = 15; //aantal nog aanpassen bij upload
+        double totaalAantalVerdiendeCookies = 15; //aantal nog aanpassen bij upload
         //Variabelen cookie afbeelding vergroting/verkleining
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
@@ -124,11 +124,16 @@ namespace CookieClicker
 
             HoofdGrid.Children.Add(goudenCookie);
         }
-        private void goudenCookie_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+       
+    private void goudenCookie_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // Verwijder de afbeelding bij het klikken
             Image clickedImage = sender as Image;
             HoofdGrid.Children.Remove(clickedImage);
+
+            double CookieBonus15Min = passieveCookieRatio10ms * 100 * 6 * 15;
+            aantalCookies += CookieBonus15Min;
+            totaalAantalVerdiendeCookies += CookieBonus15Min;
         }
         private void OpstartBtnEnabled()
         {

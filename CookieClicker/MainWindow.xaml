@@ -32,10 +32,10 @@
                             <Label Content="PXL-Bakery" Name="lblNaam" MouseDown="lblNaam_MouseDown" Padding="10, 0, 10, 2" FontSize="5" />
                         </Viewbox>
                         <Viewbox Stretch="Uniform" Margin="0">
-                            <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Padding="10, 0, 10, 2" FontSize="6"/>
+                        <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="6" Content="hello"/>
                         </Viewbox>
                         <Viewbox Stretch="Uniform">
-                            <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="3"/>
+                            <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="3" Content="hello"/>
                         </Viewbox>
                     </StackPanel>
                     <Image Grid.Row="1" Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave" Margin="40, 0, 40, 0" VerticalAlignment="Top" />
