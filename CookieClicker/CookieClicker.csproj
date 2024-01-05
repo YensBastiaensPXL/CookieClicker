@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -114,6 +115,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="mine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="grandmabackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="farmbackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="factorybackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="minebackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="temple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="backgroundBank.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="templebackground.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
