@@ -7,305 +7,453 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.Background>
+        <Grid.Background>
                 <ImageBrush  ImageSource="/background_cookie.png"/>
             </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.2*"/>
+        </Grid.ColumnDefinitions>
+        <Canvas Name="GoudenCookieScherm" Grid.ColumnSpan="2" Panel.ZIndex="1" ></Canvas>
+
+
+        <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition />
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="6*" />
             </Grid.ColumnDefinitions>
-            
             <Grid Grid.Column="0">
-                <Label Content="PXL-Bakery" Name="lblNaam" MouseDown="lblNaam_MouseDown" HorizontalAlignment="Center" Margin="10px 60px 10px 10px"/>
-                <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Margin="10px 80px 10px 10px" />
-                <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Margin="10px 100px 10px 10px"/>
-                <Image Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="7*" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="20, 30, 20, 0">
+                    <Viewbox Stretch="Uniform">
+                        <Label Content="PXL-Bakery" Name="lblNaam" MouseDown="lblNaam_MouseDown" Padding="10, 0, 10, 0" FontSize="5" />
+                    </Viewbox>
+                    <Viewbox Stretch="Uniform" Margin="0">
+                        <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="6"/>
+                    </Viewbox>
+                    <Viewbox Stretch="Uniform">
+                        <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="3"/>
+                    </Viewbox>
+                </StackPanel>
+                <Image Grid.Row="1" Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave" Margin="40, 50, 40,0" VerticalAlignment="Top" />
+                <ListBox Name="LstBoxGeschiedenis" Visibility="Collapsed"  Background="#997e9c54" Grid.Row="2" Margin="15, 10" >
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Viewbox>
+                        <Label Grid.Row="0" Content="Cookie clicker" Padding="0, 5" FontSize="7" FontWeight="Bold" Foreground="#D3D978"/>
+                    </Viewbox>
+                
+                
+                <ScrollViewer Grid.Row="1"  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <Grid Name="GrandmaInvesteringCategorie" Visibility="Collapsed">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/grandmabackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
+                            </Grid.Background>
+                        </Grid>
+                    </ScrollViewer>
+
+                    <ScrollViewer Grid.Row="2" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <Grid Name="FarmInvesteringCategorie" Visibility="Collapsed">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/farmbackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
+                            </Grid.Background>
+                        </Grid>
+                    </ScrollViewer>
+                    <ScrollViewer Grid.Row="3" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <Grid Name="MineInvesteringCategorie" Visibility="Collapsed">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/minebackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
+                            </Grid.Background>
+                        </Grid>
+                    </ScrollViewer>
+                    <ScrollViewer Grid.Row="4" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <Grid Name="FactoryInvesteringCategorie" Visibility="Collapsed">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/factorybackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
+                            </Grid.Background>
+                        </Grid>
+                    </ScrollViewer>
+                
+                <ScrollViewer Grid.Row="5" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <Grid Name="BankInvesteringCategorie" Visibility="Collapsed">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/backgroundBank.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
+                            </Grid.Background>
+                        </Grid>
+                    </ScrollViewer>
+                    <ScrollViewer Grid.Row="6" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <Grid Name="TempleInvesteringCategorie" Visibility="Collapsed">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/templebackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
+                            </Grid.Background>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
             </Grid>
 
             <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition  />
-                    <RowDefinition  />
-                    <RowDefinition  />
-                    <RowDefinition  />
-                    <RowDefinition  />
-                    <RowDefinition  />
-                    <RowDefinition  />
-                    
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="cookie clicker" />
-
+                <!--<Label Name="PassiefAantalCookiesTxt" Content=""></Label>-->
+                <Grid Margin="20,0, 20, 2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label HorizontalAlignment="Center" FontSize="14" Foreground="#D3D978" FontWeight="Bold">Store</Label>
+                    </Viewbox>
                 <ScrollViewer Grid.Row="1" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                    <Grid Grid.Row="1" Name="GrandmaInvesteringCategorie" Visibility="Collapsed">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/grandmabackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
-                        </Grid.Background>
-                    </Grid>
-                </ScrollViewer>
-                
+                    
+                    <WrapPanel Name="BonusBtns" Margin="0, 0, 0, 5">
+                        <Border Name="BonusBtnCursorBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnCursor"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/cursor.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtCursorKost" Content="750" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnGrandmaBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnGrandma"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/grandma.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtGrandmaKost" Content="5000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
 
-                <ScrollViewer Grid.Row="2" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                    <Grid Name="FarmInvesteringCategorie" Visibility="Collapsed">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/farmbackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
-                        </Grid.Background>
-                    </Grid>
+                        <Border Name="BonusBtnFarmBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnFarm"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/farm.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtFarmKost" Content="55000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnMineBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnMine"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/mine.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtMineKost" Content="600000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnFactoryBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnFactory"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/factory.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtFactoryKost" Content="6500000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnBankBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnBank"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/bank.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtBankKost" Content="70000000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnTempleBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnTemple"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/temple.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Grid.Row="1" Name="TxtTempleKost" Content="70000000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </WrapPanel>
                 </ScrollViewer>
-                <ScrollViewer Grid.Row="3" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                    <Grid Name="MineInvesteringCategorie" Visibility="Collapsed">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/minebackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
-                        </Grid.Background>
-                    </Grid>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="4" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                    <Grid Name="FactoryInvesteringCategorie" Visibility="Collapsed">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/factorybackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
-                        </Grid.Background>
-                    </Grid>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="5" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                    <Grid Name="BankInvesteringCategorie" Visibility="Collapsed">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/backgroundBank.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
-                        </Grid.Background>
-                    </Grid>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="6" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                    <Grid Name="TempleInvesteringCategorie" Visibility="Collapsed">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/templebackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
-                        </Grid.Background>
-                    </Grid>
-                </ScrollViewer>
+               
+
+                <Border Grid.Row="2" Name="BtnInvesteringCursorBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                        <Grid  Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor"  MouseEnter="Tooltip" IsEnabled="False" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                        <Viewbox Stretch="Uniform" Margin="7, 4">
+                                <Image Source="/cursor.png"></Image>
+                            </Viewbox>
+
+                            <Grid Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Viewbox Stretch="Uniform" HorizontalAlignment="Left" Grid.Row="0">
+                                    <Label FontSize="16" Content="Cursor" FontWeight="Bold" Padding="0"></Label>
+                                </Viewbox>
+                                <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Left">
+                                    <Label Name="PrijsCursor" FontWeight="Bold" Padding="0, 1">15</Label>
+                                </Viewbox>
+                            </Grid>
+                            <Viewbox Grid.Column="2" Stretch="Uniform">
+                                <Label Name="CursorAantal" FontSize="7" VerticalAlignment="Center" FontWeight="Bold"></Label>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+
+                <Border Grid.Row="3" Name="BtnInvesteringGrandmaBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                        <Grid Grid.Row="2" Background="#D3D978" MouseLeftButtonDown="CursorClicked" MouseEnter="Tooltip" Name="BtnInvesteringGrandma">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                        <Viewbox Margin="7, 4">
+                                <Image Source="/grandma.png" />
+                            </Viewbox>
+                            <Grid Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Viewbox Stretch="Uniform" Grid.Row="0" HorizontalAlignment="Left">
+                                    <Label Content="Grandma" FontWeight="Bold" Padding="0"></Label>
+                                </Viewbox>
+                                <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Left">
+                                    <Label Name="PrijsGrandma" Grid.Row="1" Content="100" FontWeight="Bold" Padding="0, 1"></Label>
+                                </Viewbox>
+                            </Grid>
+                            <Viewbox Stretch="Uniform" Grid.Column="2">
+                                <Label Name="GrandmaAantal" FontSize="7" VerticalAlignment="Center" FontWeight="Bold"></Label>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+
+                <Border Grid.Row="4" Name="BtnInvesteringFarmBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                        <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm" MouseEnter="Tooltip">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                        <Viewbox Stretch="Uniform" Margin="7, 4">
+                                <Image Source="/farm.png"></Image>
+                            </Viewbox>
+
+                            <Grid Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Viewbox Stretch="Uniform" Grid.Row="0" HorizontalAlignment="Left">
+                                    <Label Content="Farm" FontWeight="Bold" Padding="0"></Label>
+                                </Viewbox>
+                                <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Left">
+                                    <Label Name="PrijsFarm" Content="1100" FontWeight="Bold" Padding="0, 1"></Label>
+                                </Viewbox>
+                            </Grid>
+                            <Viewbox Grid.Column="2">
+                                <Label Name="FarmAantal" FontSize="7" VerticalAlignment="Center" FontWeight="Bold"></Label>
+                            </Viewbox>
+
+                        </Grid>
+                    </Border>
+
+                <Border Grid.Row="5" Name="BtnInvesteringMineBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                        <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine" MouseEnter="Tooltip">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Margin="7">
+                                <Image Grid.Row="3" Source="/mine.png" Width="35px" Height="35px"></Image>
+                            </Viewbox>
+                            <Grid Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Viewbox Grid.Row="0" HorizontalAlignment="Left">
+                                    <Label Content="Mine" FontWeight="Bold" Padding="0"></Label>
+                                </Viewbox>
+                                <Viewbox Grid.Row="2" HorizontalAlignment="Left">
+                                    <Label Name="PrijsMine" Content="12000" FontWeight="Bold" Padding="0, 1" ></Label>
+                                </Viewbox>
+                            </Grid>
+                            <Viewbox Grid.Column="2">
+                                <Label FontSize="7" Name="MineAantal" VerticalAlignment="Center" FontWeight="Bold"></Label>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+
+                <Border Grid.Row="6" Name="BtnInvesteringFactoryBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                        <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory" MouseEnter="Tooltip">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Margin="7">
+                                <Image Source="/factory.png" Width="35px" Height="35px"></Image>
+                            </Viewbox>
+                            <Grid Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Viewbox HorizontalAlignment="Left">
+                                    <Label Content="Factory" Grid.Row="0" FontWeight="Bold" Padding="0" ></Label>
+                                </Viewbox>
+                                <Viewbox Grid.Row="1" HorizontalAlignment="Left">
+                                    <Label Name="PrijsFactory"  Content="130000" FontWeight="Bold" Padding="0, 1" ></Label>
+                                </Viewbox>
+                            </Grid>
+                            <Viewbox Grid.Column="2">
+                                <Label Name="FactoryAantal" FontSize="7" VerticalAlignment="Center" FontWeight="Bold"></Label>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                <Border Name="BtnInvesteringBankBorder" Grid.Row="7" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                        <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringBank" MouseEnter="Tooltip">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Margin="7">
+                                <Image Grid.Row="4" Source="/bank.png"></Image>
+                            </Viewbox>
+                            <Grid Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Viewbox Grid.Row="0" HorizontalAlignment="Left">
+                                    <Label Content="Bank"  FontWeight="Bold" Padding="0"></Label>
+                                </Viewbox>
+                                <Viewbox Grid.Row="1" HorizontalAlignment="Left">
+                                    <Label Name="PrijsBank" Content="1400000" Padding="0, 1" FontWeight="Bold"></Label>
+                                </Viewbox>
+                            </Grid>
+                            <Viewbox Grid.Column="2">
+                                <Label FontSize="7" Name="BankAantal"  VerticalAlignment="Center" FontWeight="Bold"></Label>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+
+                <Border Grid.Row="8" Name="BtnInvesteringTempleBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                        <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringTemple" MouseEnter="Tooltip">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Margin="6">
+                                <Image Source="/temple.png"></Image>
+                            </Viewbox>
+
+                            <Grid Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Viewbox HorizontalAlignment="Left">
+                                    <Label Grid.Row="0" Content="Temple" FontWeight="Bold" Padding="0"></Label>
+                                </Viewbox>
+                                <Viewbox Grid.Row="1" HorizontalAlignment="Left">
+                                    <Label Name="PrijsTemple" FontWeight="Bold" Padding="0, 1">20000000</Label>
+                                </Viewbox>
+                            </Grid>
+                            <Viewbox Grid.Column="2">
+                                <Label Name="TempleAantal" VerticalAlignment="Center" FontSize="7" FontWeight="Bold"></Label>
+                            </Viewbox>
+
+                        </Grid>
+                    </Border>
+
+                </Grid>
             </Grid>
         </Grid>
-
-
-        <Grid Grid.Column="1" Background="lightGreen">
-            
-                <Label HorizontalAlignment="Center">Store</Label>
-                <Label Name="PassiefAantalCookiesTxt" Content=""></Label>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="1" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor"  MouseEnter="Tooltip" IsEnabled="False" ToolTip="hello"  Background="red">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Viewbox Stretch="Uniform" Margin="7px">
-                        <Image Source="/cursor.png"></Image>
-                    </Viewbox>
-
-                    <Grid VerticalAlignment="Center" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Viewbox Stretch="Uniform" HorizontalAlignment="Left" Grid.Row="0">
-                            <Label FontSize="16" Content="Cursor"></Label>
-                        </Viewbox>
-                        <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Left">
-                            <Label FontSize="13" Name="PrijsCursor">15</Label>
-                        </Viewbox>
-                    </Grid>
-                    <Viewbox Grid.Column="2" Stretch="Uniform">
-                        <Label Name="CursorAantal" FontSize="5px" VerticalAlignment="Center"></Label>
-                    </Viewbox>
-                </Grid>
-
-                <Grid Grid.Row="2" Background="yellow" MouseLeftButtonDown="CursorClicked" MouseEnter="Tooltip" Name="BtnInvesteringGrandma">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Margin="7px">
-                        <Image Source="/grandma.png" />
-                    </Viewbox>
-                    
-                    <Grid VerticalAlignment="Center" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Viewbox Stretch="Uniform" Grid.Row="0" HorizontalAlignment="Left">
-                            <Label FontSize="16" Content="Grandma"></Label>
-                        </Viewbox>
-                        <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Left">
-                            <Label FontSize="13" Name="PrijsGrandma" Grid.Row="1" Content="100"></Label>
-                        </Viewbox>
-                        
-                    </Grid>
-                    <Viewbox Stretch="Uniform" Grid.Column="2">
-                        <Label Name="GrandmaAantal" FontSize="5px" VerticalAlignment="Center"></Label>
-                    </Viewbox>
-                    
-                </Grid>
-
-                <Grid Grid.Row="3" Background="orange" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm" MouseEnter="Tooltip">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Stretch="Uniform" Margin="5, 0">
-                        <Image Source="/farm.png"></Image>
-                    </Viewbox>
-                    
-                    <Grid Grid.Row="2" VerticalAlignment="Center" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Viewbox Stretch="Uniform" Grid.Row="0" HorizontalAlignment="Left">
-                            <Label FontSize="16" Content="Farm"></Label>
-                        </Viewbox>
-                        <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Left">
-                            <Label FontSize="13" Name="PrijsFarm" Content="1100"></Label>
-                        </Viewbox>
-                    </Grid>
-                    <Viewbox Grid.Column="2">
-                        <Label Name="FarmAantal" FontSize="5"  VerticalAlignment="Center"></Label>
-                    </Viewbox>
-                    
-                </Grid>
-
-                <Grid Grid.Row="4" Background="LightCoral" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine" MouseEnter="Tooltip">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Margin="7">
-                        <Image Grid.Row="3" Source="/mine.png" Width="35px" Height="35px"></Image>
-                    </Viewbox>
-                    
-                    <Grid Grid.Row="3" VerticalAlignment="Center" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            
-                        </Grid.RowDefinitions>
-                        <Viewbox Grid.Row="0" HorizontalAlignment="Left">
-                            <Label Content="Mine" FontSize="16"></Label>
-                        </Viewbox>
-                        <Viewbox Grid.Row="2" HorizontalAlignment="Left">
-                            <Label FontSize="13" Name="PrijsMine" Content="12000" ></Label>
-                        </Viewbox>
-                        
-                    </Grid>
-                    <Viewbox Grid.Column="2">
-                        <Label FontSize="5" Name="MineAantal" VerticalAlignment="Center"></Label>
-                    </Viewbox>
-                    
-                </Grid>
-
-                <Grid Grid.Row="5" Background="Pink" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory" MouseEnter="Tooltip">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Margin="7">
-                        <Image Source="/factory.png" Width="35px" Height="35px"></Image>
-                    </Viewbox>
-                    
-                    <Grid VerticalAlignment="Center" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Viewbox HorizontalAlignment="Left">
-                            <Label FontSize="16" Content="Factory" Grid.Row="0"></Label>
-                        </Viewbox>
-                        <Viewbox Grid.Row="1" HorizontalAlignment="Left">
-                            <Label FontSize="13" Name="PrijsFactory"  Content="130000"></Label>
-                        </Viewbox>
-                        
-                    </Grid>
-                    <Viewbox Grid.Column="2">
-                        <Label Name="FactoryAantal" FontSize="5" VerticalAlignment="Center"></Label>
-                    </Viewbox>
-                    
-                </Grid>
-
-                <Grid Grid.Row="6" Background="blue" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringBank" MouseEnter="Tooltip">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Margin="7">
-                        <Image Grid.Row="4" Source="/bank.png"></Image>
-                    </Viewbox>
-                    
-                    <Grid Grid.Row="4" VerticalAlignment="Center" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Viewbox Grid.Row="0" HorizontalAlignment="Left">
-                            <Label FontSize="16" Content="Bank"></Label>
-                        </Viewbox>
-                        <Viewbox Grid.Row="1" HorizontalAlignment="Left">
-                            <Label FontSize="13" Name="PrijsBank" Content="1400000"></Label>
-                        </Viewbox>
-                        
-                    </Grid>
-                    <Viewbox Grid.Column="2">
-                        <Label FontSize="5" Name="BankAantal"  VerticalAlignment="Center"></Label>
-                    </Viewbox>
-                    
-                </Grid>
-
-                <Grid Grid.Row="7" Background="Brown" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringTemple" MouseEnter="Tooltip">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Margin="7">
-                        <Image Source="/temple.png"></Image>
-                    </Viewbox>
-                    
-                    <Grid Grid.Row="4" VerticalAlignment="Center" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Viewbox HorizontalAlignment="Left">
-                            <Label FontSize="16" Grid.Row="0" Content="Temple"></Label>
-                        </Viewbox>
-                        <Viewbox Grid.Row="1" HorizontalAlignment="Left">
-                            <Label FontSize="13" Name="PrijsTemple" >20000000</Label>
-                        </Viewbox>
-                    </Grid>
-                    <Viewbox Grid.Column="2">
-                        <Label FontSize="5" Name="TempleAantal" VerticalAlignment="Center"></Label>
-                    </Viewbox>
-                    
-                </Grid>
-            </Grid>
-        </Grid>
-
-    </Grid>
+    
+    
+    
+    
+   
 </Window>
