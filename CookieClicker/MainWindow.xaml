@@ -25,8 +25,8 @@
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="4*" />
-                    <RowDefinition Height="7*" />
                     <RowDefinition Height="3*" />
+                    <RowDefinition Height="2.5*" />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="20, 30, 20, 0">
                     <Viewbox Stretch="Uniform">
@@ -39,19 +39,22 @@
                         <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="3"/>
                     </Viewbox>
                 </StackPanel>
-                <Image Grid.Row="1" Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave" Margin="40, 50, 40,0" VerticalAlignment="Top" />
-                <ListBox Name="LstBoxGeschiedenis" Visibility="Collapsed"  Background="#997e9c54" Grid.Row="2" Margin="15, 10" >
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="Foreground" Value="White"/>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                </ListBox>
+                <Image Grid.Row="1" Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave" Margin="40, 10, 40,0" VerticalAlignment="Top" />
+                <ScrollViewer  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="2" HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="Disabled">
+                    <ListBox Name="LstBoxGeschiedenis" Visibility="Collapsed"  Background="#997e9c54" Grid.Row="2" Margin="15, 10" >
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </ScrollViewer>
+                
             </Grid>
             <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition />
-                        <RowDefinition />
+                        <RowDefinition Height="62.006" />
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
@@ -247,7 +250,7 @@
                 </ScrollViewer>
                
 
-                <Border Grid.Row="2" Name="BtnInvesteringCursorBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="2" Name="BtnInvesteringCursorBorder" Visibility="Collapsed" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid  Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor"  MouseEnter="Tooltip" IsEnabled="False" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -277,7 +280,7 @@
                         </Grid>
                     </Border>
 
-                <Border Grid.Row="3" Name="BtnInvesteringGrandmaBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="3" Name="BtnInvesteringGrandmaBorder" Visibility="Collapsed" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Grid.Row="2" Background="#D3D978" MouseLeftButtonDown="CursorClicked" MouseEnter="Tooltip" Name="BtnInvesteringGrandma">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -305,7 +308,7 @@
                         </Grid>
                     </Border>
 
-                <Border Grid.Row="4" Name="BtnInvesteringFarmBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="4" Name="BtnInvesteringFarmBorder"  Visibility="Collapsed" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -335,7 +338,7 @@
                         </Grid>
                     </Border>
 
-                <Border Grid.Row="5" Name="BtnInvesteringMineBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="5" Name="BtnInvesteringMineBorder" Visibility="Collapsed" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -363,7 +366,7 @@
                         </Grid>
                     </Border>
 
-                <Border Grid.Row="6" Name="BtnInvesteringFactoryBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="6" Name="BtnInvesteringFactoryBorder" Visibility="Collapsed" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -390,7 +393,7 @@
                             </Viewbox>
                         </Grid>
                     </Border>
-                <Border Name="BtnInvesteringBankBorder" Grid.Row="7" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Name="BtnInvesteringBankBorder" Visibility="Collapsed" Grid.Row="7" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringBank" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -418,7 +421,7 @@
                         </Grid>
                     </Border>
 
-                <Border Grid.Row="8" Name="BtnInvesteringTempleBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="8" Visibility="Collapsed" Name="BtnInvesteringTempleBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringTemple" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>

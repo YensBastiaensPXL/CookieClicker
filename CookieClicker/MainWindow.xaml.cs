@@ -30,8 +30,8 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 1000000; //aantal nog aanpassen bij upload
-        double totaalAantalVerdiendeCookies = 1000000; //aantal nog aanpassen bij upload
+        double aantalCookies = 0; //aantal nog aanpassen bij upload
+        double totaalAantalVerdiendeCookies = 0; //aantal nog aanpassen bij upload
         
         //Variabelen cookie afbeelding vergroting/verkleining
         double origineleAfbeeldingBreedte;
@@ -490,7 +490,7 @@ namespace CookieClicker
 
             UpdateCookies();
         }
-
+        //Berekening van elke investering en aftrekking van totaal cookies
         private void UpdateInvestering(string type, ref double kostCounter)
         {
             if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor - 1) && type.Equals("cursor"))
@@ -606,104 +606,104 @@ namespace CookieClicker
         private void ShowQuestNotificaties()
         {
 
-            //if (aantalPerSecondeAfgerond >= 10 && !isQuest1Voltooid)
-            //{
-            //    CreatieNotificatie("10 cookies per seconde bereikt!", "Je bakkerij is een succes," +
-            //        " maar je kunt altijd meer produceren. Ga ervoor!");
-            //    isQuest1Voltooid = true;
-            //}
+            if (aantalPerSecondeAfgerond >= 10 && !isQuest1Voltooid)
+            {
+                CreatieNotificatie("10 cookies per seconde bereikt!", "Je bakkerij is een succes," +
+                    " maar je kunt altijd meer produceren. Ga ervoor!");
+                isQuest1Voltooid = true;
+            }
 
-            //if (aantalPerSecondeAfgerond >= 100 && !isQuest2Voltooid)
-            //{
-            //    CreatieNotificatie("100 cookies per seconde bereikt!", "Je bent een bekende figuur dankzij " +
-            //        "je opvallende cookievelden, die regelmatig de krantenkoppen halen." +
-            //        "Op je akkers cultiveer je met trots en vakmanschap verschillende heerlijke cookies. ");
-            //    isQuest2Voltooid = true;
-            //}
-            //if (aantalPerSecondeAfgerond >= 500 && !isQuest3Voltooid)
-            //{
-            //    CreatieNotificatie("500 cookies per seconde bereikt!", "Je winkel begint op gang te komen en je " +
-            //        "trekt volk van heel het dorp naar je bakkerij.");
-            //    isQuest3Voltooid = true;
-            //}
+            if (aantalPerSecondeAfgerond >= 100 && !isQuest2Voltooid)
+            {
+                CreatieNotificatie("100 cookies per seconde bereikt!", "Je bent een bekende figuur dankzij " +
+                    "je opvallende cookievelden, die regelmatig de krantenkoppen halen." +
+                    "Op je akkers cultiveer je met trots en vakmanschap verschillende heerlijke cookies. ");
+                isQuest2Voltooid = true;
+            }
+            if (aantalPerSecondeAfgerond >= 500 && !isQuest3Voltooid)
+            {
+                CreatieNotificatie("500 cookies per seconde bereikt!", "Je winkel begint op gang te komen en je " +
+                    "trekt volk van heel het dorp naar je bakkerij.");
+                isQuest3Voltooid = true;
+            }
 
-            //if (aantalPerSecondeAfgerond >= 1000 && !isQuest4Voltooid)
-            //{
-            //    CreatieNotificatie("1000 cookies per seconde bereikt!", "Je cookie velden zijn berucht. " +
-            //        "Je verschijnt dagelijks in de krant over je befaamde cookie planten die je in je akkers teelt.");
-            //    isQuest4Voltooid = true;
-            //}
+            if (aantalPerSecondeAfgerond >= 1000 && !isQuest4Voltooid)
+            {
+                CreatieNotificatie("1000 cookies per seconde bereikt!", "Je cookie velden zijn berucht. " +
+                    "Je verschijnt dagelijks in de krant over je befaamde cookie planten die je in je akkers teelt.");
+                isQuest4Voltooid = true;
+            }
 
-            //if (aantalPerSecondeAfgerond >= 100000 && !isQuest5Voltooid)
-            //{
-            //    CreatieNotificatie("100.000 cookies per seconde bereikt!", "Je staat bekend om je opmerkelijke cookievelden, " +
-            //        "die regelmatig in de krant worden vermeld. Deze beroemde velden van jou bevinden zich op je akkers, " +
-            //        "waar je met trots en vaardigheid diverse soorten heerlijke cookies teelt.");
-            //    isQuest5Voltooid = true;
-            //}
+            if (aantalPerSecondeAfgerond >= 100000 && !isQuest5Voltooid)
+            {
+                CreatieNotificatie("100.000 cookies per seconde bereikt!", "Je staat bekend om je opmerkelijke cookievelden, " +
+                    "die regelmatig in de krant worden vermeld. Deze beroemde velden van jou bevinden zich op je akkers, " +
+                    "waar je met trots en vaardigheid diverse soorten heerlijke cookies teelt.");
+                isQuest5Voltooid = true;
+            }
 
-            //if (totaalAantalVerdiendeCookies >= 100 && !isQuest6Voltooid)
-            //{
-            //    CreatieNotificatie("100 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
-            //        "De cookievelden blijven een betoverende mix van vakmanschap en smaak, een bron van genot en bewondering.");
-            //    isQuest6Voltooid = true;
-            //}
-            //if (totaalAantalVerdiendeCookies >= 1000 && !isQuest7Voltooid)
-            //{
-            //    CreatieNotificatie("1.000 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
-            //        " De velden waarop deze lekkernijen gedijen, blijven een fascinerende samensmelting van vakmanschap en smaak," +
-            //        " een continue bron van vreugde en bewondering.");
-            //    isQuest7Voltooid = true;
-            //}
-            //if (totaalAantalVerdiendeCookies >= 10000 && !isQuest8Voltooid)
-            //{
-            //    CreatieNotificatie("10.000 Cookies in totaal gemaakt!", "Door bedrevenheid en toewijding te tonen, " +
-            //        "vergaar ik mijn voorraad aan cookies. De velden waarop deze verrukkingen gedijen, " +
-            //        "blijven een betoverende synergie van vakmanschap en smaak, " +
-            //        "een voortdurende bron van genoegen en bewondering.");
-            //    isQuest8Voltooid = true;
-            //}
-            //if (totaalAantalVerdiendeCookies >= 100000 && !isQuest9Voltooid)
-            //{
-            //    CreatieNotificatie("100.000 Cookies in totaal gemaakt!", "Gisteravond heb je je keuken omgetoverd" +
-            //        " tot een culinair paradijs, waar je met toewijding en precisie een overvloed aan heerlijke " +
-            //        "chocoladekoekjes hebt gebakken. De geur van versgebakken lekkernijen vulde je huis," +
-            //        " en de knapperige textuur en rijke smaak maakten je inspanningen meer dan de moeite waard.");
-            //    isQuest9Voltooid = true;
-            //}
-            //if (totaalAantalVerdiendeCookies >= 1000000 && !isQuest10Voltooid)
-            //{
-            //    CreatieNotificatie("1.000.000 Cookies in totaal gemaakt", "Vanmiddag stond je keuken in het teken " +
-            //        "van creativiteit en zoete verleiding. Met een scala aan ingrediënten heb je een batch verrukkelijke " +
-            //        "koekjes gemaakt. De subtiele mix van basis ingrediënten resulteerde in een smaakvolle traktatie die " +
-            //        "je smaakpapillen deed dansen.");
-            //    isQuest10Voltooid = true;
-            //}
-            //if (totaalAantalVerdiendeCookies >= 1000000000 && !isQuest11Voltooid)
-            //{
-            //    CreatieNotificatie("1.000.000.000 Cookies in totaal gemaakt!", "Deze middag was een ware zoete symfonie," +
-            //        " waar je een indrukwekkende hoeveelheid koekjes hebt gebakken. De keuken was gevuld met het geluid" +
-            //        " van knisperend deeg en het aroma van verschillende smaken die samensmolten tot een verrukkelijke" +
-            //        " harmonie. Jouw overvloed aan koekjes is niet alleen een feest voor de smaakpapillen maar ook een" +
-            //        " visueel festijn.");
-            //    isQuest11Voltooid = true;
-            //}
-            //if (aantalCookieAfbeeldingGeklikt >= 50 && !isQuest12Voltooid)
-            //{
-            //    CreatieNotificatie("50 klikkende Cookies!", "Je hebt 25 cookies gemaakt door erop te klikken.");
-            //    isQuest12Voltooid = true;
-            //}
-            //if (isGoudenCookieGeklikt && !isQuest13Voltooid)
-            //{
-            //    CreatieNotificatie("Gouden Cookie gevonden!", $"Je hebt {CookieBonus15Min}(15 min. productie) aan cookies gekregen.");
-            //    isQuest13Voltooid = true;
-            //}
+            if (totaalAantalVerdiendeCookies >= 100 && !isQuest6Voltooid)
+            {
+                CreatieNotificatie("100 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
+                    "De cookievelden blijven een betoverende mix van vakmanschap en smaak, een bron van genot en bewondering.");
+                isQuest6Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 1000 && !isQuest7Voltooid)
+            {
+                CreatieNotificatie("1.000 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
+                    " De velden waarop deze lekkernijen gedijen, blijven een fascinerende samensmelting van vakmanschap en smaak," +
+                    " een continue bron van vreugde en bewondering.");
+                isQuest7Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 10000 && !isQuest8Voltooid)
+            {
+                CreatieNotificatie("10.000 Cookies in totaal gemaakt!", "Door bedrevenheid en toewijding te tonen, " +
+                    "vergaar ik mijn voorraad aan cookies. De velden waarop deze verrukkingen gedijen, " +
+                    "blijven een betoverende synergie van vakmanschap en smaak, " +
+                    "een voortdurende bron van genoegen en bewondering.");
+                isQuest8Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 100000 && !isQuest9Voltooid)
+            {
+                CreatieNotificatie("100.000 Cookies in totaal gemaakt!", "Gisteravond heb je je keuken omgetoverd" +
+                    " tot een culinair paradijs, waar je met toewijding en precisie een overvloed aan heerlijke " +
+                    "chocoladekoekjes hebt gebakken. De geur van versgebakken lekkernijen vulde je huis," +
+                    " en de knapperige textuur en rijke smaak maakten je inspanningen meer dan de moeite waard.");
+                isQuest9Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 1000000 && !isQuest10Voltooid)
+            {
+                CreatieNotificatie("1.000.000 Cookies in totaal gemaakt", "Vanmiddag stond je keuken in het teken " +
+                    "van creativiteit en zoete verleiding. Met een scala aan ingrediënten heb je een batch verrukkelijke " +
+                    "koekjes gemaakt. De subtiele mix van basis ingrediënten resulteerde in een smaakvolle traktatie die " +
+                    "je smaakpapillen deed dansen.");
+                isQuest10Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 1000000000 && !isQuest11Voltooid)
+            {
+                CreatieNotificatie("1.000.000.000 Cookies in totaal gemaakt!", "Deze middag was een ware zoete symfonie," +
+                    " waar je een indrukwekkende hoeveelheid koekjes hebt gebakken. De keuken was gevuld met het geluid" +
+                    " van knisperend deeg en het aroma van verschillende smaken die samensmolten tot een verrukkelijke" +
+                    " harmonie. Jouw overvloed aan koekjes is niet alleen een feest voor de smaakpapillen maar ook een" +
+                    " visueel festijn.");
+                isQuest11Voltooid = true;
+            }
+            if (aantalCookieAfbeeldingGeklikt >= 50 && !isQuest12Voltooid)
+            {
+                CreatieNotificatie("50 klikkende Cookies!", "Je hebt 25 cookies gemaakt door erop te klikken.");
+                isQuest12Voltooid = true;
+            }
+            if (isGoudenCookieGeklikt && !isQuest13Voltooid)
+            {
+                CreatieNotificatie("Gouden Cookie gevonden!", $"Je hebt {CookieBonus15Min}(15 min. productie) aan cookies gekregen.");
+                isQuest13Voltooid = true;
+            }
 
         }
 
         //Aparte method gemaakt voor de quests rond investeringen sinds de ander gebaseerd zijn op puur cookies.
         //Als de investeringen ook in UpdateCookies() opgeroepen worden krijg je 2x een messagebox.
-        // Het in een ander method steken en deze in UpdateInvestering() oproepen verhelpt het probleem
+        // Het in een andere method steken en deze in UpdateInvestering() oproepen verhelpt het probleem
         private void ShowQuestNotificatiesInvesteringen()
         {
             if (aantalInvesteringCursor >= 20 && !isQuest14Voltooid)
@@ -745,13 +745,13 @@ namespace CookieClicker
 
         private void CreatieNotificatie(string titel, string tekst)
         {
-            const string NotificationHexColor = "#FF00FF";
-            Color backgroundColor = (Color)ColorConverter.ConvertFromString(NotificationHexColor);
+            const string NotificationHexColor = "#D3D978";
+            Color achtergrondKleur = (Color)ColorConverter.ConvertFromString(NotificationHexColor);
 
             Window customNotificatie = new Window
             {
                 Title = titel,
-                Background = new SolidColorBrush(backgroundColor),
+                Background = new SolidColorBrush(achtergrondKleur),
                 Width = 300,
                 Height = 200,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
@@ -783,9 +783,6 @@ namespace CookieClicker
                 LstBoxGeschiedenis.Items.Add(NotificatieExemplaren);
             }
             LstBoxGeschiedenis.Visibility = Visibility.Visible;
-            
-            
-
         }
         
         private void OpstartBtnEnabled()
