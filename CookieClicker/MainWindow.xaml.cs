@@ -30,8 +30,8 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 99999; //aantal nog aanpassen bij upload
-        double totaalAantalVerdiendeCookies = 99999; //aantal nog aanpassen bij upload
+        double aantalCookies = 749; //aantal nog aanpassen bij upload
+        double totaalAantalVerdiendeCookies = 749; //aantal nog aanpassen bij upload
         
         //Variabelen cookie afbeelding vergroting/verkleining
         double origineleAfbeeldingBreedte;
@@ -42,6 +42,13 @@ namespace CookieClicker
         DispatcherTimer passieveCookieTimer10ms;
         double passieveCookieRatio10ms = 0;
         double aantalPerSecondeAfgerond;
+        double passieveCookieRatio10msCursor = 0.001;
+        double passieveCookieRatio10msGrandma = 0.01;
+        double passieveCookieRatio10msFarm = 0.08;
+        double passieveCookieRatio10msMine = 0.47;
+        double passieveCookieRatio10msFactory = 2.60;
+        double passieveCookieRatio10msBank = 14;
+        double passieveCookieRatio10msTemple = 78;
         //basis prijs investeringen
         const int basisPrijsCursor = 15;
         const int basisPrijsGrandma = 100;
@@ -72,6 +79,54 @@ namespace CookieClicker
         double kostCounterTemple;
         double huidigeAankoopPrijsTemple;
         long aantalInvesteringTemple = 0;
+        //Bonus store variabelen
+        long aantalCursor = 1;
+        long aantalCursorVerdubbeld = 0;
+        long aantalGrandma = 1;
+        long aantalGrandmaVerdubbeld = 0;
+        long aantalFarm = 1;
+        long aantalFarmVerdubbeld = 0;
+        long aantalMine = 1;
+        long aantalMineVerdubbeld = 0;
+        long aantalFactory = 1;
+        long aantalFactoryVerdubbeld = 0;
+        long aantalBank = 1;
+        long aantalBankVerdubbeld = 0;
+        long aantalTemple = 1;
+        long aantalTempleVerdubbeld = 0;
+        int huidigeMultiplierIndexCursor = 0;
+        long kostPrijsBonusBtnCursor = 0;
+        long kostPrijsBonusBtnWeergaveCursor = 750;
+        long huidigeVermenigvuldigerCursor;
+        int huidigeMultiplierIndexGrandma = 0;
+        long kostPrijsBonusBtnGrandma = 0;
+        long kostPrijsBonusBtnWeergaveGrandma = 5000;
+        long huidigeVermenigvuldigerGrandma;
+        int huidigeMultiplierIndexFarm = 0;
+        long kostPrijsBonusBtnFarm = 0;
+        long kostPrijsBonusBtnWeergaveFarm = 55000;
+        long huidigeVermenigvuldigerFarm;
+
+        int huidigeMultiplierIndexMine = 0;
+        long kostPrijsBonusBtnMine = 0;
+        long kostPrijsBonusBtnWeergaveMine = 600000;
+        long huidigeVermenigvuldigerMine;
+
+        int huidigeMultiplierIndexFactory = 0;
+        long kostPrijsBonusBtnFactory = 0;
+        long kostPrijsBonusBtnWeergaveFactory = 6500000;
+        long huidigeVermenigvuldigerFactory;
+
+        int huidigeMultiplierIndexBank = 0;
+        long kostPrijsBonusBtnBank = 0;
+        long kostPrijsBonusBtnWeergaveBank = 70000000;
+        long huidigeVermenigvuldigerBank;
+
+        int huidigeMultiplierIndexTemple = 0;
+        long kostPrijsBonusBtnTemple = 0;
+        long kostPrijsBonusBtnWeergaveTemple = 1000000000;
+        long huidigeVermenigvuldigerTemple;
+
         // Gouden cookie variabelen
         DispatcherTimer minuutTimerGoudenCookie;
         Random randomGoudenCookieGetal = new Random();
@@ -119,7 +174,6 @@ namespace CookieClicker
             minuutTimerGoudenCookie = new DispatcherTimer();
             minuutTimerGoudenCookie.Tick += MinuutTimer_Tick;
             minuutTimerGoudenCookie.Interval = TimeSpan.FromMinutes(1);
-            minuutTimerGoudenCookie.Interval = TimeSpan.FromSeconds(5);
             minuutTimerGoudenCookie.Start();
         }
 
@@ -144,9 +198,9 @@ namespace CookieClicker
 
                 CursorAantal.Content = aantalInvesteringCursor.ToString();
 
-                //Passive cookies counter
+                //Passieve cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 0.001;
+                passieveCookieRatio10ms += passieveCookieRatio10msCursor;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -170,7 +224,7 @@ namespace CookieClicker
                 GrandmaAantal.Content = aantalInvesteringGrandma.ToString();
                 //Passieve cookie counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 0.01;
+                passieveCookieRatio10ms += passieveCookieRatio10msGrandma;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -198,7 +252,7 @@ namespace CookieClicker
 
                 //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 0.08;
+                passieveCookieRatio10ms += passieveCookieRatio10msFarm;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -227,7 +281,7 @@ namespace CookieClicker
 
                 //Passieve cookie counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 0.47;
+                passieveCookieRatio10ms += passieveCookieRatio10msMine;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -255,7 +309,7 @@ namespace CookieClicker
 
                 //Passive cookies counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 2.60;
+                passieveCookieRatio10ms += passieveCookieRatio10msFactory;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -280,7 +334,7 @@ namespace CookieClicker
                 }
                 BankAantal.Content = aantalInvesteringBank.ToString();
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 14;
+                passieveCookieRatio10ms += passieveCookieRatio10msBank;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -305,7 +359,7 @@ namespace CookieClicker
                 TempleAantal.Content = aantalInvesteringTemple.ToString();
 
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
-                passieveCookieRatio10ms += 78;
+                passieveCookieRatio10ms += passieveCookieRatio10msTemple;
                 passieveCookieTimer10ms.Tick += PassieveCookieTimer10ms_Tick;
                 passieveCookieTimer10ms.Start();
 
@@ -313,6 +367,122 @@ namespace CookieClicker
                 CategorieënZichtbaar(TempleInvesteringCategorie);
                 VoegAfbeeldingToeInvestering(TempleInvesteringCategorie, "/temple.png", 40, 40, 0);
             }
+
+            UpdateCookies();
+        }
+        private void BonusBtnCursor_Click(object sender, MouseButtonEventArgs e)
+        {
+            List<long> bonusVermenigvuldigers = new List<long> { 50, 500, 5000, 50000, 500000, };
+            Grid geklikteKnop = (Grid)sender;
+            
+            
+            if (geklikteKnop.Name == "BonusBtnCursor")
+                {
+                    huidigeVermenigvuldigerCursor = bonusVermenigvuldigers[huidigeMultiplierIndexCursor];
+                    kostPrijsBonusBtnCursor = basisPrijsCursor * huidigeVermenigvuldigerCursor;
+                    //BerekenKostPrijsBonus(basisPrijsCursor, huidigeVermenigvuldiger);
+                    kostPrijsBonusBtnWeergaveCursor = basisPrijsCursor * (bonusVermenigvuldigers[huidigeMultiplierIndexCursor] * 10);
+
+                    aantalCookies -= kostPrijsBonusBtnCursor;
+                    TxtCursorKost.Content = kostPrijsBonusBtnWeergaveCursor.ToString();
+                    huidigeMultiplierIndexCursor++;
+
+                    aantalCursor *= 2;
+                    aantalCursorVerdubbeld = aantalCursor;
+                    passieveCookieRatio10msCursor *= aantalCursorVerdubbeld;
+                    passieveCookieRatio10ms += passieveCookieRatio10msCursor;
+                }
+            if (geklikteKnop.Name == "BonusBtnGrandma")
+                {
+                huidigeVermenigvuldigerGrandma = bonusVermenigvuldigers[huidigeMultiplierIndexGrandma];
+                kostPrijsBonusBtnGrandma = basisPrijsGrandma * huidigeVermenigvuldigerGrandma;
+                kostPrijsBonusBtnWeergaveGrandma = basisPrijsGrandma * (bonusVermenigvuldigers[huidigeMultiplierIndexGrandma] * 10);
+
+                aantalCookies -= kostPrijsBonusBtnGrandma;
+                TxtGrandmaKost.Content = kostPrijsBonusBtnWeergaveGrandma.ToString();
+                huidigeMultiplierIndexGrandma++;
+
+                aantalGrandma *= 2;
+                aantalGrandmaVerdubbeld = aantalGrandma;
+                passieveCookieRatio10msGrandma *= aantalGrandmaVerdubbeld;
+                passieveCookieRatio10ms += passieveCookieRatio10msGrandma;
+                }
+            if (geklikteKnop.Name == "BonusBtnFarm")
+            {
+                huidigeVermenigvuldigerFarm = bonusVermenigvuldigers[huidigeMultiplierIndexFarm];
+                kostPrijsBonusBtnFarm = basisPrijsFarm * huidigeVermenigvuldigerFarm;
+                kostPrijsBonusBtnWeergaveFarm = basisPrijsFarm * (bonusVermenigvuldigers[huidigeMultiplierIndexFarm] * 10);
+
+                aantalCookies -= kostPrijsBonusBtnFarm;
+                TxtFarmKost.Content = kostPrijsBonusBtnWeergaveFarm.ToString();
+                huidigeMultiplierIndexFarm++;
+
+                aantalFarm *= 2;
+                aantalFarmVerdubbeld = aantalFarm;
+                passieveCookieRatio10msFarm *= aantalFarmVerdubbeld;
+                passieveCookieRatio10ms += passieveCookieRatio10msFarm;
+            }
+            if (geklikteKnop.Name == "BonusBtnMine")
+            {
+                huidigeVermenigvuldigerMine = bonusVermenigvuldigers[huidigeMultiplierIndexMine];
+                kostPrijsBonusBtnMine = basisPrijsMine * huidigeVermenigvuldigerMine;
+                kostPrijsBonusBtnWeergaveMine = basisPrijsMine * (bonusVermenigvuldigers[huidigeMultiplierIndexMine] * 10);
+
+                aantalCookies -= kostPrijsBonusBtnMine;
+                TxtMineKost.Content = kostPrijsBonusBtnWeergaveMine.ToString();
+                huidigeMultiplierIndexMine++;
+
+                aantalMine *= 2;
+                aantalMineVerdubbeld = aantalMine;
+                passieveCookieRatio10msMine *= aantalMineVerdubbeld;
+                passieveCookieRatio10ms += passieveCookieRatio10msMine;
+            }
+            if (geklikteKnop.Name == "BonusBtnFactory")
+            {
+                huidigeVermenigvuldigerFactory = bonusVermenigvuldigers[huidigeMultiplierIndexFactory];
+                kostPrijsBonusBtnFactory = basisPrijsFactory * huidigeVermenigvuldigerFactory;
+                kostPrijsBonusBtnWeergaveFactory = basisPrijsFactory * (bonusVermenigvuldigers[huidigeMultiplierIndexFactory] * 10);
+
+                aantalCookies -= kostPrijsBonusBtnFactory;
+                TxtFactoryKost.Content = kostPrijsBonusBtnWeergaveFactory.ToString();
+                huidigeMultiplierIndexFactory++;
+
+                aantalFactory *= 2;
+                aantalFactoryVerdubbeld = aantalFactory;
+                passieveCookieRatio10msFactory *= aantalFactoryVerdubbeld;
+                passieveCookieRatio10ms += passieveCookieRatio10msFactory;
+            }
+            if (geklikteKnop.Name == "BonusBtnBank")
+            {
+                huidigeVermenigvuldigerBank = bonusVermenigvuldigers[huidigeMultiplierIndexBank];
+                kostPrijsBonusBtnBank = basisPrijsBank * huidigeVermenigvuldigerBank;
+                kostPrijsBonusBtnWeergaveBank = basisPrijsBank * (bonusVermenigvuldigers[huidigeMultiplierIndexBank] * 10);
+
+                aantalCookies -= kostPrijsBonusBtnBank;
+                TxtBankKost.Content = kostPrijsBonusBtnWeergaveBank.ToString();
+                huidigeMultiplierIndexBank++;
+
+                aantalBank *= 2;
+                aantalBankVerdubbeld = aantalBank;
+                passieveCookieRatio10msBank *= aantalBankVerdubbeld;
+                passieveCookieRatio10ms += passieveCookieRatio10msBank;
+            }
+            if (geklikteKnop.Name == "BonusBtnTemple")
+            {
+                huidigeVermenigvuldigerTemple = bonusVermenigvuldigers[huidigeMultiplierIndexTemple];
+                kostPrijsBonusBtnTemple = basisPrijsTemple * huidigeVermenigvuldigerTemple;
+                kostPrijsBonusBtnWeergaveTemple = basisPrijsTemple * (bonusVermenigvuldigers[huidigeMultiplierIndexTemple] * 10);
+
+                aantalCookies -= kostPrijsBonusBtnTemple;
+                TxtTempleKost.Content = kostPrijsBonusBtnWeergaveTemple.ToString();
+                huidigeMultiplierIndexTemple++;
+
+                aantalTemple *= 2;
+                aantalTempleVerdubbeld = aantalTemple;
+                passieveCookieRatio10msTemple *= aantalTempleVerdubbeld;
+                passieveCookieRatio10ms += passieveCookieRatio10msTemple;
+            }
+
 
             UpdateCookies();
         }
@@ -368,7 +538,6 @@ namespace CookieClicker
                 kostCounterTemple = BerekenKostprijsInvestering(basisPrijsTemple, aantalInvesteringTemple);
                 huidigeAankoopPrijsTemple = BerekenKostprijsInvestering(basisPrijsTemple, aantalInvesteringTemple - 1);
                 PrijsTemple.Content = Math.Ceiling(kostCounterTemple).ToString();
-                //PrijsTemple.Content = FormatteerNummer(Math.Ceiling(kostCounterTemple));
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsTemple);
             }
             ShowQuestNotificatiesInvesteringen();
@@ -383,14 +552,22 @@ namespace CookieClicker
             aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms * 100, 3);
             aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per seconde";
 
-            ZichtbaarheidInvesteringen(BtnInvesteringCursor, 15);
-            ZichtbaarheidInvesteringen(BtnInvesteringGrandma, 100);
-            ZichtbaarheidInvesteringen(BtnInvesteringFarm, 1100);
-            ZichtbaarheidInvesteringen(BtnInvesteringMine, 12000);
-            ZichtbaarheidInvesteringen(BtnInvesteringFactory, 130000);
-            ZichtbaarheidInvesteringen(BtnInvesteringBank, 1400000);
-            ZichtbaarheidInvesteringen(BtnInvesteringTemple, 20000000);
-            
+            ZichtbaarheidInvesteringen(BtnInvesteringCursorBorder, 15);
+            ZichtbaarheidInvesteringen(BtnInvesteringGrandmaBorder, 100);
+            ZichtbaarheidInvesteringen(BtnInvesteringFarmBorder, 1100);
+            ZichtbaarheidInvesteringen(BtnInvesteringMineBorder, 12000);
+            ZichtbaarheidInvesteringen(BtnInvesteringFactoryBorder, 130000);
+            ZichtbaarheidInvesteringen(BtnInvesteringBankBorder, 1400000);
+            ZichtbaarheidInvesteringen(BtnInvesteringTempleBorder, 20000000);
+
+            ZichtbaarheidBonussen(BonusBtnCursorBorder, 750);
+            ZichtbaarheidBonussen(BonusBtnGrandmaBorder, 5000);
+            ZichtbaarheidBonussen(BonusBtnFarmBorder, 55000);
+            ZichtbaarheidBonussen(BonusBtnMineBorder, 600000);
+            ZichtbaarheidBonussen(BonusBtnFactoryBorder, 6500000);
+            ZichtbaarheidBonussen(BonusBtnBankBorder, 70000000);
+            ZichtbaarheidBonussen(BonusBtnTempleBorder, 1000000000);
+
             BtnInvesteringCursor.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor);
             BtnInvesteringGrandma.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma);
             BtnInvesteringFarm.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsFarm, aantalInvesteringFarm);
@@ -398,104 +575,125 @@ namespace CookieClicker
             BtnInvesteringFactory.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsFactory, aantalInvesteringFactory);
             BtnInvesteringBank.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsBank, aantalInvesteringBank);
             BtnInvesteringTemple.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsTemple, aantalInvesteringTemple);
-            
+
+            //BonusBtnCursor.IsEnabled = aantalCookies >= BerekenKostPrijsBonus(basisPrijsCursor, huidigeVermenigvuldiger);
+        }
+        private double BerekenEersteKostPrijsInvestering(double basisprijs)
+        {
+            return basisprijs * 1.15;
+        }
+
+        private double BerekenKostprijsInvestering(double basisprijs, double counter)
+        {
+            return basisprijs * Math.Pow(1.15, counter);
+        }
+        private double BerekenKostPrijsBonus(int basisprijs, long counter)
+        {
+            return basisprijs * counter;
+        }
+        private void PassieveCookieTimer10ms_Tick(object sender, EventArgs e)
+        {
+            double passieveCookiesPerTick = passieveCookieRatio10ms;
+            aantalCookies += passieveCookiesPerTick;
+            totaalAantalVerdiendeCookies += passieveCookiesPerTick;
+            UpdateCookies();
         }
 
         private void ShowQuestNotificaties()
         {
 
-            if (aantalPerSecondeAfgerond >= 10 && !isQuest1Voltooid)
-            {
-                CreatieNotificatie("10 cookies per seconde bereikt!", "Je bakkerij is een succes," +
-                    " maar je kunt altijd meer produceren. Ga ervoor!");
-                isQuest1Voltooid = true;
-            }
+            //if (aantalPerSecondeAfgerond >= 10 && !isQuest1Voltooid)
+            //{
+            //    CreatieNotificatie("10 cookies per seconde bereikt!", "Je bakkerij is een succes," +
+            //        " maar je kunt altijd meer produceren. Ga ervoor!");
+            //    isQuest1Voltooid = true;
+            //}
 
-            if (aantalPerSecondeAfgerond >= 100 && !isQuest2Voltooid)
-            {
-                CreatieNotificatie("100 cookies per seconde bereikt!", "Je bent een bekende figuur dankzij " +
-                    "je opvallende cookievelden, die regelmatig de krantenkoppen halen." +
-                    "Op je akkers cultiveer je met trots en vakmanschap verschillende heerlijke cookies. ");
-                isQuest2Voltooid = true;
-            }
-            if (aantalPerSecondeAfgerond >= 500 && !isQuest12Voltooid)
-            {
-                CreatieNotificatie("500 cookies per seconde bereikt!", "Je winkel begint op gang te komen en je " +
-                    "trekt volk van heel het dorp naar je bakkerij.");
-                isQuest12Voltooid = true;
-            }
+            //if (aantalPerSecondeAfgerond >= 100 && !isQuest2Voltooid)
+            //{
+            //    CreatieNotificatie("100 cookies per seconde bereikt!", "Je bent een bekende figuur dankzij " +
+            //        "je opvallende cookievelden, die regelmatig de krantenkoppen halen." +
+            //        "Op je akkers cultiveer je met trots en vakmanschap verschillende heerlijke cookies. ");
+            //    isQuest2Voltooid = true;
+            //}
+            //if (aantalPerSecondeAfgerond >= 500 && !isQuest3Voltooid)
+            //{
+            //    CreatieNotificatie("500 cookies per seconde bereikt!", "Je winkel begint op gang te komen en je " +
+            //        "trekt volk van heel het dorp naar je bakkerij.");
+            //    isQuest3Voltooid = true;
+            //}
 
-            if (aantalPerSecondeAfgerond >= 1000 && !isQuest3Voltooid)
-            {
-                CreatieNotificatie("1000 cookies per seconde bereikt!", "Je cookie velden zijn berucht. " +
-                    "Je verschijnt dagelijks in de krant over je befaamde cookie planten die je in je akkers teelt.");
-                isQuest3Voltooid = true;
-            }
+            //if (aantalPerSecondeAfgerond >= 1000 && !isQuest4Voltooid)
+            //{
+            //    CreatieNotificatie("1000 cookies per seconde bereikt!", "Je cookie velden zijn berucht. " +
+            //        "Je verschijnt dagelijks in de krant over je befaamde cookie planten die je in je akkers teelt.");
+            //    isQuest4Voltooid = true;
+            //}
 
-            if (aantalPerSecondeAfgerond >= 100000 && !isQuest3Voltooid)
-            {
-                CreatieNotificatie("100.000 cookies per seconde bereikt!", "Je staat bekend om je opmerkelijke cookievelden, " +
-                    "die regelmatig in de krant worden vermeld. Deze beroemde velden van jou bevinden zich op je akkers, " +
-                    "waar je met trots en vaardigheid diverse soorten heerlijke cookies teelt.");
-                isQuest3Voltooid = true;
-            }
+            //if (aantalPerSecondeAfgerond >= 100000 && !isQuest5Voltooid)
+            //{
+            //    CreatieNotificatie("100.000 cookies per seconde bereikt!", "Je staat bekend om je opmerkelijke cookievelden, " +
+            //        "die regelmatig in de krant worden vermeld. Deze beroemde velden van jou bevinden zich op je akkers, " +
+            //        "waar je met trots en vaardigheid diverse soorten heerlijke cookies teelt.");
+            //    isQuest5Voltooid = true;
+            //}
 
-            if (totaalAantalVerdiendeCookies >= 100 && !isQuest4Voltooid)
-            {
-                CreatieNotificatie("100 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
-                    "De cookievelden blijven een betoverende mix van vakmanschap en smaak, een bron van genot en bewondering.");
-                isQuest4Voltooid = true;
-            }
-            if (totaalAantalVerdiendeCookies >= 1000 && !isQuest5Voltooid)
-            {
-                CreatieNotificatie("1.000 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
-                    " De velden waarop deze lekkernijen gedijen, blijven een fascinerende samensmelting van vakmanschap en smaak," +
-                    " een continue bron van vreugde en bewondering.");
-                isQuest5Voltooid = true;
-            }
-            if (totaalAantalVerdiendeCookies >= 10000 && !isQuest6Voltooid)
-            {
-                CreatieNotificatie("10.000 Cookies in totaal gemaakt!", "Door bedrevenheid en toewijding te tonen, " +
-                    "vergaar ik mijn voorraad aan cookies. De velden waarop deze verrukkingen gedijen, " +
-                    "blijven een betoverende synergie van vakmanschap en smaak, " +
-                    "een voortdurende bron van genoegen en bewondering.");
-                isQuest6Voltooid = true;
-            }
-            if (totaalAantalVerdiendeCookies >= 100000 && !isQuest7Voltooid)
-            {
-                CreatieNotificatie("100.000 Cookies in totaal gemaakt!", "Gisteravond heb je je keuken omgetoverd" +
-                    " tot een culinair paradijs, waar je met toewijding en precisie een overvloed aan heerlijke " +
-                    "chocoladekoekjes hebt gebakken. De geur van versgebakken lekkernijen vulde je huis," +
-                    " en de knapperige textuur en rijke smaak maakten je inspanningen meer dan de moeite waard.");
-                isQuest7Voltooid = true;
-            }
-            if (totaalAantalVerdiendeCookies >= 1000000 && !isQuest8Voltooid)
-            {
-                CreatieNotificatie("1.000.000 Cookies in totaal gemaakt", "Vanmiddag stond je keuken in het teken " +
-                    "van creativiteit en zoete verleiding. Met een scala aan ingrediënten heb je een batch verrukkelijke " +
-                    "koekjes gemaakt. De subtiele mix van basis ingrediënten resulteerde in een smaakvolle traktatie die " +
-                    "je smaakpapillen deed dansen.");
-                isQuest8Voltooid = true;
-            }
-            if (totaalAantalVerdiendeCookies >= 1000000000 && !isQuest9Voltooid)
-            {
-                CreatieNotificatie("1.000.000.000 Cookies in totaal gemaakt!", "Deze middag was een ware zoete symfonie," +
-                    " waar je een indrukwekkende hoeveelheid koekjes hebt gebakken. De keuken was gevuld met het geluid" +
-                    " van knisperend deeg en het aroma van verschillende smaken die samensmolten tot een verrukkelijke" +
-                    " harmonie. Jouw overvloed aan koekjes is niet alleen een feest voor de smaakpapillen maar ook een" +
-                    " visueel festijn.");
-                isQuest9Voltooid = true;
-            }
-            if (aantalCookieAfbeeldingGeklikt >= 50 && !isQuest10Voltooid)
-            {
-                CreatieNotificatie("50 klikkende Cookies!", "Je hebt 25 cookies gemaakt door erop te klikken.");
-                isQuest10Voltooid = true;
-            }
-            if (isGoudenCookieGeklikt && !isQuest11Voltooid)
-            {
-                CreatieNotificatie("Gouden Cookie gevonden!", $"Je hebt {CookieBonus15Min}(15 min. productie) aan cookies gekregen.");
-                isQuest11Voltooid = true;
-            }
+            //if (totaalAantalVerdiendeCookies >= 100 && !isQuest6Voltooid)
+            //{
+            //    CreatieNotificatie("100 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
+            //        "De cookievelden blijven een betoverende mix van vakmanschap en smaak, een bron van genot en bewondering.");
+            //    isQuest6Voltooid = true;
+            //}
+            //if (totaalAantalVerdiendeCookies >= 1000 && !isQuest7Voltooid)
+            //{
+            //    CreatieNotificatie("1.000 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
+            //        " De velden waarop deze lekkernijen gedijen, blijven een fascinerende samensmelting van vakmanschap en smaak," +
+            //        " een continue bron van vreugde en bewondering.");
+            //    isQuest7Voltooid = true;
+            //}
+            //if (totaalAantalVerdiendeCookies >= 10000 && !isQuest8Voltooid)
+            //{
+            //    CreatieNotificatie("10.000 Cookies in totaal gemaakt!", "Door bedrevenheid en toewijding te tonen, " +
+            //        "vergaar ik mijn voorraad aan cookies. De velden waarop deze verrukkingen gedijen, " +
+            //        "blijven een betoverende synergie van vakmanschap en smaak, " +
+            //        "een voortdurende bron van genoegen en bewondering.");
+            //    isQuest8Voltooid = true;
+            //}
+            //if (totaalAantalVerdiendeCookies >= 100000 && !isQuest9Voltooid)
+            //{
+            //    CreatieNotificatie("100.000 Cookies in totaal gemaakt!", "Gisteravond heb je je keuken omgetoverd" +
+            //        " tot een culinair paradijs, waar je met toewijding en precisie een overvloed aan heerlijke " +
+            //        "chocoladekoekjes hebt gebakken. De geur van versgebakken lekkernijen vulde je huis," +
+            //        " en de knapperige textuur en rijke smaak maakten je inspanningen meer dan de moeite waard.");
+            //    isQuest9Voltooid = true;
+            //}
+            //if (totaalAantalVerdiendeCookies >= 1000000 && !isQuest10Voltooid)
+            //{
+            //    CreatieNotificatie("1.000.000 Cookies in totaal gemaakt", "Vanmiddag stond je keuken in het teken " +
+            //        "van creativiteit en zoete verleiding. Met een scala aan ingrediënten heb je een batch verrukkelijke " +
+            //        "koekjes gemaakt. De subtiele mix van basis ingrediënten resulteerde in een smaakvolle traktatie die " +
+            //        "je smaakpapillen deed dansen.");
+            //    isQuest10Voltooid = true;
+            //}
+            //if (totaalAantalVerdiendeCookies >= 1000000000 && !isQuest11Voltooid)
+            //{
+            //    CreatieNotificatie("1.000.000.000 Cookies in totaal gemaakt!", "Deze middag was een ware zoete symfonie," +
+            //        " waar je een indrukwekkende hoeveelheid koekjes hebt gebakken. De keuken was gevuld met het geluid" +
+            //        " van knisperend deeg en het aroma van verschillende smaken die samensmolten tot een verrukkelijke" +
+            //        " harmonie. Jouw overvloed aan koekjes is niet alleen een feest voor de smaakpapillen maar ook een" +
+            //        " visueel festijn.");
+            //    isQuest11Voltooid = true;
+            //}
+            //if (aantalCookieAfbeeldingGeklikt >= 50 && !isQuest12Voltooid)
+            //{
+            //    CreatieNotificatie("50 klikkende Cookies!", "Je hebt 25 cookies gemaakt door erop te klikken.");
+            //    isQuest12Voltooid = true;
+            //}
+            //if (isGoudenCookieGeklikt && !isQuest13Voltooid)
+            //{
+            //    CreatieNotificatie("Gouden Cookie gevonden!", $"Je hebt {CookieBonus15Min}(15 min. productie) aan cookies gekregen.");
+            //    isQuest13Voltooid = true;
+            //}
 
         }
 
@@ -554,7 +752,6 @@ namespace CookieClicker
                 Height = 200,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 ResizeMode = ResizeMode.NoResize,
-                
             };
             
             Grid grid = new Grid();
@@ -571,10 +768,7 @@ namespace CookieClicker
             grid.Children.Add(bericht);
 
             customNotificatie.Content = grid;
-            if (Application.Current.MainWindow != null && Application.Current.MainWindow.IsLoaded)
-            {
-                customNotificatie.Owner = Application.Current.MainWindow;
-            }
+            
             customNotificatie.ShowDialog();
             
 
@@ -623,6 +817,7 @@ namespace CookieClicker
 
         private void goudenCookie_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //Quest Gouden cookie
             isGoudenCookieGeklikt = true;
             // Verwijdert de afbeelding bij het klikken
             Image clickedImage = sender as Image;
@@ -647,16 +842,14 @@ namespace CookieClicker
             grid.Children.Add(image);
         }
 
-        private double BerekenEersteKostPrijsInvestering(double basisprijs)
+        private void ZichtbaarheidBonussen(Border btnBonus, int cookies)
         {
-            return basisprijs * 1.15;
+            if (totaalAantalVerdiendeCookies >= cookies)
+            {
+                btnBonus.Visibility = Visibility.Visible;
+            }
         }
-
-        private double BerekenKostprijsInvestering(double basisprijs, double counter)
-        {
-            return basisprijs * Math.Pow(1.15, counter);
-        }
-        private void ZichtbaarheidInvesteringen(Grid btnInvestering, int cookies)
+        private void ZichtbaarheidInvesteringen(Border btnInvestering, int cookies)
         {
             if (totaalAantalVerdiendeCookies >= cookies)
             {
@@ -668,13 +861,6 @@ namespace CookieClicker
             investeringCategorieGrid.Visibility = Visibility.Visible;
         }
         
-        private void PassieveCookieTimer10ms_Tick(object sender, EventArgs e)
-        {
-            double passieveCookiesPerTick = passieveCookieRatio10ms;
-            aantalCookies += passieveCookiesPerTick;
-            totaalAantalVerdiendeCookies += passieveCookiesPerTick;
-            UpdateCookies();
-        }
         public static string FormatteerNummer(double cookies)
         {
             if (cookies >= 1_000_000_000_000_000)
@@ -827,5 +1013,6 @@ namespace CookieClicker
                 }
             }
         }
+
     }
 }

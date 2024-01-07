@@ -119,15 +119,128 @@
                     <Viewbox Grid.Row="0">
                         <Label HorizontalAlignment="Center" FontSize="14" Foreground="#D3D978" FontWeight="Bold">Store</Label>
                     </Viewbox>
-                
-                    <!--<Button Name="BonusBtn" Grid.Row="1" Content="Bonus" Click="BonusBtn_Click" Margin="0, 5" Width="45px" >
-             <Button.Background>
-                 <ImageBrush x:Name="BonusButtonBackground"/>
-             </Button.Background>
-         </Button>-->
+                <ScrollViewer Grid.Row="1" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    
+                    <WrapPanel Name="BonusBtns" Margin="0, 0, 0, 5">
+                        <Border Name="BonusBtnCursorBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnCursor"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/cursor.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtCursorKost" Content="750" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnGrandmaBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnGrandma"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/grandma.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtGrandmaKost" Content="5000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
 
-                    <Border Grid.Row="2" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
-                        <Grid  Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor"  MouseEnter="Tooltip" IsEnabled="False" ToolTip="hello" >
+                        <Border Name="BonusBtnFarmBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnFarm"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/farm.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtFarmKost" Content="55000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnMineBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnMine"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/mine.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtMineKost" Content="600000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnFactoryBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnFactory"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/factory.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtFactoryKost" Content="6500000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnBankBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnBank"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/bank.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Name="TxtBankKost" Content="70000000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Name="BonusBtnTempleBorder" Visibility="Collapsed"  BorderBrush="#997e9c54" BorderThickness="4" CornerRadius="5"  >
+                            <Grid Name="BonusBtnTemple"  MouseDown="BonusBtnCursor_Click" HorizontalAlignment="Left" Background="#D3D978">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Margin="0" Grid.Row="0">
+                                        <Image Source="/temple.png" />
+                                    </Viewbox>
+                                    <Viewbox Grid.Row="1">
+                                        <Label Grid.Row="1" Name="TxtTempleKost" Content="70000000" FontSize="16" Padding="0" Margin="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </WrapPanel>
+                </ScrollViewer>
+               
+
+                <Border Grid.Row="2" Name="BtnInvesteringCursorBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                        <Grid  Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringCursor"  MouseEnter="Tooltip" IsEnabled="False" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="4*"/>
@@ -156,7 +269,7 @@
                         </Grid>
                     </Border>
 
-                    <Border Grid.Row="3" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="3" Name="BtnInvesteringGrandmaBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Grid.Row="2" Background="#D3D978" MouseLeftButtonDown="CursorClicked" MouseEnter="Tooltip" Name="BtnInvesteringGrandma">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -184,7 +297,7 @@
                         </Grid>
                     </Border>
 
-                    <Border Grid.Row="4" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="4" Name="BtnInvesteringFarmBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFarm" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -214,7 +327,7 @@
                         </Grid>
                     </Border>
 
-                    <Border Grid.Row="5" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="5" Name="BtnInvesteringMineBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringMine" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -242,7 +355,7 @@
                         </Grid>
                     </Border>
 
-                    <Border Grid.Row="6" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="6" Name="BtnInvesteringFactoryBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringFactory" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -269,7 +382,7 @@
                             </Viewbox>
                         </Grid>
                     </Border>
-                    <Border Grid.Row="7" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Name="BtnInvesteringBankBorder" Grid.Row="7" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringBank" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -297,7 +410,7 @@
                         </Grid>
                     </Border>
 
-                    <Border Grid.Row="8" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
+                <Border Grid.Row="8" Name="BtnInvesteringTempleBorder" BorderBrush="#997e9c54" BorderThickness="4" Margin="0, 0, 0, 10" CornerRadius="5">
                         <Grid Background="#D3D978" MouseLeftButtonDown="CursorClicked" Name="BtnInvesteringTemple" MouseEnter="Tooltip">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
