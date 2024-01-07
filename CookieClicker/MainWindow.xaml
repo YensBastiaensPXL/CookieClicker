@@ -26,6 +26,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="4*" />
                     <RowDefinition Height="7*" />
+                    <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="20, 30, 20, 0">
                     <Viewbox Stretch="Uniform">
@@ -38,7 +39,14 @@
                         <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="3"/>
                     </Viewbox>
                 </StackPanel>
-                <Image Grid.Row="1" Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave" Margin="40, 20, 40, 0" VerticalAlignment="Top" />
+                <Image Grid.Row="1" Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave" Margin="40, 50, 40,0" VerticalAlignment="Top" />
+                <ListBox Name="LstBoxGeschiedenis" Visibility="Collapsed"  Background="#997e9c54" Grid.Row="2" Margin="15, 10" >
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
             </Grid>
             <Grid Grid.Column="1">
                     <Grid.RowDefinitions>

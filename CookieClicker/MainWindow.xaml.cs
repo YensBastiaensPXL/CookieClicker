@@ -30,8 +30,8 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 749; //aantal nog aanpassen bij upload
-        double totaalAantalVerdiendeCookies = 749; //aantal nog aanpassen bij upload
+        double aantalCookies = 1000000; //aantal nog aanpassen bij upload
+        double totaalAantalVerdiendeCookies = 1000000; //aantal nog aanpassen bij upload
         
         //Variabelen cookie afbeelding vergroting/verkleining
         double origineleAfbeeldingBreedte;
@@ -154,6 +154,10 @@ namespace CookieClicker
         bool isQuest19Voltooid = false;
         bool isQuest20Voltooid = false;
         bool isGoudenCookieGeklikt = false;
+
+        //Geschiedenis Quest notificaties
+        private HashSet<Tuple<string, string>> notificatieGeschiedenis = new HashSet<Tuple<string, string>>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -587,10 +591,10 @@ namespace CookieClicker
         {
             return basisprijs * Math.Pow(1.15, counter);
         }
-        private double BerekenKostPrijsBonus(int basisprijs, long counter)
-        {
-            return basisprijs * counter;
-        }
+        //private double BerekenKostPrijsBonus(int basisprijs, long counter)
+        //{
+        //    return basisprijs * counter;
+        //}
         private void PassieveCookieTimer10ms_Tick(object sender, EventArgs e)
         {
             double passieveCookiesPerTick = passieveCookieRatio10ms;
@@ -743,7 +747,7 @@ namespace CookieClicker
         {
             const string NotificationHexColor = "#FF00FF";
             Color backgroundColor = (Color)ColorConverter.ConvertFromString(NotificationHexColor);
-            
+
             Window customNotificatie = new Window
             {
                 Title = titel,
@@ -755,9 +759,10 @@ namespace CookieClicker
             };
             
             Grid grid = new Grid();
-            
+
             TextBlock bericht = new TextBlock
             {
+                Foreground = Brushes.White,
                 Text = tekst,
                 TextWrapping = TextWrapping.Wrap,
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -770,6 +775,15 @@ namespace CookieClicker
             customNotificatie.Content = grid;
             
             customNotificatie.ShowDialog();
+
+            var NotificatieExemplaren = new Tuple<string, string>(titel, tekst);
+
+            if (notificatieGeschiedenis.Add(NotificatieExemplaren))
+            {
+                LstBoxGeschiedenis.Items.Add(NotificatieExemplaren);
+            }
+            LstBoxGeschiedenis.Visibility = Visibility.Visible;
+            
             
 
         }
