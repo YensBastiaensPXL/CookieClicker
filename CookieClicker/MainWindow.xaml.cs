@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,6 +21,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.Devices;
 
 namespace CookieClicker
 {
@@ -25,15 +30,18 @@ namespace CookieClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        double aantalCookies = 15; //aantal nog aanpassen bij upload
-        double totaalAantalVerdiendeCookies = 15; //aantal nog aanpassen bij upload
+        double aantalCookies = 99999; //aantal nog aanpassen bij upload
+        double totaalAantalVerdiendeCookies = 99999; //aantal nog aanpassen bij upload
+        
         //Variabelen cookie afbeelding vergroting/verkleining
         double origineleAfbeeldingBreedte;
         bool isMouseDown = false;
         bool isMuisOverAfbeelding = false;
+        int aantalCookieAfbeeldingGeklikt = 0;
         //Passieve cookie timer
         DispatcherTimer passieveCookieTimer10ms;
         double passieveCookieRatio10ms = 0;
+        double aantalPerSecondeAfgerond;
         //basis prijs investeringen
         const int basisPrijsCursor = 15;
         const int basisPrijsGrandma = 100;
@@ -65,16 +73,39 @@ namespace CookieClicker
         double huidigeAankoopPrijsTemple;
         long aantalInvesteringTemple = 0;
         // Gouden cookie variabelen
-        DispatcherTimer minuutTimer;
+        DispatcherTimer minuutTimerGoudenCookie;
         Random randomGoudenCookieGetal = new Random();
         Random randomCookiePositie = new Random();
+        double CookieBonus15Min;
+        //Quests variabelen
+        bool isQuest1Voltooid = false;
+        bool isQuest2Voltooid = false;
+        bool isQuest3Voltooid = false;
+        bool isQuest4Voltooid = false;
+        bool isQuest5Voltooid = false;
+        bool isQuest6Voltooid = false;
+        bool isQuest7Voltooid = false;
+        bool isQuest8Voltooid = false;
+        bool isQuest9Voltooid = false;
+        bool isQuest10Voltooid = false;
+        bool isQuest11Voltooid = false;
+        bool isQuest12Voltooid = false;
+        bool isQuest13Voltooid = false;
+        bool isQuest14Voltooid = false;
+        bool isQuest15Voltooid = false;
+        bool isQuest16Voltooid = false;
+        bool isQuest17Voltooid = false;
+        bool isQuest18Voltooid = false;
+        bool isQuest19Voltooid = false;
+        bool isQuest20Voltooid = false;
+        bool isGoudenCookieGeklikt = false;
         public MainWindow()
         {
             InitializeComponent();
             UpdateCookies();
             OpstartBtnEnabled();
             origineleAfbeeldingBreedte = klikebareCookie.Width;
-            //Method Formatteernummer formatteert de getallen bij opstart van applicatie
+            //Method formatteert de getallen van de investeringen bij opstart van applicatie
             PrijsFarm.Content = FormatteerNummer(basisPrijsFarm);
             PrijsMine.Content = FormatteerNummer(basisPrijsMine);
             PrijsFactory.Content = FormatteerNummer(basisPrijsFactory);
@@ -85,67 +116,13 @@ namespace CookieClicker
             passieveCookieTimer10ms = new DispatcherTimer();
             passieveCookieTimer10ms.Interval = TimeSpan.FromMilliseconds(10);
             //Gouden Cookie
-            minuutTimer = new DispatcherTimer();
-            minuutTimer.Tick += MinuutTimer_Tick;
-            //minuteTimer.Interval = TimeSpan.FromMinutes(1);
-            minuutTimer.Interval = TimeSpan.FromSeconds(3);
-            minuutTimer.Start();
-
-
+            minuutTimerGoudenCookie = new DispatcherTimer();
+            minuutTimerGoudenCookie.Tick += MinuutTimer_Tick;
+            minuutTimerGoudenCookie.Interval = TimeSpan.FromMinutes(1);
+            minuutTimerGoudenCookie.Interval = TimeSpan.FromSeconds(5);
+            minuutTimerGoudenCookie.Start();
         }
-        private void MinuutTimer_Tick(object sender, EventArgs e)
-        {
-            // Genereren van een willekeurig getal tussen 0 en 99
-            int randomNumber = randomGoudenCookieGetal.Next(100);
 
-            // Als het willekeurige getal kleiner is dan of gelijk aan 30 is het binnen de 30% kans
-            if (randomNumber <= 100)
-            {    
-                ShowGoudenCookie();
-            }
-        }
-        private void ShowGoudenCookie()
-        {
-            
-            Image goudenCookie = new Image();
-            goudenCookie.Source = new BitmapImage(new Uri("/goudencookie.png", UriKind.RelativeOrAbsolute));
-
-            goudenCookie.Width = 40;
-            goudenCookie.Height = 40;
-
-            double randomX = randomCookiePositie.NextDouble() * (HoofdGrid.ActualWidth - goudenCookie.Width);
-            double randomY = randomCookiePositie.NextDouble() * (HoofdGrid.ActualHeight - goudenCookie.Height);
-
-
-            goudenCookie.MouseLeftButtonDown += goudenCookie_MouseLeftButtonDown;
-
-            Canvas.SetLeft(goudenCookie, randomX);
-            Canvas.SetTop(goudenCookie, randomY);
-
-            HoofdGrid.Children.Add(goudenCookie);
-        }
-       
-    private void goudenCookie_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            // Verwijder de afbeelding bij het klikken
-            Image clickedImage = sender as Image;
-            HoofdGrid.Children.Remove(clickedImage);
-
-            double CookieBonus15Min = passieveCookieRatio10ms * 100 * 6 * 15;
-            aantalCookies += CookieBonus15Min;
-            totaalAantalVerdiendeCookies += CookieBonus15Min;
-        }
-        private void OpstartBtnEnabled()
-        {
-            BtnInvesteringCursor.IsEnabled = aantalCookies >= basisPrijsCursor;
-            BtnInvesteringGrandma.IsEnabled = aantalCookies >= basisPrijsGrandma;
-            BtnInvesteringFarm.IsEnabled = aantalCookies >= basisPrijsFarm;
-            BtnInvesteringMine.IsEnabled = aantalCookies >= basisPrijsMine;
-            BtnInvesteringFactory.IsEnabled = aantalCookies >= basisPrijsFactory;
-            BtnInvesteringBank.IsEnabled = aantalCookies >= basisPrijsBank;
-            BtnInvesteringTemple.IsEnabled = aantalCookies >= basisPrijsTemple;
-         
-        }
         private void CursorClicked(object sender, MouseButtonEventArgs e)
         {
             Grid geklikteKnop = (Grid)sender;
@@ -181,6 +158,7 @@ namespace CookieClicker
                 {
                     aantalInvesteringGrandma++;
                     UpdateInvestering("grandma", ref kostCounterGrandma);
+                    ShowQuestNotificaties();
                 }
                 else
                 {
@@ -190,7 +168,6 @@ namespace CookieClicker
                     aantalInvesteringGrandma = 1;
                 }
                 GrandmaAantal.Content = aantalInvesteringGrandma.ToString();
-
                 //Passieve cookie counter
                 passieveCookieTimer10ms.Tick -= PassieveCookieTimer10ms_Tick;
                 passieveCookieRatio10ms += 0.01;
@@ -348,6 +325,7 @@ namespace CookieClicker
                 huidigeAankoopPrijsCursor = BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor - 1);
                 PrijsCursor.Content = Math.Ceiling(kostCounterCursor).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsCursor);
+
             }
             if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma - 1) && type.Equals("grandma"))
             {
@@ -355,6 +333,7 @@ namespace CookieClicker
                 huidigeAankoopPrijsGrandma = BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma - 1);
                 PrijsGrandma.Content = Math.Ceiling(kostCounterGrandma).ToString();
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsGrandma);
+                
             }
             if (aantalCookies >= BerekenKostprijsInvestering(basisPrijsFarm, aantalInvesteringFarm - 1) && type.Equals("farm"))
             {
@@ -392,13 +371,16 @@ namespace CookieClicker
                 //PrijsTemple.Content = FormatteerNummer(Math.Ceiling(kostCounterTemple));
                 aantalCookies -= Math.Ceiling(huidigeAankoopPrijsTemple);
             }
+            ShowQuestNotificatiesInvesteringen();
         }
         private void UpdateCookies()
         {
+            
             aantalCookiesTxt.Content = FormatteerNummer(aantalCookies);
             double aantalCookiesAfgerond = Math.Floor(aantalCookies);
             Title = $"Cookie clicker got {aantalCookiesAfgerond} cookies";
-            double aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms * 100, 3);
+            ShowQuestNotificaties();
+            aantalPerSecondeAfgerond = Math.Round(passieveCookieRatio10ms * 100, 3);
             aantalPerSeconde.Content = $"{aantalPerSecondeAfgerond} per seconde";
 
             ZichtbaarheidInvesteringen(BtnInvesteringCursor, 15);
@@ -408,6 +390,7 @@ namespace CookieClicker
             ZichtbaarheidInvesteringen(BtnInvesteringFactory, 130000);
             ZichtbaarheidInvesteringen(BtnInvesteringBank, 1400000);
             ZichtbaarheidInvesteringen(BtnInvesteringTemple, 20000000);
+            
             BtnInvesteringCursor.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsCursor, aantalInvesteringCursor);
             BtnInvesteringGrandma.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsGrandma, aantalInvesteringGrandma);
             BtnInvesteringFarm.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsFarm, aantalInvesteringFarm);
@@ -415,7 +398,242 @@ namespace CookieClicker
             BtnInvesteringFactory.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsFactory, aantalInvesteringFactory);
             BtnInvesteringBank.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsBank, aantalInvesteringBank);
             BtnInvesteringTemple.IsEnabled = aantalCookies >= BerekenKostprijsInvestering(basisPrijsTemple, aantalInvesteringTemple);
+            
         }
+
+        private void ShowQuestNotificaties()
+        {
+
+            if (aantalPerSecondeAfgerond >= 10 && !isQuest1Voltooid)
+            {
+                CreatieNotificatie("10 cookies per seconde bereikt!", "Je bakkerij is een succes," +
+                    " maar je kunt altijd meer produceren. Ga ervoor!");
+                isQuest1Voltooid = true;
+            }
+
+            if (aantalPerSecondeAfgerond >= 100 && !isQuest2Voltooid)
+            {
+                CreatieNotificatie("100 cookies per seconde bereikt!", "Je bent een bekende figuur dankzij " +
+                    "je opvallende cookievelden, die regelmatig de krantenkoppen halen." +
+                    "Op je akkers cultiveer je met trots en vakmanschap verschillende heerlijke cookies. ");
+                isQuest2Voltooid = true;
+            }
+            if (aantalPerSecondeAfgerond >= 500 && !isQuest12Voltooid)
+            {
+                CreatieNotificatie("500 cookies per seconde bereikt!", "Je winkel begint op gang te komen en je " +
+                    "trekt volk van heel het dorp naar je bakkerij.");
+                isQuest12Voltooid = true;
+            }
+
+            if (aantalPerSecondeAfgerond >= 1000 && !isQuest3Voltooid)
+            {
+                CreatieNotificatie("1000 cookies per seconde bereikt!", "Je cookie velden zijn berucht. " +
+                    "Je verschijnt dagelijks in de krant over je befaamde cookie planten die je in je akkers teelt.");
+                isQuest3Voltooid = true;
+            }
+
+            if (aantalPerSecondeAfgerond >= 100000 && !isQuest3Voltooid)
+            {
+                CreatieNotificatie("100.000 cookies per seconde bereikt!", "Je staat bekend om je opmerkelijke cookievelden, " +
+                    "die regelmatig in de krant worden vermeld. Deze beroemde velden van jou bevinden zich op je akkers, " +
+                    "waar je met trots en vaardigheid diverse soorten heerlijke cookies teelt.");
+                isQuest3Voltooid = true;
+            }
+
+            if (totaalAantalVerdiendeCookies >= 100 && !isQuest4Voltooid)
+            {
+                CreatieNotificatie("100 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
+                    "De cookievelden blijven een betoverende mix van vakmanschap en smaak, een bron van genot en bewondering.");
+                isQuest4Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 1000 && !isQuest5Voltooid)
+            {
+                CreatieNotificatie("1.000 Cookies in totaal gemaakt!", "Met behendigheid en inzet worden cookies verdiend," +
+                    " De velden waarop deze lekkernijen gedijen, blijven een fascinerende samensmelting van vakmanschap en smaak," +
+                    " een continue bron van vreugde en bewondering.");
+                isQuest5Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 10000 && !isQuest6Voltooid)
+            {
+                CreatieNotificatie("10.000 Cookies in totaal gemaakt!", "Door bedrevenheid en toewijding te tonen, " +
+                    "vergaar ik mijn voorraad aan cookies. De velden waarop deze verrukkingen gedijen, " +
+                    "blijven een betoverende synergie van vakmanschap en smaak, " +
+                    "een voortdurende bron van genoegen en bewondering.");
+                isQuest6Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 100000 && !isQuest7Voltooid)
+            {
+                CreatieNotificatie("100.000 Cookies in totaal gemaakt!", "Gisteravond heb je je keuken omgetoverd" +
+                    " tot een culinair paradijs, waar je met toewijding en precisie een overvloed aan heerlijke " +
+                    "chocoladekoekjes hebt gebakken. De geur van versgebakken lekkernijen vulde je huis," +
+                    " en de knapperige textuur en rijke smaak maakten je inspanningen meer dan de moeite waard.");
+                isQuest7Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 1000000 && !isQuest8Voltooid)
+            {
+                CreatieNotificatie("1.000.000 Cookies in totaal gemaakt", "Vanmiddag stond je keuken in het teken " +
+                    "van creativiteit en zoete verleiding. Met een scala aan ingrediënten heb je een batch verrukkelijke " +
+                    "koekjes gemaakt. De subtiele mix van basis ingrediënten resulteerde in een smaakvolle traktatie die " +
+                    "je smaakpapillen deed dansen.");
+                isQuest8Voltooid = true;
+            }
+            if (totaalAantalVerdiendeCookies >= 1000000000 && !isQuest9Voltooid)
+            {
+                CreatieNotificatie("1.000.000.000 Cookies in totaal gemaakt!", "Deze middag was een ware zoete symfonie," +
+                    " waar je een indrukwekkende hoeveelheid koekjes hebt gebakken. De keuken was gevuld met het geluid" +
+                    " van knisperend deeg en het aroma van verschillende smaken die samensmolten tot een verrukkelijke" +
+                    " harmonie. Jouw overvloed aan koekjes is niet alleen een feest voor de smaakpapillen maar ook een" +
+                    " visueel festijn.");
+                isQuest9Voltooid = true;
+            }
+            if (aantalCookieAfbeeldingGeklikt >= 50 && !isQuest10Voltooid)
+            {
+                CreatieNotificatie("50 klikkende Cookies!", "Je hebt 25 cookies gemaakt door erop te klikken.");
+                isQuest10Voltooid = true;
+            }
+            if (isGoudenCookieGeklikt && !isQuest11Voltooid)
+            {
+                CreatieNotificatie("Gouden Cookie gevonden!", $"Je hebt {CookieBonus15Min}(15 min. productie) aan cookies gekregen.");
+                isQuest11Voltooid = true;
+            }
+
+        }
+
+        //Aparte method gemaakt voor de quests rond investeringen sinds de ander gebaseerd zijn op puur cookies.
+        //Als de investeringen ook in UpdateCookies() opgeroepen worden krijg je 2x een messagebox.
+        // Het in een ander method steken en deze in UpdateInvestering() oproepen verhelpt het probleem
+        private void ShowQuestNotificatiesInvesteringen()
+        {
+            if (aantalInvesteringCursor >= 20 && !isQuest14Voltooid)
+            {
+                CreatieNotificatie("Megaveel Cursors!", "Je hebt 20 Cursors gekocht.");
+                isQuest14Voltooid = true;
+            }
+            if (aantalInvesteringGrandma >= 25 && !isQuest15Voltooid)
+            {
+                CreatieNotificatie("Grandma's gaan los!", "Je hebt 25 Grandmas gekocht om koekjes te bakken.");
+                isQuest15Voltooid = true;
+            }
+            if (aantalInvesteringFarm >= 20 && !isQuest16Voltooid)
+            {
+                CreatieNotificatie("Farms in overvloed!", "Je hebt 20 farms gekocht om koekjes te bakken.");
+                isQuest16Voltooid = true;
+            }
+            if (aantalInvesteringMine >= 15 && !isQuest17Voltooid)
+            {
+                CreatieNotificatie("Overal mines!", "Je hebt 15 mines gekocht om koekjes te bakken.");
+                isQuest17Voltooid = true;
+            }
+            if (aantalInvesteringFactory >= 10 && !isQuest18Voltooid)
+            {
+                CreatieNotificatie("Zoveel industrie!", "Je hebt 10 factories gekocht om koekjes te bakken.");
+                isQuest18Voltooid = true;
+            }
+            if (aantalInvesteringBank >= 5 && !isQuest19Voltooid)
+            {
+                CreatieNotificatie("Banken dynastie", "Je hebt 6 banken gekocht om koekjes te bakken.");
+                isQuest19Voltooid = true;
+            }
+            if (aantalInvesteringTemple >= 3 && !isQuest20Voltooid)
+            {
+                CreatieNotificatie("Temples", "Je hebt 3 temples gekocht om koekjes te bakken.");
+                isQuest20Voltooid = true;
+            }
+        }
+
+        private void CreatieNotificatie(string titel, string tekst)
+        {
+            const string NotificationHexColor = "#FF00FF";
+            Color backgroundColor = (Color)ColorConverter.ConvertFromString(NotificationHexColor);
+            
+            Window customNotificatie = new Window
+            {
+                Title = titel,
+                Background = new SolidColorBrush(backgroundColor),
+                Width = 300,
+                Height = 200,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                ResizeMode = ResizeMode.NoResize,
+                
+            };
+            
+            Grid grid = new Grid();
+            
+            TextBlock bericht = new TextBlock
+            {
+                Text = tekst,
+                TextWrapping = TextWrapping.Wrap,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(20),
+            };
+            
+            grid.Children.Add(bericht);
+
+            customNotificatie.Content = grid;
+            if (Application.Current.MainWindow != null && Application.Current.MainWindow.IsLoaded)
+            {
+                customNotificatie.Owner = Application.Current.MainWindow;
+            }
+            customNotificatie.ShowDialog();
+            
+
+        }
+        
+        private void OpstartBtnEnabled()
+        {
+            BtnInvesteringCursor.IsEnabled = aantalCookies >= basisPrijsCursor;
+            BtnInvesteringGrandma.IsEnabled = aantalCookies >= basisPrijsGrandma;
+            BtnInvesteringFarm.IsEnabled = aantalCookies >= basisPrijsFarm;
+            BtnInvesteringMine.IsEnabled = aantalCookies >= basisPrijsMine;
+            BtnInvesteringFactory.IsEnabled = aantalCookies >= basisPrijsFactory;
+            BtnInvesteringBank.IsEnabled = aantalCookies >= basisPrijsBank;
+            BtnInvesteringTemple.IsEnabled = aantalCookies >= basisPrijsTemple;
+
+        }
+        private void MinuutTimer_Tick(object sender, EventArgs e)
+        {
+            int randomNummer = randomGoudenCookieGetal.Next(100);
+
+            if (randomNummer <= 30)
+            {
+                ShowGoudenCookie();
+            }
+        }
+        private void ShowGoudenCookie()
+        {
+
+            Image goudenCookie = new Image();
+            goudenCookie.Source = new BitmapImage(new Uri("/goudencookie.png", UriKind.RelativeOrAbsolute));
+
+            goudenCookie.Width = 40;
+            goudenCookie.Height = 40;
+
+            double randomX = randomCookiePositie.NextDouble() * (GoudenCookieScherm.ActualWidth - goudenCookie.Width);
+            double randomY = randomCookiePositie.NextDouble() * (GoudenCookieScherm.ActualHeight - goudenCookie.Height);
+
+
+            goudenCookie.MouseLeftButtonDown += goudenCookie_MouseLeftButtonDown;
+
+            Canvas.SetLeft(goudenCookie, randomX);
+            Canvas.SetTop(goudenCookie, randomY);
+
+            GoudenCookieScherm.Children.Add(goudenCookie);
+        }
+
+        private void goudenCookie_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            isGoudenCookieGeklikt = true;
+            // Verwijdert de afbeelding bij het klikken
+            Image clickedImage = sender as Image;
+            GoudenCookieScherm.Children.Remove(clickedImage);
+
+            //Haalt de huidige inkomsten per 10ms op en zet dit om naar 15min waard aan inkomsten
+            CookieBonus15Min = passieveCookieRatio10ms * 100 * 6 * 15;
+            aantalCookies += CookieBonus15Min;
+            totaalAantalVerdiendeCookies += CookieBonus15Min;
+        }
+
         private void VoegAfbeeldingToeInvestering(Grid grid, string urlAfbeelding, double widht, double height, double spacing)
         {
             Image image = new Image();
@@ -489,6 +707,7 @@ namespace CookieClicker
             isMouseDown = true;
             aantalCookies++;
             totaalAantalVerdiendeCookies++;
+            aantalCookieAfbeeldingGeklikt++;
             klikebareCookie.Width = klikebareCookie.ActualWidth * 0.9;
             isMuisOverAfbeelding = true;
 

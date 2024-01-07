@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:CookieClicker"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-
     <Grid>
         <Grid.Background>
                 <ImageBrush  ImageSource="/background_cookie.png"/>
@@ -15,32 +14,32 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1.2*"/>
         </Grid.ColumnDefinitions>
-        <Canvas Name="HoofdGrid" Grid.ColumnSpan="2" Panel.ZIndex="1" ></Canvas>
-        
+        <Canvas Name="GoudenCookieScherm" Grid.ColumnSpan="2" Panel.ZIndex="1" ></Canvas>
+
+
         <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="6*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="4*" />
-                        <RowDefinition Height="7*" />
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="20, 30, 20, 0">
-                        <Viewbox Stretch="Uniform">
-                            <Label Content="PXL-Bakery" Name="lblNaam" MouseDown="lblNaam_MouseDown" Padding="10, 0, 10, 2" FontSize="5" />
-                        </Viewbox>
-                        <Viewbox Stretch="Uniform" Margin="0">
-                        <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="6" Content="hello"/>
-                        </Viewbox>
-                        <Viewbox Stretch="Uniform">
-                            <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="3" Content="hello"/>
-                        </Viewbox>
-                    </StackPanel>
-                    <Image Grid.Row="1" Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave" Margin="40, 0, 40, 0" VerticalAlignment="Top" />
-                </Grid>
-            
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="7*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="20, 30, 20, 0">
+                    <Viewbox Stretch="Uniform">
+                        <Label Content="PXL-Bakery" Name="lblNaam" MouseDown="lblNaam_MouseDown" Padding="10, 0, 10, 0" FontSize="5" />
+                    </Viewbox>
+                    <Viewbox Stretch="Uniform" Margin="0">
+                        <Label Name="aantalCookiesTxt" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="6"/>
+                    </Viewbox>
+                    <Viewbox Stretch="Uniform">
+                        <Label Name="aantalPerSeconde" HorizontalAlignment="Center" Padding="10, 0, 10, 0" FontSize="3"/>
+                    </Viewbox>
+                </StackPanel>
+                <Image Grid.Row="1" Name="klikebareCookie" Source="/cookie.png"  MouseDown="MouseDownCookie" MouseUp="MouseUpCookie" MouseEnter="ImageMouseEnter" MouseLeave="ImageMouseLeave" Margin="40, 20, 40, 0" VerticalAlignment="Top" />
+            </Grid>
             <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -54,8 +53,9 @@
                     <Viewbox>
                         <Label Grid.Row="0" Content="Cookie clicker" Padding="0, 5" FontSize="7" FontWeight="Bold" Foreground="#D3D978"/>
                     </Viewbox>
-
-                    <ScrollViewer Grid.Row="1"  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                
+                
+                <ScrollViewer Grid.Row="1"  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                         <Grid Name="GrandmaInvesteringCategorie" Visibility="Collapsed">
                             <Grid.Background>
                                 <ImageBrush ImageSource="/grandmabackground.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
@@ -84,7 +84,8 @@
                             </Grid.Background>
                         </Grid>
                     </ScrollViewer>
-                    <ScrollViewer Grid.Row="5" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                
+                <ScrollViewer Grid.Row="5" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                         <Grid Name="BankInvesteringCategorie" Visibility="Collapsed">
                             <Grid.Background>
                                 <ImageBrush ImageSource="/backgroundBank.jpg" TileMode="FlipXY" Stretch="UniformToFill" Viewport="0,0,300,90" ViewportUnits="Absolute" />
@@ -118,7 +119,7 @@
                     <Viewbox Grid.Row="0">
                         <Label HorizontalAlignment="Center" FontSize="14" Foreground="#D3D978" FontWeight="Bold">Store</Label>
                     </Viewbox>
-
+                
                     <!--<Button Name="BonusBtn" Grid.Row="1" Content="Bonus" Click="BonusBtn_Click" Margin="0, 5" Width="45px" >
              <Button.Background>
                  <ImageBrush x:Name="BonusButtonBackground"/>
@@ -133,7 +134,7 @@
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Viewbox Stretch="Uniform" Margin="7px">
+                        <Viewbox Stretch="Uniform" Margin="7, 4">
                                 <Image Source="/cursor.png"></Image>
                             </Viewbox>
 
@@ -162,7 +163,7 @@
                                 <ColumnDefinition Width="4*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <Viewbox Margin="7px">
+                        <Viewbox Margin="7, 4">
                                 <Image Source="/grandma.png" />
                             </Viewbox>
                             <Grid Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="1">
@@ -190,7 +191,7 @@
                                 <ColumnDefinition Width="4*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <Viewbox Stretch="Uniform" Margin="5, 0">
+                        <Viewbox Stretch="Uniform" Margin="7, 4">
                                 <Image Source="/farm.png"></Image>
                             </Viewbox>
 
